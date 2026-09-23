@@ -1,2 +1,2 @@
-# Plantation-Stars-Fundraiser-
+# Plantation-Stars-Cooperstown-
 Fundraiser for Cooperstown 
