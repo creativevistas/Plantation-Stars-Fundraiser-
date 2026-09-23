@@ -1,193 +1,248 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plantation Stars Red | Road to Cooperstown</title>
-    <style>
-        /* Team Styling */
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            text-align: center;
-            background-color: #f8f9fa;
-            margin: 0;
-            padding: 20px;
-            color: #212529;
-        }
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        h1 {
-            color: #0d2c54; /* Deep Navy */
-            font-size: 2.5rem;
-            margin-bottom: 5px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        .subtitle {
-            color: #c1121f; /* Stars Red */
-            font-size: 1.8rem;
-            font-weight: bold;
-            margin-top: 0;
-            margin-bottom: 20px;
-        }
-        .description {
-            font-size: 1.1rem;
-            max-width: 600px;
-            margin: 0 auto 40px auto;
-            line-height: 1.6;
-            color: #495057;
-        }
-        /* Player Selection Grid */
-        h3 {
-            font-size: 1.4rem;
-            color: #343a40;
-            margin-bottom: 25px;
-            border-bottom: 2px solid #dee2e6;
-            padding-bottom: 10px;
-        }
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-        /* Individual Player Cards */
-        .player-card {
-            background: white;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-            border: 1px solid #e9ecef;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: center;
-            transition: transform 0.2s ease;
-        }
-        .player-card:hover {
-            transform: translateY(-3px);
-        }
-        .player-name {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: #212529;
-            margin-bottom: 20px;
-        }
-        /* Fundraiser Buttons */
-        .btn {
-            display: inline-block;
-            background-color: #0d2c54;
-            color: white;
-            text-decoration: none;
-            padding: 12px 24px;
-            border-radius: 6px;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: background-color 0.2s ease;
-            width: 80%;
-        }
-        .btn:hover {
-            background-color: #c1121f; /* Turns red when hovered */
-        }
-        footer {
-            margin-top: 60px;
-            font-size: 0.9rem;
-            color: #6c757d;
-            font-weight: bold;
-            letter-spacing: 1px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plantation Stars Red | Road to Cooperstown</title>
+  <style>
+    :root {
+      --primary-navy: #0d2343; /* Matches your dark button colors */
+      --hover-blue: #16325c;
+      --light-bg: #f4f6f9;
+      --text-dark: #1a1a1a;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: var(--light-bg);
+      color: var(--text-dark);
+      line-height: 1.4;
+    }
+
+    .hero-section {
+      text-align: center;
+      padding: 3rem 1rem 2rem 1rem;
+      background: white;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .hero-section h1 {
+      margin: 0 0 0.5rem 0;
+      font-size: 2.5rem;
+      color: var(--text-dark);
+    }
+
+    .hero-section p {
+      margin: 0 auto;
+      max-width: 600px;
+      color: #64748b;
+      font-size: 1.1rem;
+    }
+
+    .main-container {
+      max-width: 1100px;
+      margin: 3rem auto;
+      padding: 0 1.5rem;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 1.5rem;
+      color: var(--text-dark);
+    }
+
+    /* Roster Grid Setup */
+    .player-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    /* Player Card Styling */
+    .player-card {
+      background: white;
+      border-radius: 8px;
+      padding: 1.5rem;
+      text-align: center;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .player-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
+    }
+
+    .jersey-number {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: var(--text-dark);
+      margin-bottom: 0.25rem;
+    }
+
+    .player-name {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin: 0 0 1.25rem 0;
+      color: var(--text-dark);
+      min-height: 2.6rem; /* Keeps layout aligned if name breaks into two lines */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Interactive Support Buttons */
+    .support-btn {
+      display: inline-block;
+      width: 85%;
+      background-color: var(--primary-navy);
+      color: white;
+      text-decoration: none;
+      padding: 0.75rem 1rem;
+      font-weight: 600;
+      font-size: 0.95rem;
+      border-radius: 6px;
+      transition: background-color 0.2s ease;
+    }
+
+    .support-btn:hover {
+      background-color: var(--hover-blue);
+    }
+
+    footer {
+      text-align: center;
+      padding: 4rem 1rem 2rem 1rem;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #94a3b8;
+    }
+  </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1>Plantation Stars Red</h1>
-        <div class="subtitle">Road to Cooperstown</div>
-        
-        <p class="description">
-            Help Plantation Stars Red make the Cooperstown dream a reality. 
-            Choose the player you would like to support and sponsor one or more baseballs from their individual fundraiser board.
-        </p>
+  <div class="hero-section">
+    <h1>Plantation Stars Red</h1>
+    <p>Help Plantation Stars Red make the Cooperstown dream a reality. Choose the player you would like to support and sponsor one or more baseballs from their individual fundraiser board.</p>
+  </div>
 
-        <h3>Select a player below to visit their fundraiser.</h3>
+  <div class="main-container">
+    <h2 class="section-title">Select a player below to visit their fundraiser.</h2>
 
-        <div class="grid">
-            
-            <!-- #2 Theodore Vista -->
-            <div class="player-card">
-                <div class="player-name">#2 Theodore Vista</div>
-                <a href="#" class="btn">Support Theodore ›</a>
-            </div>
+    <div class="player-grid">
 
-            <!-- #3 Samuel Garcia -->
-            <div class="player-card">
-                <div class="player-name">#3 Samuel Garcia</div>
-                <a href="#" class="btn">Support Samuel ›</a>
-            </div>
-
-            <!-- #4 Fabio Espinoza -->
-            <div class="player-card">
-                <div class="player-name">#4 Fabio Espinoza</div>
-                <a href="#" class="btn">Support Fabio ›</a>
-            </div>
-
-            <!-- #7 Francisco Rivero -->
-            <div class="player-card">
-                <div class="player-name">#7 Francisco Rivero</div>
-                <a href="#" class="btn">Support Francisco ›</a>
-            </div>
-
-            <!-- #8 Elias Escalona -->
-            <div class="player-card">
-                <div class="player-name">#8 Elias Escalona</div>
-                <a href="#" class="btn">Support Elias ›</a>
-            </div>
-
-            <!-- #11 Christopher Rosales -->
-            <div class="player-card">
-                <div class="player-name">#11 Christopher Rosales</div>
-                <a href="#" class="btn">Support Christopher ›</a>
-            </div>
-
-            <!-- #17 Cristian Marquez -->
-            <div class="player-card">
-                <div class="player-name">#17 Cristian Marquez</div>
-                <a href="#" class="btn">Support Cristian ›</a>
-            </div>
-
-            <!-- #23 Kevin Pino -->
-            <div class="player-card">
-                <div class="player-name">#23 Kevin Pino</div>
-                <a href="#" class="btn">Support Kevin ›</a>
-            </div>
-
-            <!-- #25 Saif Al Fassi -->
-            <div class="player-card">
-                <div class="player-name">#25 Saif Al Fassi</div>
-                <a href="#" class="btn">Support Saif ›</a>
-            </div>
-
-            <!-- #27 Gian Leon -->
-            <div class="player-card">
-                <div class="player-name">#27 Gian Leon</div>
-                <a href="#" class="btn">Support Gian ›</a>
-            </div>
-
-            <!-- #99 Diego Arredondo -->
-            <div class="player-card">
-                <div class="player-name">#99 Diego Arredondo</div>
-                <a href="#" class="btn">Support Diego ›</a>
-            </div>
-
+      <!-- Card 1 -->
+      <div class="player-card">
+        <div>
+          <div class="jersey-number">#2</div>
+          <h3 class="player-name">Theodore Vista</h3>
         </div>
+        <a href="/fundraiser.html?player=theodore-vista" class="support-btn">Support Theodore ›</a>
+      </div>
 
-        <footer>
-            PLANTATION STARS RED • ROAD TO COOPERSTOWN
-        </footer>
+      <!-- Card 2 -->
+      <div class="player-card">
+        <div>
+          <div class="jersey-number">#3</div>
+          <h3 class="player-name">Samuel Garcia</h3>
+        </div>
+        <a href="/fundraiser.html?player=samuel-garcia" class="support-btn">Support Samuel ›</a>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="player-card">
+        <div>
+          <div class="jersey-number">#4</div>
+          <h3 class="player-name">Fabio Espinoza</h3>
+        </div>
+        <a href="/fundraiser.html?player=fabio-espinoza" class="support-btn">Support Fabio ›</a>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="player-card">
+        <div>
+          <div class="jersey-number">#7</div>
+          <h3 class="player-name">Francisco Rivero</h3>
+        </div>
+        <a href="/fundraiser.html?player=francisco-rivero" class="support-btn">Support Francisco ›</a>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="player-card">
+        <div>
+          <div class="jersey-number">#8</div>
+          <h3 class="player-name">Elias Escalona</h3>
+        </div>
+        <a href="/fundraiser.html?player=elias-escalona" class="support-btn">Support Elias ›</a>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="player-card">
+        <div>
+          <div class="jersey-number">#11</div>
+          <h3 class="player-name">Christopher Rosales</h3>
+        </div>
+        <a href="/fundraiser.html?player=christopher-rosales" class="support-btn">Support Christopher ›</a>
+      </div>
+
+      <!-- Card 7 -->
+      <div class="player-card">
+        <div>
+          <div class="jersey-number">#17</div>
+          <h3 class="player-name">Cristian Marquez</h3>
+        </div>
+        <a href="/fundraiser.html?player=cristian-marquez" class="support-btn">Support Cristian ›</a>
+      </div>
+
+      <!-- Card 8 -->
+      <div class="player-card">
+        <div>
+          <div class="jersey-number">#23</div>
+          <h3 class="player-name">Kevin Pino</h3>
+        </div>
+        <a href="/fundraiser.html?player=kevin-pino" class="support-btn">Support Kevin ›</a>
+      </div>
+
+      <!-- Card 9 -->
+      <div class="player-card">
+        <div>
+          <div class="jersey-number">#25</div>
+          <h3 class="player-name">Saif Al Fassi</h3>
+        </div>
+        <a href="/fundraiser.html?player=saif-al-fassi" class="support-btn">Support Saif ›</a>
+      </div>
+
+      <!-- Card 10 -->
+      <div class="player-card">
+        <div>
+          <div class="jersey-number">#27</div>
+          <h3 class="player-name">Gian Leon</h3>
+        </div>
+        <a href="/fundraiser.html?player=gian-leon" class="support-btn">Support Gian ›</a>
+      </div>
+
+      <!-- Card 11 -->
+      <div class="player-card">
+        <div>
+          <div class="jersey-number">#99</div>
+          <h3 class="player-name">Diego Arredondo</h3>
+        </div>
+        <a href="/fundraiser.html?player=diego-arredondo" class="support-btn">Support Diego ›</a>
+      </div>
+
     </div>
+  </div>
+
+  <footer>
+    Plantation Stars Red • Road to Cooperstown
+  </footer>
 
 </body>
 </html>
