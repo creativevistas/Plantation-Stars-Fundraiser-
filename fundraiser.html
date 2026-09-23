@@ -182,7 +182,7 @@ body {
     border-color: #e21d2f;
 }
 
-/* DONATION SUMMARY */
+/* DONATION BOX */
 .donation-box {
     background: #071b36;
     color: white;
@@ -255,7 +255,6 @@ body {
     cursor: not-allowed;
 }
 
-/* NOTICE */
 .notice {
     margin-top: 15px;
     text-align: center;
@@ -313,78 +312,48 @@ footer span {
 </style>
 </head>
 
-
 <body>
 
-<!-- TOP -->
 <div class="topbar">
     <div class="topbar-inner">
         <a href="/" class="back">← Back to Team</a>
     </div>
 </div>
 
-
 <header class="hero">
-
-    <div class="team">
-        PLANTATION STARS RED
-    </div>
-
+    <div class="team">PLANTATION STARS RED</div>
     <h1>Road to Cooperstown</h1>
-
 </header>
-
 
 <main class="container">
 
-    <!-- PLAYER -->
     <section class="player-heading">
-
-        <div class="supporting">
-            YOU'RE SUPPORTING
-        </div>
+        <div class="supporting">YOU'RE SUPPORTING</div>
 
         <h2 id="playerName">
             Plantation Stars Player
         </h2>
 
-        <div
-            class="player-number"
-            id="playerNumber">
-        </div>
-
+        <div class="player-number" id="playerNumber"></div>
     </section>
 
-
-    <!-- FUNDRAISING GOAL -->
     <section class="goal-card">
 
         <div class="progress-info">
-
             <span>
                 Raised:
                 <span id="raisedAmount">$0</span>
             </span>
 
-            <span>
-                Goal: $5,000
-            </span>
-
+            <span>Goal: $5,000</span>
         </div>
 
         <div class="progress-bar">
-
-            <div
-                class="progress-fill"
-                id="progressFill">
-            </div>
-
+            <div class="progress-fill" id="progressFill"></div>
         </div>
 
     </section>
 
-
-    <!-- INSTRUCTIONS -->
     <section class="instructions">
 
         <h3>⚾ Pick Your Baseballs</h3>
@@ -401,114 +370,67 @@ footer span {
 
     </section>
 
+    <div class="baseballs" id="baseballGrid"></div>
 
-    <!-- BASEBALLS -->
-    <div
-        class="baseballs"
-        id="baseballGrid">
-    </div>
-
-
-    <!-- DONATION BOX -->
     <section class="donation-box">
 
         <h2>Your Donation</h2>
 
-        <div
-            class="selected-info"
-            id="selectedInfo">
+        <div class="selected-info" id="selectedInfo">
             No baseballs selected
         </div>
 
-        <div
-            class="total"
-            id="donationTotal">
-            $0
-        </div>
-
+        <div class="total" id="donationTotal">$0</div>
 
         <div class="form-group">
-
-            <label for="donorName">
-                Your Name
-            </label>
+            <label for="donorName">Your Name</label>
 
             <input
                 type="text"
                 id="donorName"
                 placeholder="Enter your name">
-
         </div>
 
-
         <div class="form-group">
-
-            <label for="donorEmail">
-                Email
-            </label>
+            <label for="donorEmail">Email</label>
 
             <input
                 type="email"
                 id="donorEmail"
                 placeholder="Enter your email">
-
         </div>
-
 
         <div class="anonymous">
-
             <label>
-
-                <input
-                    type="checkbox"
-                    id="anonymous">
-
+                <input type="checkbox" id="anonymous">
                 Donate anonymously
-
             </label>
-
         </div>
-
 
         <button
             class="checkout"
             id="checkoutButton"
             disabled>
-
             Select Baseballs to Continue
-
         </button>
 
-
         <div class="notice">
-            Secure payment checkout will be connected next.
+            Secure payment powered by Stripe.
         </div>
 
     </section>
 
 </main>
 
-
 <footer>
-
-    <strong>
-        PLANTATION STARS RED
-    </strong>
-
+    <strong>PLANTATION STARS RED</strong>
     <br>
-
-    <span>
-        Road to Cooperstown
-    </span>
-
+    <span>Road to Cooperstown</span>
 </footer>
-
 
 <script>
 
-/* =========================================
-   PLAYER INFORMATION
-========================================= */
+/* PLAYER INFORMATION */
 
 const players = {
 
@@ -570,222 +492,138 @@ const players = {
 };
 
 
-/* =========================================
-   FIND PLAYER FROM URL
-========================================= */
+/* FIND PLAYER FROM URL */
 
-const params =
-    new URLSearchParams(window.location.search);
-
-const playerKey =
-    params.get("player");
-
-const player =
-    players[playerKey];
-
+const params = new URLSearchParams(window.location.search);
+const playerKey = params.get("player");
+const player = players[playerKey];
 
 if (player) {
 
-    document.getElementById("playerName")
-        .textContent = player.name;
+    document.getElementById("playerName").textContent =
+        player.name;
 
-    document.getElementById("playerNumber")
-        .textContent = player.number;
+    document.getElementById("playerNumber").textContent =
+        player.number;
 
     document.title =
-        player.name +
-        " | Plantation Stars Red Fundraiser";
-
+        player.name + " | Plantation Stars Red Fundraiser";
 }
 
 
-/* =========================================
-   CREATE 100 BASEBALLS
-========================================= */
+/* CREATE 100 BASEBALLS */
 
 const baseballGrid =
     document.getElementById("baseballGrid");
 
 const selectedBalls = new Set();
 
-
 for (let i = 1; i <= 100; i++) {
 
-    const ball =
-        document.createElement("button");
+    const ball = document.createElement("button");
 
     ball.className = "ball";
-
     ball.textContent = i;
-
     ball.dataset.value = i;
 
-
-    ball.addEventListener(
-        "click",
-        function () {
-
-            toggleBall(i, ball);
-
-        }
-    );
-
+    ball.addEventListener("click", function () {
+        toggleBall(i, ball);
+    });
 
     baseballGrid.appendChild(ball);
-
 }
 
 
-/* =========================================
-   SELECT / UNSELECT BASEBALL
-========================================= */
+/* SELECT / UNSELECT BASEBALL */
 
 function toggleBall(number, element) {
 
     if (selectedBalls.has(number)) {
 
         selectedBalls.delete(number);
+        element.classList.remove("selected");
 
-        element.classList.remove(
-            "selected"
-        );
-
-    }
-
-    else {
+    } else {
 
         selectedBalls.add(number);
-
-        element.classList.add(
-            "selected"
-        );
+        element.classList.add("selected");
 
     }
 
-
     updateDonation();
-
 }
 
 
-/* =========================================
-   CALCULATE DONATION
-========================================= */
+/* CALCULATE DONATION */
 
 function updateDonation() {
 
     let total = 0;
 
-    selectedBalls.forEach(
-        number => {
+    selectedBalls.forEach(number => {
+        total += number;
+    });
 
-            total += number;
-
-        }
-    );
-
-
-    document.getElementById(
-        "donationTotal"
-    ).textContent =
+    document.getElementById("donationTotal").textContent =
         "$" + total.toLocaleString();
 
-
     const selectedInfo =
-        document.getElementById(
-            "selectedInfo"
-        );
-
+        document.getElementById("selectedInfo");
 
     if (selectedBalls.size === 0) {
 
         selectedInfo.textContent =
             "No baseballs selected";
 
-    }
-
-    else {
+    } else {
 
         const sorted =
-            Array.from(
-                selectedBalls
-            ).sort(
-                (a, b) => a - b
-            );
-
+            Array.from(selectedBalls).sort((a, b) => a - b);
 
         selectedInfo.textContent =
-            "Selected baseballs: #" +
-            sorted.join(", #");
-
+            "Selected baseballs: #" + sorted.join(", #");
     }
 
-
     const checkoutButton =
-        document.getElementById(
-            "checkoutButton"
-        );
-
+        document.getElementById("checkoutButton");
 
     if (total > 0) {
 
-        checkoutButton.disabled =
-            false;
+        checkoutButton.disabled = false;
 
         checkoutButton.textContent =
             "Continue to Checkout — $" +
             total.toLocaleString();
 
-    }
+    } else {
 
-    else {
-
-        checkoutButton.disabled =
-            true;
+        checkoutButton.disabled = true;
 
         checkoutButton.textContent =
             "Select Baseballs to Continue";
-
     }
-
 }
 
 
-/* =========================================
-   CHECKOUT
-========================================= */
+/* STRIPE CHECKOUT */
 
-document.getElementById(
-    "checkoutButton"
-).addEventListener(
-    "click",
-    function () {
+document.getElementById("checkoutButton")
+.addEventListener("click", function () {
 
-        const total =
-            Array.from(
-                selectedBalls
-            ).reduce(
-                (sum, number) =>
-                    sum + number,
-                0
-            );
-
-
-        if (total === 0) {
-
-            return;
-
-        }
-
-
-        alert(
-            "Your donation is $" +
-            total +
-            ".\n\nPayment processing will be connected next."
+    const total =
+        Array.from(selectedBalls).reduce(
+            (sum, number) => sum + number,
+            0
         );
 
+    if (total === 0) {
+        return;
     }
-);
+
+    window.location.href =
+        "https://buy.stripe.com/cNi7sLffIfbJ5rz68N2go00";
+
+});
 
 </script>
 
