@@ -136,6 +136,7 @@ body {
     height: 100%;
     background: #e21d2f;
     border-radius: 20px;
+    transition: width .4s ease;
 }
 
 /* =====================================================
@@ -456,8 +457,6 @@ body {
 .ball.selected .ball-number {
     color: #e21d2f;
 }
-
-/* CHECK MARK */
 
 .ball.selected .ball-number::after {
     content: "✓";
@@ -977,6 +976,81 @@ if (player) {
 
 
 /* =====================================================
+   LOAD PLAYER TOTAL FROM D1
+===================================================== */
+
+async function loadPlayerTotal() {
+
+    if (!playerKey) {
+        return;
+    }
+
+    try {
+
+        const response =
+            await fetch(
+                "/api/donations?player=" +
+                encodeURIComponent(playerKey),
+                {
+                    cache: "no-store"
+                }
+            );
+
+        const data =
+            await response.json();
+
+
+        if (!response.ok) {
+
+            console.error(
+                "Could not load donation total:",
+                data
+            );
+
+            return;
+        }
+
+
+        const raised =
+            Number(data.total || 0);
+
+        const goal = 5000;
+
+
+        document
+            .getElementById(
+                "raisedAmount"
+            )
+            .textContent =
+            "$" +
+            raised.toLocaleString();
+
+
+        const percentage =
+            Math.min(
+                (raised / goal) * 100,
+                100
+            );
+
+
+        document
+            .getElementById(
+                "progressFill"
+            )
+            .style.width =
+            percentage + "%";
+
+    } catch (error) {
+
+        console.error(
+            "Donation total error:",
+            error
+        );
+    }
+}
+
+
+/* =====================================================
    BASEBALL STITCHES
 ===================================================== */
 
@@ -988,8 +1062,6 @@ function createSeam(side) {
     seam.className =
         "seam seam-" + side;
 
-
-    /* 11 STITCHES PER SIDE */
 
     for (let i = 1; i <= 11; i++) {
 
@@ -1045,14 +1117,10 @@ for (let i = 1; i <= 100; i++) {
     );
 
 
-    /* LEFT SEAM */
-
     ball.appendChild(
         createSeam("left")
     );
 
-
-    /* NUMBER */
 
     const number =
         document.createElement(
@@ -1066,8 +1134,6 @@ for (let i = 1; i <= 100; i++) {
 
     ball.appendChild(number);
 
-
-    /* RIGHT SEAM */
 
     ball.appendChild(
         createSeam("right")
@@ -1367,7 +1433,7 @@ document
 
 
             alert(
-                "Checkout isn't connected yet. Please try again after Stripe setup is completed."
+                "Checkout isn't connected yet. Please try again."
             );
 
 
@@ -1380,6 +1446,13 @@ document
 
     }
 );
+
+
+/* =====================================================
+   START PAGE
+===================================================== */
+
+loadPlayerTotal();
 
 </script>
 
