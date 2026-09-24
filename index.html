@@ -7,6 +7,11 @@
 <title>Plantation Stars Red 12U | Road to Cooperstown</title>
 
 <style>
+
+/* =====================================================
+   RESET
+===================================================== */
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -24,160 +29,63 @@ body {
     overflow-x: hidden;
 }
 
+
 /* =====================================================
-   HERO
+   WHITE LOGO HEADER
 ===================================================== */
 
-.hero {
+.logo-header {
     position: relative;
-    overflow: hidden;
-    color: white;
-    text-align: center;
-
     background:
         radial-gradient(circle at 50% 0%,
-            rgba(42,95,160,.42) 0%,
-            transparent 33%),
+            #ffffff 0%,
+            #ffffff 45%,
+            #f3f5f8 100%);
+    text-align: center;
+    padding: 22px 20px 20px;
 
-        radial-gradient(circle at 10% 85%,
-            rgba(239,24,48,.42) 0%,
-            transparent 23%),
+    border-bottom: 6px solid #ef1830;
 
-        radial-gradient(circle at 90% 85%,
-            rgba(239,24,48,.42) 0%,
-            transparent 23%),
+    box-shadow:
+        0 8px 20px rgba(0,0,0,.18);
 
-        linear-gradient(
-            180deg,
-            #0c2b55 0%,
-            #071d3c 35%,
-            #04142c 72%,
-            #020b19 100%
-        );
-
-    border-bottom: 8px solid #ef1830;
-    padding: 25px 20px 55px;
+    z-index: 10;
 }
 
-.hero::before {
+.logo-header::before {
     content: "";
     position: absolute;
     inset: 0;
 
     background:
-        radial-gradient(
-            ellipse at 8% 5%,
-            rgba(255,255,255,.25),
-            transparent 14%
-        ),
+        radial-gradient(circle at 8% 15%,
+            rgba(7,42,84,.08) 0 3px,
+            transparent 4px),
+        radial-gradient(circle at 92% 15%,
+            rgba(7,42,84,.08) 0 3px,
+            transparent 4px);
 
-        radial-gradient(
-            ellipse at 92% 5%,
-            rgba(255,255,255,.25),
-            transparent 14%
-        );
+    background-size: 28px 28px;
+    opacity: .45;
 
     pointer-events: none;
 }
 
-.hero::after {
-    content: "";
-    position: absolute;
-    left: -10%;
-    right: -10%;
-    bottom: -100px;
-    height: 250px;
-
-    background:
-        radial-gradient(
-            ellipse at center,
-            rgba(237,24,48,.24),
-            transparent 65%
-        );
-
-    pointer-events: none;
-}
-
-.hero-inner {
+.logo-header-inner {
     position: relative;
     z-index: 2;
-    max-width: 1050px;
-    width: 100%;
+    max-width: 1000px;
     margin: auto;
 }
 
-/* =====================================================
-   STADIUM LIGHTS
-===================================================== */
-
-.stadium-light {
-    position: absolute;
-    top: 18px;
-    width: 175px;
-    height: 100px;
-    opacity: .32;
-
-    background:
-        radial-gradient(circle,
-            white 0 3px,
-            rgba(255,255,255,.35) 4px,
-            transparent 8px);
-
-    background-size: 28px 28px;
-    filter: drop-shadow(0 0 12px white);
-    z-index: 1;
-}
-
-.light-left {
-    left: 2%;
-    transform: rotate(-8deg);
-}
-
-.light-right {
-    right: 2%;
-    transform: rotate(8deg);
-}
 
 /* =====================================================
-   BACKGROUND STARS
-===================================================== */
-
-.bg-star {
-    position: absolute;
-    color: rgba(255,255,255,.055);
-    font-size: 80px;
-    z-index: 1;
-    user-select: none;
-}
-
-.star-one {
-    top: 70px;
-    left: 19%;
-}
-
-.star-two {
-    top: 35px;
-    right: 20%;
-}
-
-.star-three {
-    bottom: 90px;
-    left: 7%;
-}
-
-.star-four {
-    bottom: 110px;
-    right: 7%;
-}
-
-/* =====================================================
-   LOGO - CLEAN VERSION
+   LOGO
 ===================================================== */
 
 .logo-wrap {
-    position: relative;
-    width: min(600px, 90%);
-    margin: 0 auto 5px;
+    width: min(600px, 88%);
+    margin: 0 auto 10px;
 }
 
 .team-logo {
@@ -188,68 +96,207 @@ body {
     filter: none;
 }
 
+
 /* =====================================================
-   TEAM NAME
+   TEAM NAME UNDER LOGO
 ===================================================== */
 
-.team-label-wrap {
+.header-team-label {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 18px;
-    max-width: 700px;
-    margin: 2px auto 9px;
+
+    max-width: 650px;
+    margin: 0 auto;
 }
 
-.team-label-wrap span {
+.header-team-label span {
+    display: block;
+    width: 85px;
     height: 4px;
-    width: 110px;
+
     background: #ef1830;
-    box-shadow: 0 0 12px rgba(239,24,48,.5);
+
+    box-shadow:
+        0 0 10px rgba(239,24,48,.35);
 }
 
-.team-label {
-    color: white;
+.header-team-label strong {
+    color: #071d3d;
+
     font-size: 15px;
     font-weight: 900;
-    letter-spacing: 7px;
+
+    letter-spacing: 6px;
     text-transform: uppercase;
+
     white-space: nowrap;
-    text-shadow: 0 2px 3px rgba(0,0,0,.8);
 }
 
+
 /* =====================================================
-   MAIN TITLE
+   HERO
+===================================================== */
+
+.hero {
+    position: relative;
+    overflow: hidden;
+
+    color: white;
+    text-align: center;
+
+    background:
+        radial-gradient(circle at 50% 0%,
+            rgba(31,94,163,.50) 0%,
+            transparent 36%),
+
+        radial-gradient(circle at 5% 90%,
+            rgba(239,24,48,.45) 0%,
+            transparent 27%),
+
+        radial-gradient(circle at 95% 90%,
+            rgba(239,24,48,.45) 0%,
+            transparent 27%),
+
+        linear-gradient(
+            180deg,
+            #0c2c58 0%,
+            #071d3d 37%,
+            #04142c 70%,
+            #020b19 100%
+        );
+
+    border-bottom: 8px solid #ef1830;
+
+    padding: 48px 20px 55px;
+}
+
+
+/* RED GLOW */
+
+.hero::after {
+    content: "";
+    position: absolute;
+
+    left: -10%;
+    right: -10%;
+    bottom: -120px;
+
+    height: 280px;
+
+    background:
+        radial-gradient(
+            ellipse at center,
+            rgba(239,24,48,.28),
+            transparent 67%
+        );
+
+    pointer-events: none;
+}
+
+
+/* =====================================================
+   STADIUM LIGHTS
+===================================================== */
+
+.stadium-light {
+    position: absolute;
+
+    top: 12px;
+
+    width: 180px;
+    height: 120px;
+
+    opacity: .30;
+
+    background:
+        radial-gradient(
+            circle,
+            white 0 3px,
+            rgba(255,255,255,.50) 4px,
+            transparent 9px
+        );
+
+    background-size: 28px 28px;
+
+    filter:
+        drop-shadow(0 0 12px white);
+
+    z-index: 1;
+}
+
+.light-left {
+    left: 1%;
+    transform: rotate(-9deg);
+}
+
+.light-right {
+    right: 1%;
+    transform: rotate(9deg);
+}
+
+
+/* =====================================================
+   HERO INNER
+===================================================== */
+
+.hero-inner {
+    position: relative;
+    z-index: 3;
+
+    max-width: 1050px;
+    width: 100%;
+
+    margin: auto;
+}
+
+
+/* =====================================================
+   ROAD TO COOPERSTOWN
 ===================================================== */
 
 .road {
     text-transform: uppercase;
-    font-size: clamp(48px, 7vw, 83px);
-    line-height: .86;
+
+    font-size: clamp(55px, 8vw, 90px);
+    line-height: .88;
+
     font-weight: 1000;
+
     letter-spacing: -3px;
+
     color: #ffffff;
-    width: 100%;
 
     text-shadow:
-        0 3px 0 #bfc6cf,
-        0 6px 0 #737d89,
-        0 10px 16px rgba(0,0,0,.7);
+        0 3px 0 #d9dde3,
+        0 6px 0 #8a929d,
+        0 10px 0 #4b5563,
+        0 15px 20px rgba(0,0,0,.65);
 }
+
+
+/* COOPERSTOWN */
 
 .cooperstown {
     display: block;
-    margin-top: 13px;
-    font-size: 1.08em;
-    line-height: 1;
+
+    margin-top: 18px;
+
     color: #ef1830;
 
+    font-size: 1.04em;
+
+    line-height: 1;
+
     text-shadow:
-        0 2px 0 #ff6675,
-        0 5px 0 #8d0a18,
-        0 9px 0 #4a0610,
-        0 14px 20px rgba(0,0,0,.7);
+        0 2px 0 #ff6a78,
+        0 5px 0 #a20c1c,
+        0 9px 0 #610812,
+        0 14px 0 #35040a,
+        0 20px 22px rgba(0,0,0,.65);
 }
+
 
 /* =====================================================
    BASEBALL DIVIDER
@@ -257,81 +304,178 @@ body {
 
 .hero-divider {
     display: flex;
+
     align-items: center;
     justify-content: center;
-    gap: 18px;
-    margin: 27px auto 20px;
-    max-width: 520px;
+
+    gap: 22px;
+
+    max-width: 500px;
+
+    margin: 34px auto 25px;
 }
 
 .hero-divider span {
     height: 4px;
+
     flex: 1;
+
     max-width: 145px;
+
     background: #ef1830;
-    box-shadow: 0 0 10px rgba(239,24,48,.5);
+
+    box-shadow:
+        0 0 10px rgba(239,24,48,.6);
 }
 
 .hero-divider strong {
-    font-size: 33px;
-    filter: drop-shadow(0 4px 5px rgba(0,0,0,.5));
+    font-size: 38px;
+
+    filter:
+        drop-shadow(0 5px 6px rgba(0,0,0,.5));
 }
+
 
 /* =====================================================
    INTRO
 ===================================================== */
 
 .intro {
-    max-width: 820px;
+    max-width: 830px;
+
     margin: auto;
-    color: #ffffff;
-    font-size: clamp(17px, 2vw, 21px);
+
+    color: white;
+
+    font-size: clamp(18px, 2.1vw, 22px);
+
     line-height: 1.55;
-    font-weight: 600;
-    text-shadow: 0 2px 4px rgba(0,0,0,.85);
+
+    font-weight: 700;
+
+    text-shadow:
+        0 2px 5px rgba(0,0,0,.85);
 }
 
+
 /* =====================================================
-   PLAYERS AREA
+   PLAYERS SECTION
+===================================================== */
+
+.players-area {
+    position: relative;
+
+    background:
+        linear-gradient(
+            180deg,
+            #f7f8fa 0%,
+            #eef1f5 100%
+        );
+}
+
+
+/* FAINT BASEBALL STITCHES */
+
+.players-area::before,
+.players-area::after {
+    content: "";
+
+    position: absolute;
+
+    top: 50px;
+
+    width: 150px;
+    height: 600px;
+
+    opacity: .07;
+
+    pointer-events: none;
+
+    border-radius: 50%;
+}
+
+.players-area::before {
+    left: -100px;
+
+    border-right:
+        8px dashed #ef1830;
+}
+
+.players-area::after {
+    right: -100px;
+
+    border-left:
+        8px dashed #ef1830;
+}
+
+
+/* =====================================================
+   PLAYERS INNER
 ===================================================== */
 
 .players-section {
     position: relative;
+    z-index: 2;
+
     max-width: 1180px;
+
     margin: auto;
-    padding: 48px 22px 75px;
+
+    padding: 52px 22px 75px;
 }
+
+
+/* SUPPORT TEAM */
 
 .section-kicker {
     text-align: center;
+
     color: #ef1830;
-    font-size: 14px;
+
+    font-size: 15px;
+
     font-weight: 1000;
+
     letter-spacing: 7px;
-    margin-bottom: 8px;
+
+    margin-bottom: 10px;
+
     text-transform: uppercase;
 }
 
+
+/* CHOOSE YOUR PLAYER */
+
 .players-section h2 {
     text-align: center;
+
     color: #061a38;
-    font-size: clamp(38px, 6vw, 58px);
+
+    font-size: clamp(42px, 6vw, 62px);
+
     line-height: .95;
+
     font-weight: 1000;
+
     text-transform: uppercase;
+
     letter-spacing: -2px;
 
     text-shadow:
-        0 2px 0 white,
-        0 4px 8px rgba(7,27,54,.12);
+        0 3px 0 white,
+        0 5px 9px rgba(7,27,54,.15);
 }
 
 .section-description {
     text-align: center;
+
     color: #687385;
-    font-size: 17px;
-    margin: 12px 0 36px;
+
+    font-size: 18px;
+
+    margin: 14px 0 40px;
 }
+
 
 /* =====================================================
    PLAYER GRID
@@ -339,9 +483,13 @@ body {
 
 .player-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 14px 22px;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 17px 22px;
 }
+
 
 /* =====================================================
    PLAYER CARD
@@ -349,11 +497,20 @@ body {
 
 .player-card {
     position: relative;
+
     display: flex;
+
     align-items: center;
-    gap: 18px;
-    min-height: 96px;
-    padding: 13px 58px 13px 16px;
+
+    gap: 20px;
+
+    min-height: 112px;
+
+    padding:
+        15px
+        62px
+        15px
+        18px;
 
     background:
         linear-gradient(
@@ -362,38 +519,48 @@ body {
             #f7f8fa 100%
         );
 
-    border-radius: 12px;
-    border-top: 5px solid #ef1830;
+    border-radius: 15px;
+
+    border-top:
+        5px solid #ef1830;
+
     color: #061a38;
+
     text-decoration: none;
 
     box-shadow:
-        0 9px 20px rgba(5,25,55,.12),
-        0 2px 4px rgba(5,25,55,.06);
+        0 10px 22px rgba(5,25,55,.12),
+        0 2px 5px rgba(5,25,55,.07);
 
     transition:
         transform .18s ease,
-        box-shadow .18s ease,
-        border-color .18s ease;
+        box-shadow .18s ease;
 }
 
 .player-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 15px 28px rgba(5,25,55,.20);
-    border-color: #ff102b;
+    transform:
+        translateY(-4px);
+
+    box-shadow:
+        0 16px 30px rgba(5,25,55,.20);
 }
+
 
 /* =====================================================
    PLAYER NUMBER
 ===================================================== */
 
 .player-number {
-    flex: 0 0 66px;
-    width: 66px;
-    height: 66px;
+    flex:
+        0 0 76px;
+
+    width: 76px;
+    height: 76px;
+
     border-radius: 50%;
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
@@ -406,46 +573,81 @@ body {
         );
 
     color: white;
-    border: 4px solid #ef1830;
+
+    border:
+        4px solid #ef1830;
 
     box-shadow:
         0 0 0 3px white,
-        0 5px 9px rgba(0,0,0,.2);
+        0 6px 10px rgba(0,0,0,.20);
 
-    font-size: 21px;
+    font-size: 23px;
+
     font-weight: 1000;
 }
 
+
+/* =====================================================
+   PLAYER TEXT
+===================================================== */
+
 .player-info {
     min-width: 0;
+
+    flex: 1;
 }
 
 .player-name {
     color: #061a38;
-    font-size: clamp(20px, 2.5vw, 25px);
+
+    font-size:
+        clamp(24px, 2.4vw, 30px);
+
     font-weight: 1000;
-    line-height: 1.05;
+
+    line-height: 1;
+
+    text-transform: uppercase;
+
+    letter-spacing: -.6px;
 }
 
 .support {
     color: #ef1830;
-    font-size: 12px;
+
+    font-size: 13px;
+
     font-weight: 1000;
-    letter-spacing: 1px;
-    margin-top: 7px;
+
+    letter-spacing: 1.5px;
+
+    margin-top: 9px;
+
     text-transform: uppercase;
 }
 
+
+/* ARROW */
+
 .arrow {
     position: absolute;
+
     right: 20px;
+
     top: 50%;
-    transform: translateY(-50%);
+
+    transform:
+        translateY(-50%);
+
     color: #ef1830;
-    font-size: 40px;
+
+    font-size: 43px;
+
     line-height: 1;
+
     font-weight: 1000;
 }
+
 
 /* =====================================================
    BOTTOM
@@ -453,21 +655,28 @@ body {
 
 .baseball-divider {
     display: flex;
+
     align-items: center;
+
     gap: 17px;
-    margin: 55px auto 25px;
+
+    margin: 60px auto 26px;
+
     max-width: 550px;
 }
 
 .baseball-divider span {
     height: 2px;
+
     background: #c8ced7;
+
     flex: 1;
 }
 
 .baseball-divider strong {
-    font-size: 30px;
+    font-size: 32px;
 }
+
 
 .bottom-message {
     text-align: center;
@@ -475,17 +684,25 @@ body {
 
 .bottom-message h3 {
     color: #061a38;
-    font-size: clamp(27px, 4vw, 36px);
+
+    font-size:
+        clamp(28px, 4vw, 38px);
+
     font-weight: 1000;
+
     text-transform: uppercase;
-    margin-bottom: 11px;
+
+    margin-bottom: 12px;
 }
 
 .bottom-message p {
     color: #667181;
+
     line-height: 1.6;
+
     font-size: 16px;
 }
+
 
 /* =====================================================
    FOOTER
@@ -499,21 +716,28 @@ footer {
             #020c1c 100%
         );
 
-    border-top: 5px solid #ef1830;
+    border-top:
+        5px solid #ef1830;
+
     color: white;
+
     text-align: center;
-    padding: 32px 20px;
+
+    padding: 34px 20px;
 }
 
 footer strong {
     letter-spacing: 3px;
+
     font-size: 15px;
 }
 
 footer span {
     color: #aab5c4;
+
     font-size: 13px;
 }
+
 
 /* =====================================================
    MOBILE
@@ -521,343 +745,741 @@ footer span {
 
 @media (max-width: 760px) {
 
-    .hero {
-        padding: 18px 12px 40px;
-    }
+    /* WHITE LOGO AREA */
 
-    .hero-inner {
-        width: 100%;
-        max-width: 100%;
-    }
-
-    .stadium-light {
-        width: 110px;
-        height: 70px;
-        background-size: 23px 23px;
-        opacity: .18;
+    .logo-header {
+        padding:
+            16px
+            10px
+            15px;
     }
 
     .logo-wrap {
-        width: 94%;
-        max-width: 470px;
+        width: 90%;
+
+        max-width: 440px;
+
+        margin-bottom: 8px;
     }
 
-    .team-label-wrap {
-        gap: 9px;
+    .header-team-label {
+        gap: 8px;
+
         width: 100%;
     }
 
-    .team-label-wrap span {
-        width: 30px;
+    .header-team-label span {
+        width: 28px;
+
         height: 3px;
-        flex-shrink: 1;
     }
 
-    .team-label {
+    .header-team-label strong {
         font-size: 10px;
+
         letter-spacing: 3px;
     }
 
+
+    /* HERO */
+
+    .hero {
+        padding:
+            42px
+            12px
+            43px;
+    }
+
+    .stadium-light {
+        width: 100px;
+
+        height: 75px;
+
+        opacity: .17;
+
+        background-size:
+            23px 23px;
+    }
+
+
+    /* TITLE */
+
     .road {
         width: 100%;
-        max-width: 100%;
-        font-size: clamp(43px, 13vw, 63px);
-        line-height: .9;
+
+        font-size:
+            clamp(46px, 14vw, 66px);
+
+        line-height: .88;
+
         letter-spacing: -2px;
-        text-align: center;
     }
 
     .cooperstown {
-        display: block;
         width: 100%;
-        max-width: 100%;
-        margin: 13px auto 0;
+
+        margin:
+            16px auto 0;
+
         font-size: 11.2vw;
+
         line-height: 1;
+
         letter-spacing: -1.5px;
+
         white-space: nowrap;
-        text-align: center;
     }
 
+
+    /* DIVIDER */
+
     .hero-divider {
-        margin: 24px auto 17px;
-        width: 90%;
+        width: 88%;
+
+        margin:
+            29px auto 20px;
     }
 
     .hero-divider span {
-        max-width: 85px;
+        max-width: 90px;
     }
+
+    .hero-divider strong {
+        font-size: 33px;
+    }
+
+
+    /* INTRO */
 
     .intro {
         width: 100%;
+
         max-width: 620px;
+
         padding: 0 5px;
+
         font-size: 16px;
+
         line-height: 1.5;
     }
 
-    .bg-star {
-        display: none;
-    }
+
+    /* PLAYER SECTION */
 
     .players-section {
-        padding: 42px 14px 60px;
+        padding:
+            43px
+            14px
+            60px;
     }
 
     .section-kicker {
         font-size: 11px;
+
         letter-spacing: 4px;
     }
 
     .players-section h2 {
-        font-size: clamp(38px, 11vw, 52px);
+        font-size:
+            clamp(39px, 11vw, 52px);
     }
+
+    .section-description {
+        font-size: 16px;
+
+        margin-bottom: 32px;
+    }
+
+
+    /* ONE CARD PER ROW */
 
     .player-grid {
         grid-template-columns: 1fr;
-        gap: 13px;
-    }
 
-    .player-card {
-        min-height: 92px;
-        padding: 12px 48px 12px 12px;
         gap: 14px;
     }
 
+
+    /* BIGGER PLAYER CARDS */
+
+    .player-card {
+        min-height: 104px;
+
+        padding:
+            13px
+            48px
+            13px
+            13px;
+
+        gap: 16px;
+    }
+
     .player-number {
-        flex-basis: 61px;
-        width: 61px;
-        height: 61px;
-        font-size: 19px;
+        flex-basis: 69px;
+
+        width: 69px;
+        height: 69px;
+
+        font-size: 21px;
+    }
+
+
+    /* BIGGER NAMES */
+
+    .player-name {
+        font-size:
+            clamp(22px, 6vw, 27px);
+
+        line-height: 1.02;
+    }
+
+    .support {
+        font-size: 11px;
+
+        margin-top: 7px;
+
+        letter-spacing: 1px;
+    }
+
+    .arrow {
+        right: 13px;
+
+        font-size: 37px;
+    }
+}
+
+
+/* =====================================================
+   EXTRA SMALL PHONES
+===================================================== */
+
+@media (max-width: 390px) {
+
+    .header-team-label strong {
+        font-size: 9px;
+
+        letter-spacing: 2px;
+    }
+
+    .header-team-label span {
+        width: 20px;
+    }
+
+    .road {
+        font-size: 13vw;
+    }
+
+    .cooperstown {
+        font-size: 10.8vw;
+
+        letter-spacing: -1px;
     }
 
     .player-name {
         font-size: 21px;
     }
-
-    .support {
-        font-size: 11px;
-    }
-
-    .arrow {
-        right: 14px;
-        font-size: 35px;
-    }
 }
 
-/* EXTRA SMALL PHONES */
-
-@media (max-width: 390px) {
-
-    .hero {
-        padding-left: 10px;
-        padding-right: 10px;
-    }
-
-    .cooperstown {
-        font-size: 10.9vw;
-        letter-spacing: -1px;
-    }
-
-    .team-label {
-        font-size: 9px;
-        letter-spacing: 2.5px;
-    }
-}
 </style>
 </head>
 
+
 <body>
 
-<section class="hero">
 
-    <div class="stadium-light light-left"></div>
-    <div class="stadium-light light-right"></div>
+<!-- =====================================================
+     WHITE LOGO HEADER
+===================================================== -->
 
-    <div class="bg-star star-one">★</div>
-    <div class="bg-star star-two">★</div>
-    <div class="bg-star star-three">★</div>
-    <div class="bg-star star-four">★</div>
+<header class="logo-header">
 
-    <div class="hero-inner">
+    <div class="logo-header-inner">
 
         <div class="logo-wrap">
+
             <img
                 src="/PlantationStarsLogo.png"
                 alt="Plantation Stars Logo"
                 class="team-logo"
             >
+
         </div>
 
-        <div class="team-label-wrap">
+
+        <div class="header-team-label">
+
             <span></span>
 
-            <div class="team-label">
+            <strong>
                 PLANTATION STARS RED 12U
-            </div>
+            </strong>
 
             <span></span>
+
         </div>
+
+    </div>
+
+</header>
+
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="hero">
+
+    <div class="stadium-light light-left"></div>
+
+    <div class="stadium-light light-right"></div>
+
+
+    <div class="hero-inner">
+
 
         <h1 class="road">
+
             ROAD TO
 
             <span class="cooperstown">
                 COOPERSTOWN
             </span>
+
         </h1>
 
+
         <div class="hero-divider">
+
             <span></span>
+
             <strong>⚾</strong>
+
             <span></span>
+
         </div>
 
+
         <p class="intro">
+
             Help our Plantation Stars Red 12U team make the
             Cooperstown dream a reality.
+
             <br>
+
             Choose the player you would like to support and
             sponsor one or more baseballs from their
             individual fundraiser board.
+
         </p>
 
     </div>
+
 </section>
+
+
+
+<!-- =====================================================
+     PLAYERS
+===================================================== -->
+
+<div class="players-area">
 
 <main class="players-section">
 
+
     <div class="section-kicker">
+
         ★ SUPPORT THE TEAM ★
+
     </div>
 
-    <h2>Choose Your Player</h2>
+
+    <h2>
+
+        Choose Your Player
+
+    </h2>
+
 
     <p class="section-description">
+
         Select a player below to visit their fundraiser.
+
     </p>
+
+
 
     <div class="player-grid">
 
-        <a class="player-card" href="/fundraiser.html?player=christopher-rosales">
-            <div class="player-number">#11</div>
-            <div class="player-info">
-                <div class="player-name">Christopher Rosales</div>
-                <div class="support">Support Christopher</div>
+
+        <!-- CHRISTOPHER -->
+
+        <a
+            class="player-card"
+            href="/fundraiser.html?player=christopher-rosales"
+        >
+
+            <div class="player-number">
+                #11
             </div>
+
+            <div class="player-info">
+
+                <div class="player-name">
+                    Christopher Rosales
+                </div>
+
+                <div class="support">
+                    Support Christopher
+                </div>
+
+            </div>
+
             <div class="arrow">›</div>
+
         </a>
 
-        <a class="player-card" href="/fundraiser.html?player=cristian-marquez">
-            <div class="player-number">#17</div>
-            <div class="player-info">
-                <div class="player-name">Cristian Marquez</div>
-                <div class="support">Support Cristian</div>
+
+
+        <!-- CRISTIAN -->
+
+        <a
+            class="player-card"
+            href="/fundraiser.html?player=cristian-marquez"
+        >
+
+            <div class="player-number">
+                #17
             </div>
+
+            <div class="player-info">
+
+                <div class="player-name">
+                    Cristian Marquez
+                </div>
+
+                <div class="support">
+                    Support Cristian
+                </div>
+
+            </div>
+
             <div class="arrow">›</div>
+
         </a>
 
-        <a class="player-card" href="/fundraiser.html?player=diego-arredondo">
-            <div class="player-number">#99</div>
-            <div class="player-info">
-                <div class="player-name">Diego Arredondo</div>
-                <div class="support">Support Diego</div>
+
+
+        <!-- DIEGO -->
+
+        <a
+            class="player-card"
+            href="/fundraiser.html?player=diego-arredondo"
+        >
+
+            <div class="player-number">
+                #99
             </div>
+
+            <div class="player-info">
+
+                <div class="player-name">
+                    Diego Arredondo
+                </div>
+
+                <div class="support">
+                    Support Diego
+                </div>
+
+            </div>
+
             <div class="arrow">›</div>
+
         </a>
 
-        <a class="player-card" href="/fundraiser.html?player=elias-escalona">
-            <div class="player-number">#8</div>
-            <div class="player-info">
-                <div class="player-name">Elias Escalona</div>
-                <div class="support">Support Elias</div>
+
+
+        <!-- ELIAS -->
+
+        <a
+            class="player-card"
+            href="/fundraiser.html?player=elias-escalona"
+        >
+
+            <div class="player-number">
+                #8
             </div>
+
+            <div class="player-info">
+
+                <div class="player-name">
+                    Elias Escalona
+                </div>
+
+                <div class="support">
+                    Support Elias
+                </div>
+
+            </div>
+
             <div class="arrow">›</div>
+
         </a>
 
-        <a class="player-card" href="/fundraiser.html?player=fabio-espinoza">
-            <div class="player-number">#4</div>
-            <div class="player-info">
-                <div class="player-name">Fabio Espinoza</div>
-                <div class="support">Support Fabio</div>
+
+
+        <!-- FABIO -->
+
+        <a
+            class="player-card"
+            href="/fundraiser.html?player=fabio-espinoza"
+        >
+
+            <div class="player-number">
+                #4
             </div>
+
+            <div class="player-info">
+
+                <div class="player-name">
+                    Fabio Espinoza
+                </div>
+
+                <div class="support">
+                    Support Fabio
+                </div>
+
+            </div>
+
             <div class="arrow">›</div>
+
         </a>
 
-        <a class="player-card" href="/fundraiser.html?player=francisco-rivero">
-            <div class="player-number">#7</div>
-            <div class="player-info">
-                <div class="player-name">Francisco Rivero</div>
-                <div class="support">Support Francisco</div>
+
+
+        <!-- FRANCISCO -->
+
+        <a
+            class="player-card"
+            href="/fundraiser.html?player=francisco-rivero"
+        >
+
+            <div class="player-number">
+                #7
             </div>
+
+            <div class="player-info">
+
+                <div class="player-name">
+                    Francisco Rivero
+                </div>
+
+                <div class="support">
+                    Support Francisco
+                </div>
+
+            </div>
+
             <div class="arrow">›</div>
+
         </a>
 
-        <a class="player-card" href="/fundraiser.html?player=gian-leon">
-            <div class="player-number">#27</div>
-            <div class="player-info">
-                <div class="player-name">Gian Leon</div>
-                <div class="support">Support Gian</div>
+
+
+        <!-- GIAN -->
+
+        <a
+            class="player-card"
+            href="/fundraiser.html?player=gian-leon"
+        >
+
+            <div class="player-number">
+                #27
             </div>
+
+            <div class="player-info">
+
+                <div class="player-name">
+                    Gian Leon
+                </div>
+
+                <div class="support">
+                    Support Gian
+                </div>
+
+            </div>
+
             <div class="arrow">›</div>
+
         </a>
 
-        <a class="player-card" href="/fundraiser.html?player=kevin-pino">
-            <div class="player-number">#23</div>
-            <div class="player-info">
-                <div class="player-name">Kevin Pino</div>
-                <div class="support">Support Kevin</div>
+
+
+        <!-- KEVIN -->
+
+        <a
+            class="player-card"
+            href="/fundraiser.html?player=kevin-pino"
+        >
+
+            <div class="player-number">
+                #23
             </div>
+
+            <div class="player-info">
+
+                <div class="player-name">
+                    Kevin Pino
+                </div>
+
+                <div class="support">
+                    Support Kevin
+                </div>
+
+            </div>
+
             <div class="arrow">›</div>
+
         </a>
 
-        <a class="player-card" href="/fundraiser.html?player=saif-al-fassi">
-            <div class="player-number">#25</div>
-            <div class="player-info">
-                <div class="player-name">Saif Al-Fassi</div>
-                <div class="support">Support Saif</div>
+
+
+        <!-- SAIF -->
+
+        <a
+            class="player-card"
+            href="/fundraiser.html?player=saif-al-fassi"
+        >
+
+            <div class="player-number">
+                #25
             </div>
+
+            <div class="player-info">
+
+                <div class="player-name">
+                    Saif Al-Fassi
+                </div>
+
+                <div class="support">
+                    Support Saif
+                </div>
+
+            </div>
+
             <div class="arrow">›</div>
+
         </a>
 
-        <a class="player-card" href="/fundraiser.html?player=samuel-garcia">
-            <div class="player-number">#3</div>
-            <div class="player-info">
-                <div class="player-name">Samuel Garcia</div>
-                <div class="support">Support Samuel</div>
+
+
+        <!-- SAMUEL -->
+
+        <a
+            class="player-card"
+            href="/fundraiser.html?player=samuel-garcia"
+        >
+
+            <div class="player-number">
+                #3
             </div>
+
+            <div class="player-info">
+
+                <div class="player-name">
+                    Samuel Garcia
+                </div>
+
+                <div class="support">
+                    Support Samuel
+                </div>
+
+            </div>
+
             <div class="arrow">›</div>
+
         </a>
 
-        <a class="player-card" href="/fundraiser.html?player=theodore-vista">
-            <div class="player-number">#2</div>
-            <div class="player-info">
-                <div class="player-name">Theodore Vista</div>
-                <div class="support">Support Theodore</div>
+
+
+        <!-- THEODORE -->
+
+        <a
+            class="player-card"
+            href="/fundraiser.html?player=theodore-vista"
+        >
+
+            <div class="player-number">
+                #2
             </div>
+
+            <div class="player-info">
+
+                <div class="player-name">
+                    Theodore Vista
+                </div>
+
+                <div class="support">
+                    Support Theodore
+                </div>
+
+            </div>
+
             <div class="arrow">›</div>
+
         </a>
+
 
     </div>
+
+
+
+    <!-- =================================================
+         BOTTOM MESSAGE
+    ================================================== -->
 
     <div class="baseball-divider">
+
         <span></span>
+
         <strong>⚾</strong>
+
         <span></span>
+
     </div>
+
 
     <div class="bottom-message">
-        <h3>Help Us Get to Cooperstown</h3>
+
+        <h3>
+            Help Us Get to Cooperstown
+        </h3>
 
         <p>
-            Every baseball sponsored brings our team one step
-            closer to Cooperstown.
+
+            Every baseball sponsored brings our team
+            one step closer to Cooperstown.
+
             <br>
-            Thank you for supporting Plantation Stars Red!
+
+            Thank you for supporting
+            Plantation Stars Red!
+
         </p>
+
     </div>
 
+
 </main>
+
+</div>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
 
 <footer>
 
@@ -872,6 +1494,7 @@ footer span {
     </span>
 
 </footer>
+
 
 </body>
 </html>
