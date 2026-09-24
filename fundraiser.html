@@ -18,7 +18,9 @@ body {
     color: #111827;
 }
 
-/* TOP BAR */
+/* =====================================================
+   TOP BAR
+===================================================== */
 
 .topbar {
     background: #071b36;
@@ -37,7 +39,9 @@ body {
     font-weight: 700;
 }
 
-/* HEADER */
+/* =====================================================
+   HEADER
+===================================================== */
 
 .hero {
     background: #071b36;
@@ -59,7 +63,9 @@ body {
     font-size: 38px;
 }
 
-/* MAIN */
+/* =====================================================
+   MAIN
+===================================================== */
 
 .container {
     max-width: 950px;
@@ -67,7 +73,9 @@ body {
     padding: 40px 20px 70px;
 }
 
-/* PLAYER */
+/* =====================================================
+   PLAYER
+===================================================== */
 
 .player-heading {
     text-align: center;
@@ -90,25 +98,28 @@ body {
 
 .player-number {
     color: #e21d2f;
-    font-weight: 800;
-    font-size: 18px;
+    font-weight: 900;
+    font-size: 20px;
 }
 
-/* GOAL */
+/* =====================================================
+   GOAL
+===================================================== */
 
 .goal-card {
     background: white;
-    border-radius: 14px;
+    border-radius: 18px;
     padding: 24px;
     box-shadow: 0 5px 18px rgba(0,0,0,.07);
-    margin-bottom: 25px;
+    margin-bottom: 28px;
 }
 
 .progress-info {
     display: flex;
     justify-content: space-between;
+    gap: 15px;
     font-weight: 800;
-    margin-bottom: 10px;
+    margin-bottom: 14px;
     color: #071b36;
 }
 
@@ -124,32 +135,39 @@ body {
     width: 0%;
     height: 100%;
     background: #e21d2f;
+    border-radius: 20px;
 }
 
-/* INSTRUCTIONS */
+/* =====================================================
+   INSTRUCTIONS
+===================================================== */
 
 .instructions {
     background: white;
-    padding: 22px;
-    border-radius: 14px;
-    margin-bottom: 28px;
+    padding: 28px 24px;
+    border-radius: 18px;
+    margin-bottom: 34px;
     text-align: center;
     box-shadow: 0 4px 15px rgba(0,0,0,.06);
 }
 
 .instructions h3 {
     color: #071b36;
-    margin-top: 0;
+    margin: 0 0 16px;
+    font-size: 24px;
 }
 
 .instructions p {
-    line-height: 1.6;
+    line-height: 1.65;
     color: #4b5563;
+    margin: 10px auto;
+    max-width: 700px;
 }
 
 .example {
     font-weight: 800;
     color: #e21d2f !important;
+    margin-top: 18px !important;
 }
 
 /* =====================================================
@@ -159,175 +177,283 @@ body {
 .baseballs {
     display: grid;
     grid-template-columns: repeat(10, 1fr);
-    gap: 11px;
-    margin-bottom: 35px;
+    gap: 14px;
+    margin-bottom: 40px;
 }
 
 /* =====================================================
-   ACTUAL BASEBALL BUTTON
+   BASEBALL BUTTON
 ===================================================== */
 
 .ball {
     position: relative;
-    aspect-ratio: 1;
-    border-radius: 50%;
-    overflow: hidden;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    padding: 0;
 
-    border: 2px solid #cbd0d7;
+    border-radius: 50%;
+    border: 2px solid #c9ced6;
 
     background:
         radial-gradient(
-            circle at 35% 28%,
+            circle at 34% 27%,
             #ffffff 0%,
             #ffffff 38%,
-            #f7f5f0 70%,
-            #e9e6df 100%
+            #faf9f5 64%,
+            #eeece5 84%,
+            #dedbd4 100%
         );
 
-    cursor: pointer;
+    box-shadow:
+        inset -5px -6px 9px rgba(7,27,54,.08),
+        inset 3px 3px 6px rgba(255,255,255,.95),
+        0 4px 8px rgba(7,27,54,.14);
 
-    font-weight: 900;
-    color: #071b36;
+    cursor: pointer;
+    overflow: hidden;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    font-size: 14px;
-
-    box-shadow:
-        inset -4px -5px 8px rgba(0,0,0,.07),
-        inset 3px 3px 5px rgba(255,255,255,.9),
-        0 3px 6px rgba(0,0,0,.13);
+    color: #071b36;
+    font-size: 15px;
+    font-weight: 900;
 
     transition:
         transform .15s ease,
-        box-shadow .15s ease,
-        border-color .15s ease;
+        border-color .15s ease,
+        box-shadow .15s ease;
 }
 
-/* LEFT BASEBALL SEAM */
+/* =====================================================
+   BASEBALL SEAMS
 
-.ball::before {
-    content: "";
+   These are curved seams instead of the large
+   red stripes from the previous version.
+===================================================== */
+
+.seam {
     position: absolute;
-
-    width: 70%;
-    height: 125%;
-
-    left: -43%;
-    top: -13%;
-
-    border-right: 3px solid #d91f32;
-    border-radius: 50%;
-
-    background:
-        repeating-linear-gradient(
-            25deg,
-            transparent 0px,
-            transparent 8px,
-            rgba(217,31,50,.95) 9px,
-            rgba(217,31,50,.95) 11px,
-            transparent 12px,
-            transparent 18px
-        );
-
-    opacity: .95;
+    top: -10%;
+    width: 55%;
+    height: 120%;
     pointer-events: none;
 }
 
-/* RIGHT BASEBALL SEAM */
-
-.ball::after {
-    content: "";
-    position: absolute;
-
-    width: 70%;
-    height: 125%;
-
-    right: -43%;
-    top: -13%;
-
-    border-left: 3px solid #d91f32;
-    border-radius: 50%;
-
-    background:
-        repeating-linear-gradient(
-            -25deg,
-            transparent 0px,
-            transparent 8px,
-            rgba(217,31,50,.95) 9px,
-            rgba(217,31,50,.95) 11px,
-            transparent 12px,
-            transparent 18px
-        );
-
-    opacity: .95;
-    pointer-events: none;
+.seam-left {
+    left: -20%;
+    border-right: 2.5px solid #d9273b;
+    border-radius: 0 55% 55% 0;
 }
 
-/* Keep number above stitching */
+.seam-right {
+    right: -20%;
+    border-left: 2.5px solid #d9273b;
+    border-radius: 55% 0 0 55%;
+}
 
-.ball span {
+/* Individual stitches */
+
+.stitch {
+    position: absolute;
+    display: block;
+    width: 9px;
+    height: 2px;
+    background: #d9273b;
+    border-radius: 2px;
+}
+
+/* LEFT STITCHES */
+
+.seam-left .s1 {
+    right: -4px;
+    top: 12%;
+    transform: rotate(35deg);
+}
+
+.seam-left .s2 {
+    right: -7px;
+    top: 24%;
+    transform: rotate(28deg);
+}
+
+.seam-left .s3 {
+    right: -8px;
+    top: 37%;
+    transform: rotate(18deg);
+}
+
+.seam-left .s4 {
+    right: -8px;
+    top: 50%;
+    transform: rotate(5deg);
+}
+
+.seam-left .s5 {
+    right: -8px;
+    top: 63%;
+    transform: rotate(-18deg);
+}
+
+.seam-left .s6 {
+    right: -6px;
+    top: 76%;
+    transform: rotate(-28deg);
+}
+
+.seam-left .s7 {
+    right: -3px;
+    top: 88%;
+    transform: rotate(-35deg);
+}
+
+/* RIGHT STITCHES */
+
+.seam-right .s1 {
+    left: -4px;
+    top: 12%;
+    transform: rotate(-35deg);
+}
+
+.seam-right .s2 {
+    left: -7px;
+    top: 24%;
+    transform: rotate(-28deg);
+}
+
+.seam-right .s3 {
+    left: -8px;
+    top: 37%;
+    transform: rotate(-18deg);
+}
+
+.seam-right .s4 {
+    left: -8px;
+    top: 50%;
+    transform: rotate(-5deg);
+}
+
+.seam-right .s5 {
+    left: -8px;
+    top: 63%;
+    transform: rotate(18deg);
+}
+
+.seam-right .s6 {
+    left: -6px;
+    top: 76%;
+    transform: rotate(28deg);
+}
+
+.seam-right .s7 {
+    left: -3px;
+    top: 88%;
+    transform: rotate(35deg);
+}
+
+/* NUMBER */
+
+.ball-number {
     position: relative;
     z-index: 5;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 30px;
+    min-height: 30px;
+
+    color: #071b36;
+    font-weight: 900;
+
+    text-shadow:
+        0 1px 0 rgba(255,255,255,.9);
 }
 
-/* HOVER */
+/* =====================================================
+   HOVER
+===================================================== */
 
-.ball:hover {
-    border-color: #e21d2f;
+@media (hover: hover) {
 
-    transform:
-        translateY(-2px)
-        scale(1.06);
+    .ball:hover {
+        transform: translateY(-3px) scale(1.05);
+        border-color: #e21d2f;
 
-    box-shadow:
-        inset -4px -5px 8px rgba(0,0,0,.07),
-        0 6px 12px rgba(0,0,0,.17);
+        box-shadow:
+            inset -5px -6px 9px rgba(7,27,54,.08),
+            0 7px 14px rgba(7,27,54,.18);
+    }
 }
 
 /* =====================================================
    SELECTED BASEBALL
+
+   Keep it looking like a baseball.
+   Selection is shown with the red ring.
 ===================================================== */
 
 .ball.selected {
-    color: white;
+    border: 3px solid #e21d2f;
 
-    border: 3px solid #071b36;
-
-    background:
-        radial-gradient(
-            circle at 35% 28%,
-            #ff5363 0%,
-            #e21d2f 45%,
-            #b90e20 100%
-        );
+    transform: scale(1.04);
 
     box-shadow:
-        0 0 0 3px white,
-        0 0 0 5px #e21d2f,
-        0 6px 12px rgba(0,0,0,.18);
+        0 0 0 3px #ffffff,
+        0 0 0 6px #e21d2f,
+        0 7px 15px rgba(7,27,54,.22),
+        inset -5px -6px 9px rgba(7,27,54,.08);
 }
 
-.ball.selected::before,
-.ball.selected::after {
-    border-color: white;
-    opacity: .8;
+.ball.selected .ball-number {
+    color: #e21d2f;
 }
 
-/* DONATION */
+/* CHECK MARK */
+
+.ball.selected .ball-number::after {
+    content: "✓";
+
+    position: absolute;
+    top: -20px;
+    right: -18px;
+
+    width: 19px;
+    height: 19px;
+
+    border-radius: 50%;
+    background: #e21d2f;
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 12px;
+    line-height: 1;
+
+    text-shadow: none;
+
+    box-shadow: 0 2px 5px rgba(0,0,0,.15);
+}
+
+/* =====================================================
+   DONATION
+===================================================== */
 
 .donation-box {
     background: #071b36;
     color: white;
-    border-radius: 14px;
-    padding: 28px;
+    border-radius: 18px;
+    padding: 30px;
     margin-top: 10px;
+    box-shadow: 0 7px 22px rgba(7,27,54,.15);
 }
 
 .donation-box h2 {
-    margin-top: 0;
+    margin: 0 0 12px;
     text-align: center;
 }
 
@@ -335,6 +461,7 @@ body {
     text-align: center;
     color: #d5deea;
     margin-bottom: 5px;
+    line-height: 1.5;
 }
 
 .total {
@@ -357,7 +484,7 @@ body {
 .form-group input[type="text"],
 .form-group input[type="email"] {
     width: 100%;
-    padding: 13px;
+    padding: 14px;
     border-radius: 8px;
     border: none;
     font-size: 16px;
@@ -367,13 +494,21 @@ body {
     margin: 15px 0 20px;
 }
 
+.anonymous label {
+    cursor: pointer;
+}
+
+.anonymous input {
+    margin-right: 7px;
+}
+
 .checkout {
     width: 100%;
     border: none;
     background: #e21d2f;
     color: white;
-    padding: 15px;
-    border-radius: 8px;
+    padding: 16px;
+    border-radius: 9px;
     font-size: 17px;
     font-weight: 800;
     cursor: pointer;
@@ -395,7 +530,9 @@ body {
     color: #b9c5d5;
 }
 
-/* FOOTER */
+/* =====================================================
+   FOOTER
+===================================================== */
 
 footer {
     background: #06162c;
@@ -409,44 +546,99 @@ footer span {
     font-size: 14px;
 }
 
-/* TABLET */
+/* =====================================================
+   TABLET
+===================================================== */
 
 @media (max-width: 750px) {
 
     .baseballs {
         grid-template-columns: repeat(8, 1fr);
+        gap: 11px;
     }
 }
 
-/* PHONE */
+/* =====================================================
+   PHONE
+===================================================== */
 
 @media (max-width: 520px) {
 
-    .baseballs {
-        grid-template-columns: repeat(5, 1fr);
-        gap: 9px;
+    .topbar {
+        padding: 14px 16px;
     }
 
-    .ball {
-        font-size: 14px;
+    .hero {
+        padding: 14px 15px 32px;
     }
 
     .hero h1 {
-        font-size: 30px;
-    }
-
-    #playerName {
-        font-size: 28px;
+        font-size: 29px;
     }
 
     .container {
         padding: 30px 14px 50px;
     }
 
+    #playerName {
+        font-size: 28px;
+    }
+
+    .goal-card {
+        padding: 21px 18px;
+    }
+
     .progress-info {
         font-size: 14px;
     }
+
+    .instructions {
+        padding: 25px 20px;
+    }
+
+    .instructions h3 {
+        font-size: 22px;
+    }
+
+    .instructions p {
+        font-size: 16px;
+    }
+
+    .baseballs {
+        grid-template-columns: repeat(5, 1fr);
+        gap: 13px 10px;
+    }
+
+    .ball {
+        font-size: 15px;
+    }
+
+    .stitch {
+        width: 7px;
+    }
+
+    .donation-box {
+        padding: 25px 18px;
+    }
+
+    .total {
+        font-size: 38px;
+    }
 }
+
+/* VERY SMALL PHONES */
+
+@media (max-width: 360px) {
+
+    .baseballs {
+        gap: 11px 8px;
+    }
+
+    .ball {
+        font-size: 13px;
+    }
+}
+
 </style>
 </head>
 
@@ -551,17 +743,13 @@ footer span {
     <div
         class="selected-info"
         id="selectedInfo">
-
         No baseballs selected
-
     </div>
 
     <div
         class="total"
         id="donationTotal">
-
         $0
-
     </div>
 
 
@@ -743,6 +931,34 @@ if (player) {
 
 
 /* =====================================================
+   BASEBALL STITCHES
+===================================================== */
+
+function createSeam(side) {
+
+    const seam =
+        document.createElement("span");
+
+    seam.className =
+        "seam seam-" + side;
+
+
+    for (let i = 1; i <= 7; i++) {
+
+        const stitch =
+            document.createElement("span");
+
+        stitch.className =
+            "stitch s" + i;
+
+        seam.appendChild(stitch);
+    }
+
+    return seam;
+}
+
+
+/* =====================================================
    CREATE 100 BASEBALLS
 ===================================================== */
 
@@ -767,21 +983,47 @@ for (let i = 1; i <= 100; i++) {
     ball.className =
         "ball";
 
-    /*
-       Number gets its own span so it
-       stays ABOVE the baseball seams.
-    */
+    ball.dataset.value = i;
+
+    ball.setAttribute(
+        "aria-label",
+        "Select baseball #" + i +
+        " for $" + i
+    );
+
+    ball.setAttribute(
+        "aria-pressed",
+        "false"
+    );
+
+
+    /* LEFT SEAM */
+
+    ball.appendChild(
+        createSeam("left")
+    );
+
+
+    /* NUMBER */
 
     const number =
         document.createElement(
             "span"
         );
 
+    number.className =
+        "ball-number";
+
     number.textContent = i;
 
     ball.appendChild(number);
 
-    ball.dataset.value = i;
+
+    /* RIGHT SEAM */
+
+    ball.appendChild(
+        createSeam("right")
+    );
 
 
     ball.addEventListener(
@@ -824,6 +1066,11 @@ function toggleBall(
             "selected"
         );
 
+        element.setAttribute(
+            "aria-pressed",
+            "false"
+        );
+
     } else {
 
         selectedBalls.add(
@@ -832,6 +1079,11 @@ function toggleBall(
 
         element.classList.add(
             "selected"
+        );
+
+        element.setAttribute(
+            "aria-pressed",
+            "true"
         );
     }
 
