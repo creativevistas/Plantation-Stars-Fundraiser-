@@ -19,6 +19,7 @@ body {
 }
 
 /* TOP BAR */
+
 .topbar {
     background: #071b36;
     color: white;
@@ -37,6 +38,7 @@ body {
 }
 
 /* HEADER */
+
 .hero {
     background: #071b36;
     color: white;
@@ -58,6 +60,7 @@ body {
 }
 
 /* MAIN */
+
 .container {
     max-width: 950px;
     margin: auto;
@@ -65,6 +68,7 @@ body {
 }
 
 /* PLAYER */
+
 .player-heading {
     text-align: center;
     margin-bottom: 30px;
@@ -91,6 +95,7 @@ body {
 }
 
 /* GOAL */
+
 .goal-card {
     background: white;
     border-radius: 14px;
@@ -122,6 +127,7 @@ body {
 }
 
 /* INSTRUCTIONS */
+
 .instructions {
     background: white;
     padding: 22px;
@@ -146,42 +152,172 @@ body {
     color: #e21d2f !important;
 }
 
-/* BASEBALLS */
+/* =====================================================
+   BASEBALL GRID
+===================================================== */
+
 .baseballs {
     display: grid;
     grid-template-columns: repeat(10, 1fr);
-    gap: 9px;
-    margin-bottom: 30px;
+    gap: 11px;
+    margin-bottom: 35px;
 }
 
+/* =====================================================
+   ACTUAL BASEBALL BUTTON
+===================================================== */
+
 .ball {
+    position: relative;
     aspect-ratio: 1;
     border-radius: 50%;
-    border: 2px solid #d1d5db;
-    background: white;
+    overflow: hidden;
+
+    border: 2px solid #cbd0d7;
+
+    background:
+        radial-gradient(
+            circle at 35% 28%,
+            #ffffff 0%,
+            #ffffff 38%,
+            #f7f5f0 70%,
+            #e9e6df 100%
+        );
+
     cursor: pointer;
-    font-weight: 800;
+
+    font-weight: 900;
     color: #071b36;
+
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: .15s;
+
     font-size: 14px;
-    box-shadow: 0 2px 5px rgba(0,0,0,.05);
+
+    box-shadow:
+        inset -4px -5px 8px rgba(0,0,0,.07),
+        inset 3px 3px 5px rgba(255,255,255,.9),
+        0 3px 6px rgba(0,0,0,.13);
+
+    transition:
+        transform .15s ease,
+        box-shadow .15s ease,
+        border-color .15s ease;
 }
+
+/* LEFT BASEBALL SEAM */
+
+.ball::before {
+    content: "";
+    position: absolute;
+
+    width: 70%;
+    height: 125%;
+
+    left: -43%;
+    top: -13%;
+
+    border-right: 3px solid #d91f32;
+    border-radius: 50%;
+
+    background:
+        repeating-linear-gradient(
+            25deg,
+            transparent 0px,
+            transparent 8px,
+            rgba(217,31,50,.95) 9px,
+            rgba(217,31,50,.95) 11px,
+            transparent 12px,
+            transparent 18px
+        );
+
+    opacity: .95;
+    pointer-events: none;
+}
+
+/* RIGHT BASEBALL SEAM */
+
+.ball::after {
+    content: "";
+    position: absolute;
+
+    width: 70%;
+    height: 125%;
+
+    right: -43%;
+    top: -13%;
+
+    border-left: 3px solid #d91f32;
+    border-radius: 50%;
+
+    background:
+        repeating-linear-gradient(
+            -25deg,
+            transparent 0px,
+            transparent 8px,
+            rgba(217,31,50,.95) 9px,
+            rgba(217,31,50,.95) 11px,
+            transparent 12px,
+            transparent 18px
+        );
+
+    opacity: .95;
+    pointer-events: none;
+}
+
+/* Keep number above stitching */
+
+.ball span {
+    position: relative;
+    z-index: 5;
+}
+
+/* HOVER */
 
 .ball:hover {
     border-color: #e21d2f;
-    transform: scale(1.05);
+
+    transform:
+        translateY(-2px)
+        scale(1.06);
+
+    box-shadow:
+        inset -4px -5px 8px rgba(0,0,0,.07),
+        0 6px 12px rgba(0,0,0,.17);
 }
 
+/* =====================================================
+   SELECTED BASEBALL
+===================================================== */
+
 .ball.selected {
-    background: #e21d2f;
     color: white;
-    border-color: #e21d2f;
+
+    border: 3px solid #071b36;
+
+    background:
+        radial-gradient(
+            circle at 35% 28%,
+            #ff5363 0%,
+            #e21d2f 45%,
+            #b90e20 100%
+        );
+
+    box-shadow:
+        0 0 0 3px white,
+        0 0 0 5px #e21d2f,
+        0 6px 12px rgba(0,0,0,.18);
+}
+
+.ball.selected::before,
+.ball.selected::after {
+    border-color: white;
+    opacity: .8;
 }
 
 /* DONATION */
+
 .donation-box {
     background: #071b36;
     color: white;
@@ -260,6 +396,7 @@ body {
 }
 
 /* FOOTER */
+
 footer {
     background: #06162c;
     color: white;
@@ -272,20 +409,26 @@ footer span {
     font-size: 14px;
 }
 
+/* TABLET */
+
 @media (max-width: 750px) {
+
     .baseballs {
         grid-template-columns: repeat(8, 1fr);
     }
 }
 
+/* PHONE */
+
 @media (max-width: 520px) {
+
     .baseballs {
         grid-template-columns: repeat(5, 1fr);
-        gap: 8px;
+        gap: 9px;
     }
 
     .ball {
-        font-size: 13px;
+        font-size: 14px;
     }
 
     .hero h1 {
@@ -316,43 +459,74 @@ footer span {
 </div>
 
 <header class="hero">
-    <div class="team">PLANTATION STARS RED</div>
-    <h1>Road to Cooperstown</h1>
+
+    <div class="team">
+        PLANTATION STARS RED
+    </div>
+
+    <h1>
+        Road to Cooperstown
+    </h1>
+
 </header>
 
 <main class="container">
 
 <section class="player-heading">
-    <div class="supporting">YOU'RE SUPPORTING</div>
-    <h2 id="playerName">Plantation Stars Player</h2>
-    <div class="player-number" id="playerNumber"></div>
+
+    <div class="supporting">
+        YOU'RE SUPPORTING
+    </div>
+
+    <h2 id="playerName">
+        Plantation Stars Player
+    </h2>
+
+    <div
+        class="player-number"
+        id="playerNumber">
+    </div>
+
 </section>
+
 
 <section class="goal-card">
 
     <div class="progress-info">
+
         <span>
             Raised:
             <span id="raisedAmount">$0</span>
         </span>
 
-        <span>Goal: $5,000</span>
+        <span>
+            Goal: $5,000
+        </span>
+
     </div>
 
     <div class="progress-bar">
-        <div class="progress-fill" id="progressFill"></div>
+
+        <div
+            class="progress-fill"
+            id="progressFill">
+        </div>
+
     </div>
 
 </section>
 
+
 <section class="instructions">
 
-    <h3>⚾ Pick Your Baseballs</h3>
+    <h3>
+        ⚾ Pick Your Baseballs
+    </h3>
 
     <p>
         Each baseball number equals the donation amount.
-        Select one or more baseballs below to support this player
-        on their Road to Cooperstown.
+        Select one or more baseballs below to support this
+        player on their Road to Cooperstown.
     </p>
 
     <p class="example">
@@ -361,49 +535,88 @@ footer span {
 
 </section>
 
-<div class="baseballs" id="baseballGrid"></div>
+
+<div
+    class="baseballs"
+    id="baseballGrid">
+</div>
+
 
 <section class="donation-box">
 
-    <h2>Your Donation</h2>
+    <h2>
+        Your Donation
+    </h2>
 
-    <div class="selected-info" id="selectedInfo">
+    <div
+        class="selected-info"
+        id="selectedInfo">
+
         No baseballs selected
+
     </div>
 
-    <div class="total" id="donationTotal">$0</div>
+    <div
+        class="total"
+        id="donationTotal">
+
+        $0
+
+    </div>
+
 
     <div class="form-group">
-        <label for="donorName">Your Name</label>
+
+        <label for="donorName">
+            Your Name
+        </label>
 
         <input
             type="text"
             id="donorName"
             placeholder="Enter your name">
+
     </div>
 
+
     <div class="form-group">
-        <label for="donorEmail">Email</label>
+
+        <label for="donorEmail">
+            Email
+        </label>
 
         <input
             type="email"
             id="donorEmail"
             placeholder="Enter your email">
+
     </div>
 
+
     <div class="anonymous">
+
         <label>
-            <input type="checkbox" id="anonymous">
+
+            <input
+                type="checkbox"
+                id="anonymous">
+
             Donate anonymously
+
         </label>
+
     </div>
+
 
     <button
         class="checkout"
         id="checkoutButton"
         disabled>
+
         Select Baseballs to Continue
+
     </button>
+
 
     <div class="notice">
         Secure payment powered by Stripe.
@@ -413,15 +626,27 @@ footer span {
 
 </main>
 
+
 <footer>
-    <strong>PLANTATION STARS RED</strong>
+
+    <strong>
+        PLANTATION STARS RED
+    </strong>
+
     <br>
-    <span>Road to Cooperstown</span>
+
+    <span>
+        Road to Cooperstown
+    </span>
+
 </footer>
+
 
 <script>
 
-/* PLAYERS */
+/* =====================================================
+   PLAYERS
+===================================================== */
 
 const players = {
 
@@ -483,86 +708,174 @@ const players = {
 };
 
 
-/* GET PLAYER */
+/* =====================================================
+   GET PLAYER
+===================================================== */
 
-const params = new URLSearchParams(window.location.search);
-const playerKey = params.get("player");
-const player = players[playerKey];
+const params =
+    new URLSearchParams(
+        window.location.search
+    );
+
+const playerKey =
+    params.get("player");
+
+const player =
+    players[playerKey];
+
 
 if (player) {
 
-    document.getElementById("playerName").textContent =
+    document
+        .getElementById("playerName")
+        .textContent =
         player.name;
 
-    document.getElementById("playerNumber").textContent =
+    document
+        .getElementById("playerNumber")
+        .textContent =
         player.number;
 
     document.title =
-        player.name + " | Plantation Stars Red Fundraiser";
+        player.name +
+        " | Plantation Stars Red Fundraiser";
 }
 
 
-/* CREATE BASEBALLS */
+/* =====================================================
+   CREATE 100 BASEBALLS
+===================================================== */
 
 const baseballGrid =
-    document.getElementById("baseballGrid");
+    document.getElementById(
+        "baseballGrid"
+    );
 
-const selectedBalls = new Set();
+const selectedBalls =
+    new Set();
+
 
 for (let i = 1; i <= 100; i++) {
 
-    const ball = document.createElement("button");
+    const ball =
+        document.createElement(
+            "button"
+        );
 
     ball.type = "button";
-    ball.className = "ball";
-    ball.textContent = i;
+
+    ball.className =
+        "ball";
+
+    /*
+       Number gets its own span so it
+       stays ABOVE the baseball seams.
+    */
+
+    const number =
+        document.createElement(
+            "span"
+        );
+
+    number.textContent = i;
+
+    ball.appendChild(number);
+
     ball.dataset.value = i;
 
-    ball.addEventListener("click", function () {
-        toggleBall(i, ball);
-    });
 
-    baseballGrid.appendChild(ball);
+    ball.addEventListener(
+        "click",
+        function () {
+
+            toggleBall(
+                i,
+                ball
+            );
+
+        }
+    );
+
+
+    baseballGrid.appendChild(
+        ball
+    );
 }
 
 
-/* SELECT BASEBALL */
+/* =====================================================
+   SELECT BASEBALL
+===================================================== */
 
-function toggleBall(number, element) {
+function toggleBall(
+    number,
+    element
+) {
 
-    if (selectedBalls.has(number)) {
+    if (
+        selectedBalls.has(number)
+    ) {
 
-        selectedBalls.delete(number);
-        element.classList.remove("selected");
+        selectedBalls.delete(
+            number
+        );
+
+        element.classList.remove(
+            "selected"
+        );
 
     } else {
 
-        selectedBalls.add(number);
-        element.classList.add("selected");
+        selectedBalls.add(
+            number
+        );
 
+        element.classList.add(
+            "selected"
+        );
     }
+
 
     updateDonation();
 }
 
 
-/* UPDATE TOTAL */
+/* =====================================================
+   UPDATE TOTAL
+===================================================== */
 
 function updateDonation() {
 
     let total = 0;
 
-    selectedBalls.forEach(number => {
-        total += number;
-    });
 
-    document.getElementById("donationTotal").textContent =
-        "$" + total.toLocaleString();
+    selectedBalls.forEach(
+        number => {
+
+            total += number;
+
+        }
+    );
+
+
+    document
+        .getElementById(
+            "donationTotal"
+        )
+        .textContent =
+        "$" +
+        total.toLocaleString();
+
 
     const selectedInfo =
-        document.getElementById("selectedInfo");
+        document.getElementById(
+            "selectedInfo"
+        );
 
-    if (selectedBalls.size === 0) {
+
+    if (
+        selectedBalls.size === 0
+    ) {
 
         selectedInfo.textContent =
             "No baseballs selected";
@@ -570,20 +883,29 @@ function updateDonation() {
     } else {
 
         const sorted =
-            Array.from(selectedBalls)
-            .sort((a, b) => a - b);
+            Array
+            .from(selectedBalls)
+            .sort(
+                (a, b) => a - b
+            );
+
 
         selectedInfo.textContent =
             "Selected baseballs: #" +
             sorted.join(", #");
     }
 
+
     const button =
-        document.getElementById("checkoutButton");
+        document.getElementById(
+            "checkoutButton"
+        );
+
 
     if (total > 0) {
 
-        button.disabled = false;
+        button.disabled =
+            false;
 
         button.textContent =
             "Continue to Checkout — $" +
@@ -591,7 +913,8 @@ function updateDonation() {
 
     } else {
 
-        button.disabled = true;
+        button.disabled =
+            true;
 
         button.textContent =
             "Select Baseballs to Continue";
@@ -599,112 +922,164 @@ function updateDonation() {
 }
 
 
-/* STRIPE CHECKOUT */
+/* =====================================================
+   STRIPE CHECKOUT
+===================================================== */
 
-document.getElementById("checkoutButton")
-.addEventListener("click", async function () {
-
-    const total =
-        Array.from(selectedBalls).reduce(
-            (sum, number) => sum + number,
-            0
-        );
-
-    if (total <= 0) {
-        return;
-    }
-
-    const button =
-        document.getElementById("checkoutButton");
-
-    button.disabled = true;
-    button.textContent = "Opening Secure Checkout...";
-
-    const sortedBaseballs =
-        Array.from(selectedBalls)
-        .sort((a, b) => a - b);
-
-    try {
-
-        const response =
-            await fetch("/api/create-checkout", {
-
-                method: "POST",
-
-                headers: {
-                    "Content-Type": "application/json"
-                },
-
-                body: JSON.stringify({
-
-                    amount: total,
-
-                    player:
-                        player
-                        ? player.name
-                        : "Plantation Stars Player",
-
-                    playerKey: playerKey || "",
-
-                    donorName:
-                        document
-                        .getElementById("donorName")
-                        .value
-                        .trim(),
-
-                    donorEmail:
-                        document
-                        .getElementById("donorEmail")
-                        .value
-                        .trim(),
-
-                    anonymous:
-                        document
-                        .getElementById("anonymous")
-                        .checked,
-
-                    baseballs: sortedBaseballs
-                })
-            });
+document
+.getElementById(
+    "checkoutButton"
+)
+.addEventListener(
+    "click",
+    async function () {
 
 
-        const data = await response.json();
-
-
-        if (!response.ok) {
-
-            throw new Error(
-                data.error ||
-                "Checkout could not be created."
+        const total =
+            Array
+            .from(selectedBalls)
+            .reduce(
+                (sum, number) =>
+                    sum + number,
+                0
             );
+
+
+        if (total <= 0) {
+            return;
         }
 
 
-        if (data.url) {
-
-            window.location.href = data.url;
-
-        } else {
-
-            throw new Error(
-                "Stripe checkout URL was not returned."
+        const button =
+            document.getElementById(
+                "checkoutButton"
             );
+
+
+        button.disabled =
+            true;
+
+        button.textContent =
+            "Opening Secure Checkout...";
+
+
+        const sortedBaseballs =
+            Array
+            .from(selectedBalls)
+            .sort(
+                (a, b) => a - b
+            );
+
+
+        try {
+
+            const response =
+                await fetch(
+                    "/api/create-checkout",
+                    {
+
+                        method: "POST",
+
+                        headers: {
+
+                            "Content-Type":
+                                "application/json"
+
+                        },
+
+                        body:
+                            JSON.stringify({
+
+                                amount:
+                                    total,
+
+                                player:
+                                    player
+                                    ? player.name
+                                    : "Plantation Stars Player",
+
+                                playerKey:
+                                    playerKey || "",
+
+                                donorName:
+                                    document
+                                    .getElementById(
+                                        "donorName"
+                                    )
+                                    .value
+                                    .trim(),
+
+                                donorEmail:
+                                    document
+                                    .getElementById(
+                                        "donorEmail"
+                                    )
+                                    .value
+                                    .trim(),
+
+                                anonymous:
+                                    document
+                                    .getElementById(
+                                        "anonymous"
+                                    )
+                                    .checked,
+
+                                baseballs:
+                                    sortedBaseballs
+
+                            })
+
+                    }
+                );
+
+
+            const data =
+                await response.json();
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    data.error ||
+                    "Checkout could not be created."
+                );
+            }
+
+
+            if (data.url) {
+
+                window.location.href =
+                    data.url;
+
+            } else {
+
+                throw new Error(
+                    "Stripe checkout URL was not returned."
+                );
+            }
+
+
+        } catch (error) {
+
+            console.error(
+                error
+            );
+
+
+            alert(
+                "Checkout isn't connected yet. Please try again after Stripe setup is completed."
+            );
+
+
+            button.disabled =
+                false;
+
+            updateDonation();
+
         }
 
-
-    } catch (error) {
-
-        console.error(error);
-
-        alert(
-            "Checkout isn't connected yet. Please try again after Stripe setup is completed."
-        );
-
-        button.disabled = false;
-        updateDonation();
     }
-
-});
+);
 
 </script>
 
