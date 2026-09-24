@@ -228,9 +228,6 @@ body {
 
 /* =====================================================
    BASEBALL SEAMS
-
-   These are curved seams instead of the large
-   red stripes from the previous version.
 ===================================================== */
 
 .seam {
@@ -253,13 +250,15 @@ body {
     border-radius: 55% 0 0 55%;
 }
 
-/* Individual stitches */
+/* =====================================================
+   BASEBALL STITCHES
+===================================================== */
 
 .stitch {
     position: absolute;
     display: block;
     width: 9px;
-    height: 2px;
+    height: 2.5px;
     background: #d9273b;
     border-radius: 2px;
 }
@@ -267,92 +266,142 @@ body {
 /* LEFT STITCHES */
 
 .seam-left .s1 {
-    right: -4px;
-    top: 12%;
-    transform: rotate(35deg);
+    right: -2px;
+    top: 5%;
+    transform: rotate(42deg);
 }
 
 .seam-left .s2 {
-    right: -7px;
-    top: 24%;
-    transform: rotate(28deg);
+    right: -4px;
+    top: 14%;
+    transform: rotate(36deg);
 }
 
 .seam-left .s3 {
-    right: -8px;
-    top: 37%;
-    transform: rotate(18deg);
+    right: -6px;
+    top: 23%;
+    transform: rotate(30deg);
 }
 
 .seam-left .s4 {
-    right: -8px;
-    top: 50%;
-    transform: rotate(5deg);
+    right: -7px;
+    top: 32%;
+    transform: rotate(23deg);
 }
 
 .seam-left .s5 {
     right: -8px;
-    top: 63%;
-    transform: rotate(-18deg);
+    top: 41%;
+    transform: rotate(14deg);
 }
 
 .seam-left .s6 {
-    right: -6px;
-    top: 76%;
-    transform: rotate(-28deg);
+    right: -8px;
+    top: 50%;
+    transform: rotate(3deg);
 }
 
 .seam-left .s7 {
-    right: -3px;
-    top: 88%;
-    transform: rotate(-35deg);
+    right: -8px;
+    top: 59%;
+    transform: rotate(-14deg);
+}
+
+.seam-left .s8 {
+    right: -7px;
+    top: 68%;
+    transform: rotate(-23deg);
+}
+
+.seam-left .s9 {
+    right: -6px;
+    top: 77%;
+    transform: rotate(-30deg);
+}
+
+.seam-left .s10 {
+    right: -4px;
+    top: 86%;
+    transform: rotate(-36deg);
+}
+
+.seam-left .s11 {
+    right: -2px;
+    top: 95%;
+    transform: rotate(-42deg);
 }
 
 /* RIGHT STITCHES */
 
 .seam-right .s1 {
-    left: -4px;
-    top: 12%;
-    transform: rotate(-35deg);
+    left: -2px;
+    top: 5%;
+    transform: rotate(-42deg);
 }
 
 .seam-right .s2 {
-    left: -7px;
-    top: 24%;
-    transform: rotate(-28deg);
+    left: -4px;
+    top: 14%;
+    transform: rotate(-36deg);
 }
 
 .seam-right .s3 {
-    left: -8px;
-    top: 37%;
-    transform: rotate(-18deg);
+    left: -6px;
+    top: 23%;
+    transform: rotate(-30deg);
 }
 
 .seam-right .s4 {
-    left: -8px;
-    top: 50%;
-    transform: rotate(-5deg);
+    left: -7px;
+    top: 32%;
+    transform: rotate(-23deg);
 }
 
 .seam-right .s5 {
     left: -8px;
-    top: 63%;
-    transform: rotate(18deg);
+    top: 41%;
+    transform: rotate(-14deg);
 }
 
 .seam-right .s6 {
-    left: -6px;
-    top: 76%;
-    transform: rotate(28deg);
+    left: -8px;
+    top: 50%;
+    transform: rotate(-3deg);
 }
 
 .seam-right .s7 {
-    left: -3px;
-    top: 88%;
-    transform: rotate(35deg);
+    left: -8px;
+    top: 59%;
+    transform: rotate(14deg);
 }
 
-/* NUMBER */
+.seam-right .s8 {
+    left: -7px;
+    top: 68%;
+    transform: rotate(23deg);
+}
+
+.seam-right .s9 {
+    left: -6px;
+    top: 77%;
+    transform: rotate(30deg);
+}
+
+.seam-right .s10 {
+    left: -4px;
+    top: 86%;
+    transform: rotate(36deg);
+}
+
+.seam-right .s11 {
+    left: -2px;
+    top: 95%;
+    transform: rotate(42deg);
+}
+
+/* =====================================================
+   NUMBER
+===================================================== */
 
 .ball-number {
     position: relative;
@@ -390,9 +439,6 @@ body {
 
 /* =====================================================
    SELECTED BASEBALL
-
-   Keep it looking like a baseball.
-   Selection is shown with the red ring.
 ===================================================== */
 
 .ball.selected {
@@ -943,7 +989,9 @@ function createSeam(side) {
         "seam seam-" + side;
 
 
-    for (let i = 1; i <= 7; i++) {
+    /* 11 STITCHES PER SIDE */
+
+    for (let i = 1; i <= 11; i++) {
 
         const stitch =
             document.createElement("span");
