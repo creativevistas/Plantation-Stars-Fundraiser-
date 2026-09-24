@@ -115,11 +115,46 @@ body {
 }
 
 .progress-info {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 15px;
     font-weight: 800;
     margin-bottom: 14px;
+    color: #071b36;
+}
+
+.progress-stat:nth-child(1) {
+    text-align: left;
+}
+
+.progress-stat:nth-child(2) {
+    text-align: center;
+}
+
+.progress-stat:nth-child(3) {
+    text-align: right;
+}
+
+.progress-label {
+    display: block;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #6b7280;
+    margin-bottom: 4px;
+}
+
+.progress-value {
+    display: block;
+    font-size: 20px;
+    color: #071b36;
+}
+
+#raisedAmount {
+    color: #e21d2f;
+}
+
+#remainingAmount {
     color: #071b36;
 }
 
@@ -266,139 +301,31 @@ body {
 
 /* LEFT STITCHES */
 
-.seam-left .s1 {
-    right: -2px;
-    top: 5%;
-    transform: rotate(42deg);
-}
-
-.seam-left .s2 {
-    right: -4px;
-    top: 14%;
-    transform: rotate(36deg);
-}
-
-.seam-left .s3 {
-    right: -6px;
-    top: 23%;
-    transform: rotate(30deg);
-}
-
-.seam-left .s4 {
-    right: -7px;
-    top: 32%;
-    transform: rotate(23deg);
-}
-
-.seam-left .s5 {
-    right: -8px;
-    top: 41%;
-    transform: rotate(14deg);
-}
-
-.seam-left .s6 {
-    right: -8px;
-    top: 50%;
-    transform: rotate(3deg);
-}
-
-.seam-left .s7 {
-    right: -8px;
-    top: 59%;
-    transform: rotate(-14deg);
-}
-
-.seam-left .s8 {
-    right: -7px;
-    top: 68%;
-    transform: rotate(-23deg);
-}
-
-.seam-left .s9 {
-    right: -6px;
-    top: 77%;
-    transform: rotate(-30deg);
-}
-
-.seam-left .s10 {
-    right: -4px;
-    top: 86%;
-    transform: rotate(-36deg);
-}
-
-.seam-left .s11 {
-    right: -2px;
-    top: 95%;
-    transform: rotate(-42deg);
-}
+.seam-left .s1 { right: -2px; top: 5%; transform: rotate(42deg); }
+.seam-left .s2 { right: -4px; top: 14%; transform: rotate(36deg); }
+.seam-left .s3 { right: -6px; top: 23%; transform: rotate(30deg); }
+.seam-left .s4 { right: -7px; top: 32%; transform: rotate(23deg); }
+.seam-left .s5 { right: -8px; top: 41%; transform: rotate(14deg); }
+.seam-left .s6 { right: -8px; top: 50%; transform: rotate(3deg); }
+.seam-left .s7 { right: -8px; top: 59%; transform: rotate(-14deg); }
+.seam-left .s8 { right: -7px; top: 68%; transform: rotate(-23deg); }
+.seam-left .s9 { right: -6px; top: 77%; transform: rotate(-30deg); }
+.seam-left .s10 { right: -4px; top: 86%; transform: rotate(-36deg); }
+.seam-left .s11 { right: -2px; top: 95%; transform: rotate(-42deg); }
 
 /* RIGHT STITCHES */
 
-.seam-right .s1 {
-    left: -2px;
-    top: 5%;
-    transform: rotate(-42deg);
-}
-
-.seam-right .s2 {
-    left: -4px;
-    top: 14%;
-    transform: rotate(-36deg);
-}
-
-.seam-right .s3 {
-    left: -6px;
-    top: 23%;
-    transform: rotate(-30deg);
-}
-
-.seam-right .s4 {
-    left: -7px;
-    top: 32%;
-    transform: rotate(-23deg);
-}
-
-.seam-right .s5 {
-    left: -8px;
-    top: 41%;
-    transform: rotate(-14deg);
-}
-
-.seam-right .s6 {
-    left: -8px;
-    top: 50%;
-    transform: rotate(-3deg);
-}
-
-.seam-right .s7 {
-    left: -8px;
-    top: 59%;
-    transform: rotate(14deg);
-}
-
-.seam-right .s8 {
-    left: -7px;
-    top: 68%;
-    transform: rotate(23deg);
-}
-
-.seam-right .s9 {
-    left: -6px;
-    top: 77%;
-    transform: rotate(30deg);
-}
-
-.seam-right .s10 {
-    left: -4px;
-    top: 86%;
-    transform: rotate(36deg);
-}
-
-.seam-right .s11 {
-    left: -2px;
-    top: 95%;
-    transform: rotate(42deg);
-}
+.seam-right .s1 { left: -2px; top: 5%; transform: rotate(-42deg); }
+.seam-right .s2 { left: -4px; top: 14%; transform: rotate(-36deg); }
+.seam-right .s3 { left: -6px; top: 23%; transform: rotate(-30deg); }
+.seam-right .s4 { left: -7px; top: 32%; transform: rotate(-23deg); }
+.seam-right .s5 { left: -8px; top: 41%; transform: rotate(-14deg); }
+.seam-right .s6 { left: -8px; top: 50%; transform: rotate(-3deg); }
+.seam-right .s7 { left: -8px; top: 59%; transform: rotate(14deg); }
+.seam-right .s8 { left: -7px; top: 68%; transform: rotate(23deg); }
+.seam-right .s9 { left: -6px; top: 77%; transform: rotate(30deg); }
+.seam-right .s10 { left: -4px; top: 86%; transform: rotate(36deg); }
+.seam-right .s11 { left: -2px; top: 95%; transform: rotate(42deg); }
 
 /* =====================================================
    NUMBER
@@ -630,11 +557,21 @@ footer span {
     }
 
     .goal-card {
-        padding: 21px 18px;
+        padding: 20px 15px;
     }
 
     .progress-info {
-        font-size: 14px;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 6px;
+    }
+
+    .progress-label {
+        font-size: 9px;
+        letter-spacing: .5px;
+    }
+
+    .progress-value {
+        font-size: 15px;
     }
 
     .instructions {
@@ -690,10 +627,17 @@ footer span {
 <body>
 
 <div class="topbar">
+
     <div class="topbar-inner">
-        <a href="/" class="back">← Back to Team</a>
+
+        <a href="/" class="back">
+            ← Back to Team
+        </a>
+
     </div>
+
 </div>
+
 
 <header class="hero">
 
@@ -707,7 +651,9 @@ footer span {
 
 </header>
 
+
 <main class="container">
+
 
 <section class="player-heading">
 
@@ -727,20 +673,58 @@ footer span {
 </section>
 
 
+<!-- =====================================================
+     FUNDRAISING PROGRESS
+===================================================== -->
+
 <section class="goal-card">
 
     <div class="progress-info">
 
-        <span>
-            Raised:
-            <span id="raisedAmount">$0</span>
-        </span>
+        <div class="progress-stat">
 
-        <span>
-            Goal: $5,000
-        </span>
+            <span class="progress-label">
+                Raised
+            </span>
+
+            <span
+                class="progress-value"
+                id="raisedAmount">
+                $0
+            </span>
+
+        </div>
+
+
+        <div class="progress-stat">
+
+            <span class="progress-label">
+                Remaining
+            </span>
+
+            <span
+                class="progress-value"
+                id="remainingAmount">
+                $5,000
+            </span>
+
+        </div>
+
+
+        <div class="progress-stat">
+
+            <span class="progress-label">
+                Goal
+            </span>
+
+            <span class="progress-value">
+                $5,000
+            </span>
+
+        </div>
 
     </div>
+
 
     <div class="progress-bar">
 
@@ -788,13 +772,17 @@ footer span {
     <div
         class="selected-info"
         id="selectedInfo">
+
         No baseballs selected
+
     </div>
 
     <div
         class="total"
         id="donationTotal">
+
         $0
+
     </div>
 
 
@@ -976,7 +964,7 @@ if (player) {
 
 
 /* =====================================================
-   LOAD PLAYER TOTAL FROM D1
+   LOAD THIS PLAYER'S FUNDRAISING TOTAL
 ===================================================== */
 
 async function loadPlayerTotal() {
@@ -1011,11 +999,33 @@ async function loadPlayerTotal() {
         }
 
 
+        /*
+         * This total comes from the player in the URL.
+         *
+         * Example:
+         * ?player=kevin-pino
+         * loads Kevin's total.
+         *
+         * ?player=christopher-rosales
+         * loads Christopher's total.
+         *
+         * So this works automatically for ALL players.
+         */
+
         const raised =
             Number(data.total || 0);
 
-        const goal = 5000;
+        const goal =
+            5000;
 
+        const remaining =
+            Math.max(
+                goal - raised,
+                0
+            );
+
+
+        /* RAISED */
 
         document
             .getElementById(
@@ -1025,6 +1035,19 @@ async function loadPlayerTotal() {
             "$" +
             raised.toLocaleString();
 
+
+        /* REMAINING */
+
+        document
+            .getElementById(
+                "remainingAmount"
+            )
+            .textContent =
+            "$" +
+            remaining.toLocaleString();
+
+
+        /* PROGRESS BAR */
 
         const percentage =
             Math.min(
@@ -1039,6 +1062,7 @@ async function loadPlayerTotal() {
             )
             .style.width =
             percentage + "%";
+
 
     } catch (error) {
 
@@ -1098,17 +1122,21 @@ for (let i = 1; i <= 100; i++) {
             "button"
         );
 
-    ball.type = "button";
+    ball.type =
+        "button";
 
     ball.className =
         "ball";
 
-    ball.dataset.value = i;
+    ball.dataset.value =
+        i;
 
     ball.setAttribute(
         "aria-label",
-        "Select baseball #" + i +
-        " for $" + i
+        "Select baseball #" +
+        i +
+        " for $" +
+        i
     );
 
     ball.setAttribute(
@@ -1130,9 +1158,12 @@ for (let i = 1; i <= 100; i++) {
     number.className =
         "ball-number";
 
-    number.textContent = i;
+    number.textContent =
+        i;
 
-    ball.appendChild(number);
+    ball.appendChild(
+        number
+    );
 
 
     ball.appendChild(
@@ -1207,18 +1238,20 @@ function toggleBall(
 
 
 /* =====================================================
-   UPDATE TOTAL
+   UPDATE SELECTED DONATION
 ===================================================== */
 
 function updateDonation() {
 
-    let total = 0;
+    let total =
+        0;
 
 
     selectedBalls.forEach(
         number => {
 
-            total += number;
+            total +=
+                number;
 
         }
     );
@@ -1250,10 +1283,11 @@ function updateDonation() {
 
         const sorted =
             Array
-            .from(selectedBalls)
-            .sort(
-                (a, b) => a - b
-            );
+                .from(selectedBalls)
+                .sort(
+                    (a, b) =>
+                        a - b
+                );
 
 
         selectedInfo.textContent =
@@ -1303,12 +1337,12 @@ document
 
         const total =
             Array
-            .from(selectedBalls)
-            .reduce(
-                (sum, number) =>
-                    sum + number,
-                0
-            );
+                .from(selectedBalls)
+                .reduce(
+                    (sum, number) =>
+                        sum + number,
+                    0
+                );
 
 
         if (total <= 0) {
@@ -1331,10 +1365,11 @@ document
 
         const sortedBaseballs =
             Array
-            .from(selectedBalls)
-            .sort(
-                (a, b) => a - b
-            );
+                .from(selectedBalls)
+                .sort(
+                    (a, b) =>
+                        a - b
+                );
 
 
         try {
@@ -1344,7 +1379,8 @@ document
                     "/api/create-checkout",
                     {
 
-                        method: "POST",
+                        method:
+                            "POST",
 
                         headers: {
 
