@@ -7,11 +7,6 @@
 <title>Plantation Stars Red 12U | Road to Cooperstown</title>
 
 <style>
-
-/* =====================================================
-   RESET
-===================================================== */
-
 * {
     box-sizing: border-box;
     margin: 0;
@@ -43,12 +38,8 @@ body {
             #f3f5f8 100%);
     text-align: center;
     padding: 22px 20px 20px;
-
     border-bottom: 6px solid #ef1830;
-
-    box-shadow:
-        0 8px 20px rgba(0,0,0,.18);
-
+    box-shadow: 0 8px 20px rgba(0,0,0,.18);
     z-index: 10;
 }
 
@@ -56,7 +47,6 @@ body {
     content: "";
     position: absolute;
     inset: 0;
-
     background:
         radial-gradient(circle at 8% 15%,
             rgba(7,42,84,.08) 0 3px,
@@ -64,10 +54,8 @@ body {
         radial-gradient(circle at 92% 15%,
             rgba(7,42,84,.08) 0 3px,
             transparent 4px);
-
     background-size: 28px 28px;
     opacity: .45;
-
     pointer-events: none;
 }
 
@@ -77,11 +65,6 @@ body {
     max-width: 1000px;
     margin: auto;
 }
-
-
-/* =====================================================
-   LOGO
-===================================================== */
 
 .logo-wrap {
     width: min(600px, 88%);
@@ -96,17 +79,11 @@ body {
     filter: none;
 }
 
-
-/* =====================================================
-   TEAM NAME UNDER LOGO
-===================================================== */
-
 .header-team-label {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 18px;
-
     max-width: 650px;
     margin: 0 auto;
 }
@@ -115,22 +92,16 @@ body {
     display: block;
     width: 85px;
     height: 4px;
-
     background: #ef1830;
-
-    box-shadow:
-        0 0 10px rgba(239,24,48,.35);
+    box-shadow: 0 0 10px rgba(239,24,48,.35);
 }
 
 .header-team-label strong {
     color: #071d3d;
-
     font-size: 15px;
     font-weight: 900;
-
     letter-spacing: 6px;
     text-transform: uppercase;
-
     white-space: nowrap;
 }
 
@@ -142,23 +113,18 @@ body {
 .hero {
     position: relative;
     overflow: hidden;
-
     color: white;
     text-align: center;
-
     background:
         radial-gradient(circle at 50% 0%,
             rgba(31,94,163,.50) 0%,
             transparent 36%),
-
         radial-gradient(circle at 5% 90%,
             rgba(239,24,48,.45) 0%,
             transparent 27%),
-
         radial-gradient(circle at 95% 90%,
             rgba(239,24,48,.45) 0%,
             transparent 27%),
-
         linear-gradient(
             180deg,
             #0c2c58 0%,
@@ -166,50 +132,32 @@ body {
             #04142c 70%,
             #020b19 100%
         );
-
     border-bottom: 8px solid #ef1830;
-
     padding: 48px 20px 55px;
 }
-
-
-/* RED GLOW */
 
 .hero::after {
     content: "";
     position: absolute;
-
     left: -10%;
     right: -10%;
     bottom: -120px;
-
     height: 280px;
-
     background:
         radial-gradient(
             ellipse at center,
             rgba(239,24,48,.28),
             transparent 67%
         );
-
     pointer-events: none;
 }
 
-
-/* =====================================================
-   STADIUM LIGHTS
-===================================================== */
-
 .stadium-light {
     position: absolute;
-
     top: 12px;
-
     width: 180px;
     height: 120px;
-
     opacity: .30;
-
     background:
         radial-gradient(
             circle,
@@ -217,12 +165,8 @@ body {
             rgba(255,255,255,.50) 4px,
             transparent 9px
         );
-
     background-size: 28px 28px;
-
-    filter:
-        drop-shadow(0 0 12px white);
-
+    filter: drop-shadow(0 0 12px white);
     z-index: 1;
 }
 
@@ -236,38 +180,21 @@ body {
     transform: rotate(9deg);
 }
 
-
-/* =====================================================
-   HERO INNER
-===================================================== */
-
 .hero-inner {
     position: relative;
     z-index: 3;
-
     max-width: 1050px;
     width: 100%;
-
     margin: auto;
 }
 
-
-/* =====================================================
-   ROAD TO COOPERSTOWN
-===================================================== */
-
 .road {
     text-transform: uppercase;
-
     font-size: clamp(55px, 8vw, 90px);
     line-height: .88;
-
     font-weight: 1000;
-
     letter-spacing: -3px;
-
     color: #ffffff;
-
     text-shadow:
         0 3px 0 #d9dde3,
         0 6px 0 #8a929d,
@@ -275,20 +202,12 @@ body {
         0 15px 20px rgba(0,0,0,.65);
 }
 
-
-/* COOPERSTOWN */
-
 .cooperstown {
     display: block;
-
     margin-top: 18px;
-
     color: #ef1830;
-
     font-size: 1.04em;
-
     line-height: 1;
-
     text-shadow:
         0 2px 0 #ff6a78,
         0 5px 0 #a20c1c,
@@ -297,74 +216,45 @@ body {
         0 20px 22px rgba(0,0,0,.65);
 }
 
-
-/* =====================================================
-   BASEBALL DIVIDER
-===================================================== */
-
 .hero-divider {
     display: flex;
-
     align-items: center;
     justify-content: center;
-
     gap: 22px;
-
     max-width: 500px;
-
     margin: 34px auto 25px;
 }
 
 .hero-divider span {
     height: 4px;
-
     flex: 1;
-
     max-width: 145px;
-
     background: #ef1830;
-
-    box-shadow:
-        0 0 10px rgba(239,24,48,.6);
+    box-shadow: 0 0 10px rgba(239,24,48,.6);
 }
 
 .hero-divider strong {
     font-size: 38px;
-
-    filter:
-        drop-shadow(0 5px 6px rgba(0,0,0,.5));
+    filter: drop-shadow(0 5px 6px rgba(0,0,0,.5));
 }
-
-
-/* =====================================================
-   INTRO
-===================================================== */
 
 .intro {
     max-width: 830px;
-
     margin: auto;
-
     color: white;
-
     font-size: clamp(18px, 2.1vw, 22px);
-
     line-height: 1.55;
-
     font-weight: 700;
-
-    text-shadow:
-        0 2px 5px rgba(0,0,0,.85);
+    text-shadow: 0 2px 5px rgba(0,0,0,.85);
 }
 
 
 /* =====================================================
-   PLAYERS SECTION
+   MAIN AREA
 ===================================================== */
 
 .players-area {
     position: relative;
-
     background:
         linear-gradient(
             180deg,
@@ -373,94 +263,155 @@ body {
         );
 }
 
-
-/* FAINT BASEBALL STITCHES */
-
 .players-area::before,
 .players-area::after {
     content: "";
-
     position: absolute;
-
     top: 50px;
-
     width: 150px;
     height: 600px;
-
     opacity: .07;
-
     pointer-events: none;
-
     border-radius: 50%;
 }
 
 .players-area::before {
     left: -100px;
-
-    border-right:
-        8px dashed #ef1830;
+    border-right: 8px dashed #ef1830;
 }
 
 .players-area::after {
     right: -100px;
-
-    border-left:
-        8px dashed #ef1830;
+    border-left: 8px dashed #ef1830;
 }
-
-
-/* =====================================================
-   PLAYERS INNER
-===================================================== */
 
 .players-section {
     position: relative;
     z-index: 2;
-
     max-width: 1180px;
-
     margin: auto;
-
-    padding: 52px 22px 75px;
+    padding: 42px 22px 75px;
 }
 
 
-/* SUPPORT TEAM */
+/* =====================================================
+   TEAM FUNDRAISING PROGRESS
+===================================================== */
+
+.team-progress {
+    max-width: 980px;
+    margin: 0 auto 48px;
+    padding: 28px 34px 26px;
+    text-align: center;
+
+    background:
+        linear-gradient(
+            180deg,
+            #ffffff 0%,
+            #f7f8fa 100%
+        );
+
+    border-radius: 16px;
+    border-top: 5px solid #ef1830;
+
+    box-shadow:
+        0 10px 22px rgba(5,25,55,.12),
+        0 2px 5px rgba(5,25,55,.07);
+}
+
+.team-progress-title {
+    color: #061a38;
+    font-size: clamp(22px, 3vw, 30px);
+    font-weight: 1000;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.team-raised {
+    color: #061a38;
+    font-size: clamp(30px, 5vw, 46px);
+    font-weight: 1000;
+    line-height: 1;
+}
+
+.team-raised .amount {
+    color: #ef1830;
+}
+
+.team-goal {
+    margin-top: 7px;
+    color: #061a38;
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.progress-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    max-width: 760px;
+    margin: 22px auto 12px;
+}
+
+.progress-track {
+    flex: 1;
+    height: 20px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: #dce1e8;
+    box-shadow: inset 0 2px 4px rgba(5,25,55,.12);
+}
+
+.progress-fill {
+    height: 100%;
+    width: 1.76%;
+    min-width: 10px;
+    border-radius: inherit;
+
+    background:
+        repeating-linear-gradient(
+            -45deg,
+            #ef1830 0 10px,
+            #d80f27 10px 20px
+        );
+}
+
+.progress-percent {
+    min-width: 48px;
+    color: #061a38;
+    font-size: 18px;
+    font-weight: 1000;
+}
+
+.progress-note {
+    color: #667181;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+
+/* =====================================================
+   PLAYERS
+===================================================== */
 
 .section-kicker {
     text-align: center;
-
     color: #ef1830;
-
     font-size: 15px;
-
     font-weight: 1000;
-
     letter-spacing: 7px;
-
     margin-bottom: 10px;
-
     text-transform: uppercase;
 }
 
-
-/* CHOOSE YOUR PLAYER */
-
 .players-section h2 {
     text-align: center;
-
     color: #061a38;
-
     font-size: clamp(42px, 6vw, 62px);
-
     line-height: .95;
-
     font-weight: 1000;
-
     text-transform: uppercase;
-
     letter-spacing: -2px;
-
     text-shadow:
         0 3px 0 white,
         0 5px 9px rgba(7,27,54,.15);
@@ -468,49 +419,24 @@ body {
 
 .section-description {
     text-align: center;
-
     color: #687385;
-
     font-size: 18px;
-
     margin: 14px 0 40px;
 }
 
-
-/* =====================================================
-   PLAYER GRID
-===================================================== */
-
 .player-grid {
     display: grid;
-
-    grid-template-columns:
-        repeat(2, minmax(0, 1fr));
-
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 17px 22px;
 }
 
-
-/* =====================================================
-   PLAYER CARD
-===================================================== */
-
 .player-card {
     position: relative;
-
     display: flex;
-
     align-items: center;
-
     gap: 20px;
-
     min-height: 112px;
-
-    padding:
-        15px
-        62px
-        15px
-        18px;
+    padding: 15px 62px 15px 18px;
 
     background:
         linear-gradient(
@@ -520,12 +446,8 @@ body {
         );
 
     border-radius: 15px;
-
-    border-top:
-        5px solid #ef1830;
-
+    border-top: 5px solid #ef1830;
     color: #061a38;
-
     text-decoration: none;
 
     box-shadow:
@@ -538,29 +460,17 @@ body {
 }
 
 .player-card:hover {
-    transform:
-        translateY(-4px);
-
-    box-shadow:
-        0 16px 30px rgba(5,25,55,.20);
+    transform: translateY(-4px);
+    box-shadow: 0 16px 30px rgba(5,25,55,.20);
 }
 
-
-/* =====================================================
-   PLAYER NUMBER
-===================================================== */
-
 .player-number {
-    flex:
-        0 0 76px;
-
+    flex: 0 0 76px;
     width: 76px;
     height: 76px;
-
     border-radius: 50%;
 
     display: flex;
-
     align-items: center;
     justify-content: center;
 
@@ -573,103 +483,124 @@ body {
         );
 
     color: white;
-
-    border:
-        4px solid #ef1830;
+    border: 4px solid #ef1830;
 
     box-shadow:
         0 0 0 3px white,
         0 6px 10px rgba(0,0,0,.20);
 
     font-size: 23px;
-
     font-weight: 1000;
 }
 
-
-/* =====================================================
-   PLAYER TEXT
-===================================================== */
-
 .player-info {
     min-width: 0;
-
     flex: 1;
 }
 
 .player-name {
     color: #061a38;
-
-    font-size:
-        clamp(24px, 2.4vw, 30px);
-
+    font-size: clamp(24px, 2.4vw, 30px);
     font-weight: 1000;
-
     line-height: 1;
-
     text-transform: uppercase;
-
     letter-spacing: -.6px;
 }
 
 .support {
     color: #ef1830;
-
     font-size: 13px;
-
     font-weight: 1000;
-
     letter-spacing: 1.5px;
-
     margin-top: 9px;
-
     text-transform: uppercase;
 }
 
-
-/* ARROW */
-
 .arrow {
     position: absolute;
-
     right: 20px;
-
     top: 50%;
-
-    transform:
-        translateY(-50%);
-
+    transform: translateY(-50%);
     color: #ef1830;
-
     font-size: 43px;
-
     line-height: 1;
-
     font-weight: 1000;
 }
 
 
 /* =====================================================
-   BOTTOM
+   WHAT YOUR DONATION HELPS WITH
+===================================================== */
+
+.donation-help {
+    margin-top: 50px;
+    padding: 26px 32px 28px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #ffffff 0%,
+            #f7f8fa 100%
+        );
+
+    border-radius: 16px;
+    border-top: 5px solid #ef1830;
+
+    box-shadow:
+        0 10px 22px rgba(5,25,55,.12),
+        0 2px 5px rgba(5,25,55,.07);
+}
+
+.donation-help-title {
+    color: #061a38;
+    font-size: clamp(22px, 3vw, 30px);
+    font-weight: 1000;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.help-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 38px;
+}
+
+.help-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 43px;
+    padding: 7px 4px;
+    border-bottom: 1px solid #dce1e8;
+    color: #061a38;
+    font-size: 16px;
+    font-weight: 800;
+}
+
+.help-icon {
+    width: 28px;
+    flex: 0 0 28px;
+    text-align: center;
+    font-size: 20px;
+}
+
+
+/* =====================================================
+   BOTTOM MESSAGE
 ===================================================== */
 
 .baseball-divider {
     display: flex;
-
     align-items: center;
-
     gap: 17px;
-
     margin: 60px auto 26px;
-
     max-width: 550px;
 }
 
 .baseball-divider span {
     height: 2px;
-
     background: #c8ced7;
-
     flex: 1;
 }
 
@@ -677,29 +608,21 @@ body {
     font-size: 32px;
 }
 
-
 .bottom-message {
     text-align: center;
 }
 
 .bottom-message h3 {
     color: #061a38;
-
-    font-size:
-        clamp(28px, 4vw, 38px);
-
+    font-size: clamp(28px, 4vw, 38px);
     font-weight: 1000;
-
     text-transform: uppercase;
-
     margin-bottom: 12px;
 }
 
 .bottom-message p {
     color: #667181;
-
     line-height: 1.6;
-
     font-size: 16px;
 }
 
@@ -716,25 +639,19 @@ footer {
             #020c1c 100%
         );
 
-    border-top:
-        5px solid #ef1830;
-
+    border-top: 5px solid #ef1830;
     color: white;
-
     text-align: center;
-
     padding: 34px 20px;
 }
 
 footer strong {
     letter-spacing: 3px;
-
     font-size: 15px;
 }
 
 footer span {
     color: #aab5c4;
-
     font-size: 13px;
 }
 
@@ -745,99 +662,61 @@ footer span {
 
 @media (max-width: 760px) {
 
-    /* WHITE LOGO AREA */
-
     .logo-header {
-        padding:
-            16px
-            10px
-            15px;
+        padding: 16px 10px 15px;
     }
 
     .logo-wrap {
         width: 90%;
-
         max-width: 440px;
-
         margin-bottom: 8px;
     }
 
     .header-team-label {
         gap: 8px;
-
         width: 100%;
     }
 
     .header-team-label span {
         width: 28px;
-
         height: 3px;
     }
 
     .header-team-label strong {
         font-size: 10px;
-
         letter-spacing: 3px;
     }
 
-
-    /* HERO */
-
     .hero {
-        padding:
-            42px
-            12px
-            43px;
+        padding: 42px 12px 43px;
     }
 
     .stadium-light {
         width: 100px;
-
         height: 75px;
-
         opacity: .17;
-
-        background-size:
-            23px 23px;
+        background-size: 23px 23px;
     }
-
-
-    /* TITLE */
 
     .road {
         width: 100%;
-
-        font-size:
-            clamp(46px, 14vw, 66px);
-
+        font-size: clamp(46px, 14vw, 66px);
         line-height: .88;
-
         letter-spacing: -2px;
     }
 
     .cooperstown {
         width: 100%;
-
-        margin:
-            16px auto 0;
-
+        margin: 16px auto 0;
         font-size: 11.2vw;
-
         line-height: 1;
-
         letter-spacing: -1.5px;
-
         white-space: nowrap;
     }
 
-
-    /* DIVIDER */
-
     .hero-divider {
         width: 88%;
-
-        margin:
-            29px auto 20px;
+        margin: 29px auto 20px;
     }
 
     .hero-divider span {
@@ -848,103 +727,138 @@ footer span {
         font-size: 33px;
     }
 
-
-    /* INTRO */
-
     .intro {
         width: 100%;
-
         max-width: 620px;
-
         padding: 0 5px;
-
         font-size: 16px;
-
         line-height: 1.5;
     }
 
-
-    /* PLAYER SECTION */
-
     .players-section {
-        padding:
-            43px
-            14px
-            60px;
+        padding: 30px 12px 55px;
     }
+
+
+    /* PROGRESS FIRST ON MOBILE */
+
+    .team-progress {
+        margin-bottom: 35px;
+        padding: 21px 14px 20px;
+    }
+
+    .team-progress-title {
+        font-size: 18px;
+    }
+
+    .team-raised {
+        font-size: 30px;
+    }
+
+    .team-goal {
+        font-size: 15px;
+    }
+
+    .progress-row {
+        gap: 8px;
+        margin-top: 17px;
+    }
+
+    .progress-track {
+        height: 16px;
+    }
+
+    .progress-percent {
+        min-width: 40px;
+        font-size: 15px;
+    }
+
+    .progress-note {
+        font-size: 13px;
+        line-height: 1.4;
+    }
+
+
+    /* ALL PLAYERS SHOW */
 
     .section-kicker {
         font-size: 11px;
-
         letter-spacing: 4px;
     }
 
     .players-section h2 {
-        font-size:
-            clamp(39px, 11vw, 52px);
+        font-size: clamp(36px, 10vw, 48px);
     }
 
     .section-description {
-        font-size: 16px;
-
-        margin-bottom: 32px;
+        font-size: 15px;
+        margin-bottom: 26px;
     }
-
-
-    /* ONE CARD PER ROW */
 
     .player-grid {
         grid-template-columns: 1fr;
-
-        gap: 14px;
+        gap: 10px;
     }
 
-
-    /* BIGGER PLAYER CARDS */
-
     .player-card {
-        min-height: 104px;
-
-        padding:
-            13px
-            48px
-            13px
-            13px;
-
-        gap: 16px;
+        min-height: 82px;
+        padding: 10px 43px 10px 11px;
+        gap: 13px;
     }
 
     .player-number {
-        flex-basis: 69px;
-
-        width: 69px;
-        height: 69px;
-
-        font-size: 21px;
+        flex-basis: 57px;
+        width: 57px;
+        height: 57px;
+        font-size: 17px;
+        border-width: 3px;
     }
 
-
-    /* BIGGER NAMES */
-
     .player-name {
-        font-size:
-            clamp(22px, 6vw, 27px);
-
+        font-size: clamp(18px, 5vw, 23px);
         line-height: 1.02;
     }
 
     .support {
-        font-size: 11px;
-
-        margin-top: 7px;
-
-        letter-spacing: 1px;
+        font-size: 10px;
+        margin-top: 5px;
+        letter-spacing: .8px;
     }
 
     .arrow {
-        right: 13px;
+        right: 12px;
+        font-size: 32px;
+    }
 
-        font-size: 37px;
+
+    /* DONATION INFO AFTER ALL PLAYERS */
+
+    .donation-help {
+        margin-top: 38px;
+        padding: 21px 14px 23px;
+    }
+
+    .donation-help-title {
+        font-size: 19px;
+        line-height: 1.15;
+        margin-bottom: 14px;
+    }
+
+    .help-grid {
+        grid-template-columns: 1fr;
+        column-gap: 0;
+    }
+
+    .help-item {
+        min-height: 38px;
+        padding: 6px 2px;
+        font-size: 14px;
+    }
+
+    .help-icon {
+        width: 25px;
+        flex-basis: 25px;
+        font-size: 18px;
     }
 }
 
@@ -957,7 +871,6 @@ footer span {
 
     .header-team-label strong {
         font-size: 9px;
-
         letter-spacing: 2px;
     }
 
@@ -971,18 +884,16 @@ footer span {
 
     .cooperstown {
         font-size: 10.8vw;
-
         letter-spacing: -1px;
     }
 
     .player-name {
-        font-size: 21px;
+        font-size: 19px;
     }
 }
 
 </style>
 </head>
-
 
 <body>
 
@@ -1005,7 +916,6 @@ footer span {
 
         </div>
 
-
         <div class="header-team-label">
 
             <span></span>
@@ -1023,7 +933,6 @@ footer span {
 </header>
 
 
-
 <!-- =====================================================
      HERO
 ===================================================== -->
@@ -1031,42 +940,28 @@ footer span {
 <section class="hero">
 
     <div class="stadium-light light-left"></div>
-
     <div class="stadium-light light-right"></div>
-
 
     <div class="hero-inner">
 
-
         <h1 class="road">
-
             ROAD TO
-
             <span class="cooperstown">
                 COOPERSTOWN
             </span>
-
         </h1>
 
-
         <div class="hero-divider">
-
             <span></span>
-
             <strong>⚾</strong>
-
             <span></span>
-
         </div>
 
-
         <p class="intro">
-
             Help our Plantation Stars Red 12u team make the
             Cooperstown dream a reality. Choose the player you would like to support and
-            sponsor <b> one or more </b> baseballs from their
+            sponsor <b>one or more</b> baseballs from their
             individual fundraiser board.
-
         </p>
 
     </div>
@@ -1074,9 +969,8 @@ footer span {
 </section>
 
 
-
 <!-- =====================================================
-     PLAYERS
+     MAIN CONTENT
 ===================================================== -->
 
 <div class="players-area">
@@ -1084,26 +978,58 @@ footer span {
 <main class="players-section">
 
 
+    <!-- =================================================
+         TEAM FUNDRAISING PROGRESS
+    ================================================== -->
+
+    <section class="team-progress">
+
+        <div class="team-progress-title">
+            ★ TEAM FUNDRAISING PROGRESS ★
+        </div>
+
+        <div class="team-raised">
+            <span class="amount">$581</span> RAISED
+        </div>
+
+        <div class="team-goal">
+            of $33,000 Team Goal
+        </div>
+
+        <div class="progress-row">
+
+            <div class="progress-track">
+                <div class="progress-fill"></div>
+            </div>
+
+            <div class="progress-percent">
+                1.8%
+            </div>
+
+        </div>
+
+        <div class="progress-note">
+            Every donation gets our team closer to Cooperstown! ⚾
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         PLAYERS
+    ================================================== -->
+
     <div class="section-kicker">
-
         ★ SUPPORT THE TEAM ★
-
     </div>
 
-
     <h2>
-
         Choose Your Player
-
     </h2>
 
-
     <p class="section-description">
-
         Select a player below to visit their fundraiser.
-
     </p>
-
 
 
     <div class="player-grid">
@@ -1137,7 +1063,6 @@ footer span {
         </a>
 
 
-
         <!-- CRISTIAN -->
 
         <a
@@ -1164,7 +1089,6 @@ footer span {
             <div class="arrow">›</div>
 
         </a>
-
 
 
         <!-- DIEGO -->
@@ -1195,7 +1119,6 @@ footer span {
         </a>
 
 
-
         <!-- ELIAS -->
 
         <a
@@ -1222,7 +1145,6 @@ footer span {
             <div class="arrow">›</div>
 
         </a>
-
 
 
         <!-- FABIO -->
@@ -1253,7 +1175,6 @@ footer span {
         </a>
 
 
-
         <!-- FRANCISCO -->
 
         <a
@@ -1280,7 +1201,6 @@ footer span {
             <div class="arrow">›</div>
 
         </a>
-
 
 
         <!-- GIAN -->
@@ -1311,7 +1231,6 @@ footer span {
         </a>
 
 
-
         <!-- KEVIN -->
 
         <a
@@ -1338,7 +1257,6 @@ footer span {
             <div class="arrow">›</div>
 
         </a>
-
 
 
         <!-- SAIF -->
@@ -1369,7 +1287,6 @@ footer span {
         </a>
 
 
-
         <!-- SAMUEL -->
 
         <a
@@ -1396,7 +1313,6 @@ footer span {
             <div class="arrow">›</div>
 
         </a>
-
 
 
         <!-- THEODORE -->
@@ -1426,9 +1342,94 @@ footer span {
 
         </a>
 
-
     </div>
 
+
+    <!-- =================================================
+         WHAT YOUR DONATION HELPS WITH
+    ================================================== -->
+
+    <section class="donation-help">
+
+        <div class="donation-help-title">
+            ★ WHAT YOUR DONATION HELPS WITH ★
+        </div>
+
+        <div class="help-grid">
+
+            <div class="help-item">
+                <span class="help-icon">👕</span>
+                <span>Team Uniforms</span>
+            </div>
+
+            <div class="help-item">
+                <span class="help-icon">🎒</span>
+                <span>Team Baseball Bags</span>
+            </div>
+
+            <div class="help-item">
+                <span class="help-icon">⚾</span>
+                <span>Cooperstown Tournament Fees</span>
+            </div>
+
+            <div class="help-item">
+                <span class="help-icon">📋</span>
+                <span>Player Registration Fees</span>
+            </div>
+
+            <div class="help-item">
+                <span class="help-icon">📌</span>
+                <span>Trading Pins</span>
+            </div>
+
+            <div class="help-item">
+                <span class="help-icon">👕</span>
+                <span>Team Apparel</span>
+            </div>
+
+            <div class="help-item">
+                <span class="help-icon">⚾</span>
+                <span>Baseball Equipment</span>
+            </div>
+
+            <div class="help-item">
+                <span class="help-icon">🎁</span>
+                <span>Player Gifts &amp; Keepsakes</span>
+            </div>
+
+            <div class="help-item">
+                <span class="help-icon">🎉</span>
+                <span>Team Activities</span>
+            </div>
+
+            <div class="help-item">
+                <span class="help-icon">🚐</span>
+                <span>Travel &amp; Transportation</span>
+            </div>
+
+            <div class="help-item">
+                <span class="help-icon">🏠</span>
+                <span>Player Accommodations</span>
+            </div>
+
+            <div class="help-item">
+                <span class="help-icon">🍽️</span>
+                <span>Team Meals</span>
+            </div>
+
+            <div class="help-item">
+                <span class="help-icon">📸</span>
+                <span>Team Photos &amp; Memories</span>
+            </div>
+
+            <div class="help-item">
+                <span class="help-icon">⭐</span>
+                <span>Cooperstown Experience</span>
+            </div>
+
+        </div>
+
+    </section>
 
 
     <!-- =================================================
@@ -1438,9 +1439,7 @@ footer span {
     <div class="baseball-divider">
 
         <span></span>
-
         <strong>⚾</strong>
-
         <span></span>
 
     </div>
@@ -1453,7 +1452,6 @@ footer span {
         </h3>
 
         <p>
-
             Every baseball sponsored brings our team
             one step closer to Cooperstown.
 
@@ -1461,7 +1459,6 @@ footer span {
 
             Thank you for supporting
             Plantation Stars Red!
-
         </p>
 
     </div>
@@ -1470,7 +1467,6 @@ footer span {
 </main>
 
 </div>
-
 
 
 <!-- =====================================================
