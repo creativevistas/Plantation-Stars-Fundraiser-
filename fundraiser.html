@@ -705,7 +705,7 @@ footer span {
             <span
                 class="progress-value"
                 id="remainingAmount">
-                $5,000
+                $3,000
             </span>
 
         </div>
@@ -718,7 +718,7 @@ footer span {
             </span>
 
             <span class="progress-value">
-                $5,000
+                $3,000
             </span>
 
         </div>
@@ -1000,23 +1000,21 @@ async function loadPlayerTotal() {
 
 
         /*
-         * This total comes from the player in the URL.
-         *
-         * Example:
-         * ?player=kevin-pino
-         * loads Kevin's total.
-         *
-         * ?player=christopher-rosales
-         * loads Christopher's total.
-         *
-         * So this works automatically for ALL players.
+         * The donation total is loaded automatically
+         * for whichever player is in the page URL.
          */
 
         const raised =
             Number(data.total || 0);
 
+
+        /*
+         * INDIVIDUAL PLAYER GOAL
+         */
+
         const goal =
-            5000;
+            3000;
+
 
         const remaining =
             Math.max(
