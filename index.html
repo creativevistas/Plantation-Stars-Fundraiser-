@@ -356,7 +356,7 @@ body {
 
 .progress-fill {
     height: 100%;
-    width: 2.44%;
+    width: 2.14%;
     min-width: 10px;
     border-radius: inherit;
     background:
@@ -915,7 +915,7 @@ footer span {
     </div>
 
     <div class="team-raised">
-        <span class="amount" id="teamAmount">$806</span> RAISED
+        <span class="amount" id="teamAmount">$706</span> RAISED
     </div>
 
     <div class="team-goal">
@@ -929,7 +929,7 @@ footer span {
         </div>
 
         <div class="progress-percent" id="teamProgressPercent">
-            2.4%
+            2.1%
         </div>
 
     </div>
@@ -1190,10 +1190,10 @@ footer span {
 const TEAM_GOAL = 33000;
 
 /*
-Current fundraiser total before automatic
-database tracking begins.
+Confirmed fundraiser amount currently raised.
+Future database donations will be added to this amount.
 */
-const STARTING_TOTAL = 806;
+const STARTING_TOTAL = 706;
 
 async function loadTeamTotal() {
 
@@ -1220,21 +1220,17 @@ async function loadTeamTotal() {
             100
         );
 
-
         document.getElementById("teamAmount").textContent =
             "$" + total.toLocaleString("en-US", {
                 minimumFractionDigits: 0,
                 maximumFractionDigits: 2
             });
 
-
         document.getElementById("teamProgressPercent").textContent =
             percent.toFixed(1) + "%";
 
-
         document.getElementById("teamProgressFill").style.width =
             percent + "%";
-
 
     } catch (error) {
 
@@ -1243,20 +1239,14 @@ async function loadTeamTotal() {
             error
         );
 
-        /*
-        If the database can't load,
-        the website still shows the
-        confirmed $806 total.
-        */
-
         document.getElementById("teamAmount").textContent =
-            "$806";
+            "$706";
 
         document.getElementById("teamProgressPercent").textContent =
-            "2.4%";
+            "2.1%";
 
         document.getElementById("teamProgressFill").style.width =
-            "2.44%";
+            "2.14%";
     }
 }
 
