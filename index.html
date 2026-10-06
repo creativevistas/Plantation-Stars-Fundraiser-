@@ -303,17 +303,9 @@ body {
     margin: 0 auto 48px;
     padding: 28px 34px 26px;
     text-align: center;
-
-    background:
-        linear-gradient(
-            180deg,
-            #ffffff 0%,
-            #f7f8fa 100%
-        );
-
+    background: linear-gradient(180deg, #ffffff 0%, #f7f8fa 100%);
     border-radius: 16px;
     border-top: 5px solid #ef1830;
-
     box-shadow:
         0 10px 22px rgba(5,25,55,.12),
         0 2px 5px rgba(5,25,55,.07);
@@ -364,16 +356,16 @@ body {
 
 .progress-fill {
     height: 100%;
-    width: 2.06%;
+    width: 2.44%;
     min-width: 10px;
     border-radius: inherit;
-
     background:
         repeating-linear-gradient(
             -45deg,
             #ef1830 0 10px,
             #d80f27 10px 20px
         );
+    transition: width .5s ease;
 }
 
 .progress-percent {
@@ -437,26 +429,15 @@ body {
     gap: 20px;
     min-height: 112px;
     padding: 15px 62px 15px 18px;
-
-    background:
-        linear-gradient(
-            180deg,
-            #ffffff 0%,
-            #f7f8fa 100%
-        );
-
+    background: linear-gradient(180deg, #ffffff 0%, #f7f8fa 100%);
     border-radius: 15px;
     border-top: 5px solid #ef1830;
     color: #061a38;
     text-decoration: none;
-
     box-shadow:
         0 10px 22px rgba(5,25,55,.12),
         0 2px 5px rgba(5,25,55,.07);
-
-    transition:
-        transform .18s ease,
-        box-shadow .18s ease;
+    transition: transform .18s ease, box-shadow .18s ease;
 }
 
 .player-card:hover {
@@ -469,11 +450,9 @@ body {
     width: 76px;
     height: 76px;
     border-radius: 50%;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     background:
         radial-gradient(
             circle at 35% 28%,
@@ -481,14 +460,11 @@ body {
             #071a37 58%,
             #020b18 100%
         );
-
     color: white;
     border: 4px solid #ef1830;
-
     box-shadow:
         0 0 0 3px white,
         0 6px 10px rgba(0,0,0,.20);
-
     font-size: 23px;
     font-weight: 1000;
 }
@@ -535,17 +511,9 @@ body {
 .donation-help {
     margin-top: 50px;
     padding: 26px 32px 28px;
-
-    background:
-        linear-gradient(
-            180deg,
-            #ffffff 0%,
-            #f7f8fa 100%
-        );
-
+    background: linear-gradient(180deg, #ffffff 0%, #f7f8fa 100%);
     border-radius: 16px;
     border-top: 5px solid #ef1830;
-
     box-shadow:
         0 10px 22px rgba(5,25,55,.12),
         0 2px 5px rgba(5,25,55,.07);
@@ -632,13 +600,7 @@ body {
 ===================================================== */
 
 footer {
-    background:
-        linear-gradient(
-            180deg,
-            #071d3d 0%,
-            #020c1c 100%
-        );
-
+    background: linear-gradient(180deg, #071d3d 0%, #020c1c 100%);
     border-top: 5px solid #ef1830;
     color: white;
     text-align: center;
@@ -739,9 +701,6 @@ footer span {
         padding: 30px 12px 55px;
     }
 
-
-    /* PROGRESS FIRST ON MOBILE */
-
     .team-progress {
         margin-bottom: 35px;
         padding: 21px 14px 20px;
@@ -777,9 +736,6 @@ footer span {
         font-size: 13px;
         line-height: 1.4;
     }
-
-
-    /* ALL PLAYERS SHOW */
 
     .section-kicker {
         font-size: 11px;
@@ -829,9 +785,6 @@ footer span {
         right: 12px;
         font-size: 32px;
     }
-
-
-    /* DONATION INFO AFTER ALL PLAYERS */
 
     .donation-help {
         margin-top: 38px;
@@ -897,45 +850,26 @@ footer span {
 
 <body>
 
-
-<!-- =====================================================
-     WHITE LOGO HEADER
-===================================================== -->
-
 <header class="logo-header">
-
     <div class="logo-header-inner">
 
         <div class="logo-wrap">
-
             <img
                 src="/PlantationStarsLogo.png"
                 alt="Plantation Stars Logo"
                 class="team-logo"
             >
-
         </div>
 
         <div class="header-team-label">
-
             <span></span>
-
-            <strong>
-                PLANTATION STARS RED 12U
-            </strong>
-
+            <strong>PLANTATION STARS RED 12U</strong>
             <span></span>
-
         </div>
 
     </div>
-
 </header>
 
-
-<!-- =====================================================
-     HERO
-===================================================== -->
 
 <section class="hero">
 
@@ -969,509 +903,272 @@ footer span {
 </section>
 
 
-<!-- =====================================================
-     MAIN CONTENT
-===================================================== -->
-
 <div class="players-area">
 
 <main class="players-section">
 
 
-    <!-- =================================================
-         TEAM FUNDRAISING PROGRESS
-    ================================================== -->
+<section class="team-progress">
 
-    <section class="team-progress">
-
-        <div class="team-progress-title">
-            ★ TEAM FUNDRAISING PROGRESS ★
-        </div>
-
-        <div class="team-raised">
-            <span class="amount">$681</span> RAISED
-        </div>
-
-        <div class="team-goal">
-            of $33,000 Team Goal
-        </div>
-
-        <div class="progress-row">
-
-            <div class="progress-track">
-                <div class="progress-fill"></div>
-            </div>
-
-            <div class="progress-percent">
-                2.1%
-            </div>
-
-        </div>
-
-        <div class="progress-note">
-            Every donation gets our team closer to Cooperstown! ⚾
-        </div>
-
-    </section>
-
-
-    <!-- =================================================
-         PLAYERS
-    ================================================== -->
-
-    <div class="section-kicker">
-        ★ SUPPORT THE TEAM ★
+    <div class="team-progress-title">
+        ★ TEAM FUNDRAISING PROGRESS ★
     </div>
 
-    <h2>
-        Choose Your Player
-    </h2>
+    <div class="team-raised">
+        <span class="amount" id="teamAmount">$806</span> RAISED
+    </div>
 
-    <p class="section-description">
-        Select a player below to visit their fundraiser.
+    <div class="team-goal">
+        of $33,000 Team Goal
+    </div>
+
+    <div class="progress-row">
+
+        <div class="progress-track">
+            <div class="progress-fill" id="teamProgressFill"></div>
+        </div>
+
+        <div class="progress-percent" id="teamProgressPercent">
+            2.4%
+        </div>
+
+    </div>
+
+    <div class="progress-note">
+        Every donation gets our team closer to Cooperstown! ⚾
+    </div>
+
+</section>
+
+
+<div class="section-kicker">
+    ★ SUPPORT THE TEAM ★
+</div>
+
+<h2>
+    Choose Your Player
+</h2>
+
+<p class="section-description">
+    Select a player below to visit their fundraiser.
+</p>
+
+
+<div class="player-grid">
+
+<a class="player-card" href="/fundraiser.html?player=christopher-rosales">
+    <div class="player-number">#11</div>
+    <div class="player-info">
+        <div class="player-name">Christopher Rosales</div>
+        <div class="support">Support Christopher</div>
+    </div>
+    <div class="arrow">›</div>
+</a>
+
+<a class="player-card" href="/fundraiser.html?player=cristian-marquez">
+    <div class="player-number">#17</div>
+    <div class="player-info">
+        <div class="player-name">Cristian Marquez</div>
+        <div class="support">Support Cristian</div>
+    </div>
+    <div class="arrow">›</div>
+</a>
+
+<a class="player-card" href="/fundraiser.html?player=diego-arredondo">
+    <div class="player-number">#99</div>
+    <div class="player-info">
+        <div class="player-name">Diego Arredondo</div>
+        <div class="support">Support Diego</div>
+    </div>
+    <div class="arrow">›</div>
+</a>
+
+<a class="player-card" href="/fundraiser.html?player=elias-escalona">
+    <div class="player-number">#8</div>
+    <div class="player-info">
+        <div class="player-name">Elias Escalona</div>
+        <div class="support">Support Elias</div>
+    </div>
+    <div class="arrow">›</div>
+</a>
+
+<a class="player-card" href="/fundraiser.html?player=fabio-espinoza">
+    <div class="player-number">#4</div>
+    <div class="player-info">
+        <div class="player-name">Fabio Espinoza</div>
+        <div class="support">Support Fabio</div>
+    </div>
+    <div class="arrow">›</div>
+</a>
+
+<a class="player-card" href="/fundraiser.html?player=francisco-rivero">
+    <div class="player-number">#7</div>
+    <div class="player-info">
+        <div class="player-name">Francisco Rivero</div>
+        <div class="support">Support Francisco</div>
+    </div>
+    <div class="arrow">›</div>
+</a>
+
+<a class="player-card" href="/fundraiser.html?player=gian-leon">
+    <div class="player-number">#27</div>
+    <div class="player-info">
+        <div class="player-name">Gian Leon</div>
+        <div class="support">Support Gian</div>
+    </div>
+    <div class="arrow">›</div>
+</a>
+
+<a class="player-card" href="/fundraiser.html?player=kevin-pino">
+    <div class="player-number">#23</div>
+    <div class="player-info">
+        <div class="player-name">Kevin Pino</div>
+        <div class="support">Support Kevin</div>
+    </div>
+    <div class="arrow">›</div>
+</a>
+
+<a class="player-card" href="/fundraiser.html?player=saif-al-fassi">
+    <div class="player-number">#25</div>
+    <div class="player-info">
+        <div class="player-name">Saif Al Fassi</div>
+        <div class="support">Support Saif</div>
+    </div>
+    <div class="arrow">›</div>
+</a>
+
+<a class="player-card" href="/fundraiser.html?player=samuel-garcia">
+    <div class="player-number">#3</div>
+    <div class="player-info">
+        <div class="player-name">Samuel Garcia</div>
+        <div class="support">Support Samuel</div>
+    </div>
+    <div class="arrow">›</div>
+</a>
+
+<a class="player-card" href="/fundraiser.html?player=theodore-vista">
+    <div class="player-number">#2</div>
+    <div class="player-info">
+        <div class="player-name">Theodore Vista</div>
+        <div class="support">Support Theodore</div>
+    </div>
+    <div class="arrow">›</div>
+</a>
+
+</div>
+
+
+<section class="donation-help">
+
+    <div class="donation-help-title">
+        ★ YOUR DONATIONS HELP WITH ★
+    </div>
+
+    <div class="help-grid">
+
+        <div class="help-item">
+            <span class="help-icon">👕</span>
+            <span>Team Uniforms</span>
+        </div>
+
+        <div class="help-item">
+            <span class="help-icon">🎒</span>
+            <span>Team Baseball Bags</span>
+        </div>
+
+        <div class="help-item">
+            <span class="help-icon">⚾</span>
+            <span>Cooperstown Tournament Fees</span>
+        </div>
+
+        <div class="help-item">
+            <span class="help-icon">📋</span>
+            <span>Player Registration Fees</span>
+        </div>
+
+        <div class="help-item">
+            <span class="help-icon">📌</span>
+            <span>Trading Pins</span>
+        </div>
+
+        <div class="help-item">
+            <span class="help-icon">👕</span>
+            <span>Team Apparel</span>
+        </div>
+
+        <div class="help-item">
+            <span class="help-icon">⚾</span>
+            <span>Baseball Equipment</span>
+        </div>
+
+        <div class="help-item">
+            <span class="help-icon">🎁</span>
+            <span>Player Gifts &amp; Keepsakes</span>
+        </div>
+
+        <div class="help-item">
+            <span class="help-icon">🎉</span>
+            <span>Team Activities</span>
+        </div>
+
+        <div class="help-item">
+            <span class="help-icon">🚐</span>
+            <span>Travel &amp; Transportation</span>
+        </div>
+
+        <div class="help-item">
+            <span class="help-icon">🏠</span>
+            <span>Player Accommodations</span>
+        </div>
+
+        <div class="help-item">
+            <span class="help-icon">🍽️</span>
+            <span>Team Meals</span>
+        </div>
+
+        <div class="help-item">
+            <span class="help-icon">📸</span>
+            <span>Team Photos &amp; Memories</span>
+        </div>
+
+        <div class="help-item">
+            <span class="help-icon">⭐</span>
+            <span>Cooperstown Experience</span>
+        </div>
+
+    </div>
+
+</section>
+
+
+<div class="baseball-divider">
+    <span></span>
+    <strong>⚾</strong>
+    <span></span>
+</div>
+
+
+<div class="bottom-message">
+
+    <h3>
+        Help Us Get to Cooperstown
+    </h3>
+
+    <p>
+        Every baseball sponsored brings our team
+        one step closer to Cooperstown.
+        <br>
+        Thank you for supporting
+        Plantation Stars Red!
     </p>
 
-
-    <div class="player-grid">
-
-
-        <!-- CHRISTOPHER -->
-
-        <a
-            class="player-card"
-            href="/fundraiser.html?player=christopher-rosales"
-        >
-
-            <div class="player-number">
-                #11
-            </div>
-
-            <div class="player-info">
-
-                <div class="player-name">
-                    Christopher Rosales
-                </div>
-
-                <div class="support">
-                    Support Christopher
-                </div>
-
-            </div>
-
-            <div class="arrow">›</div>
-
-        </a>
-
-
-        <!-- CRISTIAN -->
-
-        <a
-            class="player-card"
-            href="/fundraiser.html?player=cristian-marquez"
-        >
-
-            <div class="player-number">
-                #17
-            </div>
-
-            <div class="player-info">
-
-                <div class="player-name">
-                    Cristian Marquez
-                </div>
-
-                <div class="support">
-                    Support Cristian
-                </div>
-
-            </div>
-
-            <div class="arrow">›</div>
-
-        </a>
-
-
-        <!-- DIEGO -->
-
-        <a
-            class="player-card"
-            href="/fundraiser.html?player=diego-arredondo"
-        >
-
-            <div class="player-number">
-                #99
-            </div>
-
-            <div class="player-info">
-
-                <div class="player-name">
-                    Diego Arredondo
-                </div>
-
-                <div class="support">
-                    Support Diego
-                </div>
-
-            </div>
-
-            <div class="arrow">›</div>
-
-        </a>
-
-
-        <!-- ELIAS -->
-
-        <a
-            class="player-card"
-            href="/fundraiser.html?player=elias-escalona"
-        >
-
-            <div class="player-number">
-                #8
-            </div>
-
-            <div class="player-info">
-
-                <div class="player-name">
-                    Elias Escalona
-                </div>
-
-                <div class="support">
-                    Support Elias
-                </div>
-
-            </div>
-
-            <div class="arrow">›</div>
-
-        </a>
-
-
-        <!-- FABIO -->
-
-        <a
-            class="player-card"
-            href="/fundraiser.html?player=fabio-espinoza"
-        >
-
-            <div class="player-number">
-                #4
-            </div>
-
-            <div class="player-info">
-
-                <div class="player-name">
-                    Fabio Espinoza
-                </div>
-
-                <div class="support">
-                    Support Fabio
-                </div>
-
-            </div>
-
-            <div class="arrow">›</div>
-
-        </a>
-
-
-        <!-- FRANCISCO -->
-
-        <a
-            class="player-card"
-            href="/fundraiser.html?player=francisco-rivero"
-        >
-
-            <div class="player-number">
-                #7
-            </div>
-
-            <div class="player-info">
-
-                <div class="player-name">
-                    Francisco Rivero
-                </div>
-
-                <div class="support">
-                    Support Francisco
-                </div>
-
-            </div>
-
-            <div class="arrow">›</div>
-
-        </a>
-
-
-        <!-- GIAN -->
-
-        <a
-            class="player-card"
-            href="/fundraiser.html?player=gian-leon"
-        >
-
-            <div class="player-number">
-                #27
-            </div>
-
-            <div class="player-info">
-
-                <div class="player-name">
-                    Gian Leon
-                </div>
-
-                <div class="support">
-                    Support Gian
-                </div>
-
-            </div>
-
-            <div class="arrow">›</div>
-
-        </a>
-
-
-        <!-- KEVIN -->
-
-        <a
-            class="player-card"
-            href="/fundraiser.html?player=kevin-pino"
-        >
-
-            <div class="player-number">
-                #23
-            </div>
-
-            <div class="player-info">
-
-                <div class="player-name">
-                    Kevin Pino
-                </div>
-
-                <div class="support">
-                    Support Kevin
-                </div>
-
-            </div>
-
-            <div class="arrow">›</div>
-
-        </a>
-
-
-        <!-- SAIF -->
-
-        <a
-            class="player-card"
-            href="/fundraiser.html?player=saif-al-fassi"
-        >
-
-            <div class="player-number">
-                #25
-            </div>
-
-            <div class="player-info">
-
-                <div class="player-name">
-                    Saif Al Fassi
-                </div>
-
-                <div class="support">
-                    Support Saif
-                </div>
-
-            </div>
-
-            <div class="arrow">›</div>
-
-        </a>
-
-
-        <!-- SAMUEL -->
-
-        <a
-            class="player-card"
-            href="/fundraiser.html?player=samuel-garcia"
-        >
-
-            <div class="player-number">
-                #3
-            </div>
-
-            <div class="player-info">
-
-                <div class="player-name">
-                    Samuel Garcia
-                </div>
-
-                <div class="support">
-                    Support Samuel
-                </div>
-
-            </div>
-
-            <div class="arrow">›</div>
-
-        </a>
-
-
-        <!-- THEODORE -->
-
-        <a
-            class="player-card"
-            href="/fundraiser.html?player=theodore-vista"
-        >
-
-            <div class="player-number">
-                #2
-            </div>
-
-            <div class="player-info">
-
-                <div class="player-name">
-                    Theodore Vista
-                </div>
-
-                <div class="support">
-                    Support Theodore
-                </div>
-
-            </div>
-
-            <div class="arrow">›</div>
-
-        </a>
-
-    </div>
-
-
-    <!-- =================================================
-         YOUR DONATIONS HELP WITH
-    ================================================== -->
-
-    <section class="donation-help">
-
-        <div class="donation-help-title">
-            ★ YOUR DONATIONS HELP WITH ★
-        </div>
-
-        <div class="help-grid">
-
-            <div class="help-item">
-                <span class="help-icon">👕</span>
-                <span>Team Uniforms</span>
-            </div>
-
-            <div class="help-item">
-                <span class="help-icon">🎒</span>
-                <span>Team Baseball Bags</span>
-            </div>
-
-            <div class="help-item">
-                <span class="help-icon">⚾</span>
-                <span>Cooperstown Tournament Fees</span>
-            </div>
-
-            <div class="help-item">
-                <span class="help-icon">📋</span>
-                <span>Player Registration Fees</span>
-            </div>
-
-            <div class="help-item">
-                <span class="help-icon">📌</span>
-                <span>Trading Pins</span>
-            </div>
-
-            <div class="help-item">
-                <span class="help-icon">👕</span>
-                <span>Team Apparel</span>
-            </div>
-
-            <div class="help-item">
-                <span class="help-icon">⚾</span>
-                <span>Baseball Equipment</span>
-            </div>
-
-            <div class="help-item">
-                <span class="help-icon">🎁</span>
-                <span>Player Gifts &amp; Keepsakes</span>
-            </div>
-
-            <div class="help-item">
-                <span class="help-icon">🎉</span>
-                <span>Team Activities</span>
-            </div>
-
-            <div class="help-item">
-                <span class="help-icon">🚐</span>
-                <span>Travel &amp; Transportation</span>
-            </div>
-
-            <div class="help-item">
-                <span class="help-icon">🏠</span>
-                <span>Player Accommodations</span>
-            </div>
-
-            <div class="help-item">
-                <span class="help-icon">🍽️</span>
-                <span>Team Meals</span>
-            </div>
-
-            <div class="help-item">
-                <span class="help-icon">📸</span>
-                <span>Team Photos &amp; Memories</span>
-            </div>
-
-            <div class="help-item">
-                <span class="help-icon">⭐</span>
-                <span>Cooperstown Experience</span>
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- =================================================
-         BOTTOM MESSAGE
-    ================================================== -->
-
-    <div class="baseball-divider">
-
-        <span></span>
-        <strong>⚾</strong>
-        <span></span>
-
-    </div>
-
-
-    <div class="bottom-message">
-
-        <h3>
-            Help Us Get to Cooperstown
-        </h3>
-
-        <p>
-            Every baseball sponsored brings our team
-            one step closer to Cooperstown.
-
-            <br>
-
-            Thank you for supporting
-            Plantation Stars Red!
-        </p>
-
-    </div>
+</div>
 
 
 </main>
 
 </div>
 
-
-<!-- =====================================================
-     FOOTER
-===================================================== -->
 
 <footer>
 
@@ -1486,6 +1183,86 @@ footer span {
     </span>
 
 </footer>
+
+
+<script>
+
+const TEAM_GOAL = 33000;
+
+/*
+Current fundraiser total before automatic
+database tracking begins.
+*/
+const STARTING_TOTAL = 806;
+
+async function loadTeamTotal() {
+
+    try {
+
+        const response = await fetch("/api/team-total", {
+            cache: "no-store"
+        });
+
+        if (!response.ok) {
+            throw new Error("Could not load team total.");
+        }
+
+        const data = await response.json();
+
+        const newDatabaseDonations =
+            Number(data.total || 0);
+
+        const total =
+            STARTING_TOTAL + newDatabaseDonations;
+
+        const percent = Math.min(
+            (total / TEAM_GOAL) * 100,
+            100
+        );
+
+
+        document.getElementById("teamAmount").textContent =
+            "$" + total.toLocaleString("en-US", {
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 2
+            });
+
+
+        document.getElementById("teamProgressPercent").textContent =
+            percent.toFixed(1) + "%";
+
+
+        document.getElementById("teamProgressFill").style.width =
+            percent + "%";
+
+
+    } catch (error) {
+
+        console.error(
+            "Team total error:",
+            error
+        );
+
+        /*
+        If the database can't load,
+        the website still shows the
+        confirmed $806 total.
+        */
+
+        document.getElementById("teamAmount").textContent =
+            "$806";
+
+        document.getElementById("teamProgressPercent").textContent =
+            "2.4%";
+
+        document.getElementById("teamProgressFill").style.width =
+            "2.44%";
+    }
+}
+
+loadTeamTotal();
+
+</script>
 
 
 </body>
