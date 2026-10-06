@@ -1190,10 +1190,19 @@ footer span {
 const TEAM_GOAL = 33000;
 
 /*
-Confirmed fundraiser amount currently raised.
-Future database donations will be added to this amount.
+Current confirmed fundraiser total.
 */
 const STARTING_TOTAL = 706;
+
+/*
+The database already contained $705
+when the confirmed total became $706.
+
+We subtract this baseline so those
+older donations are NOT counted twice.
+*/
+const DATABASE_BASELINE = 705;
+
 
 async function loadTeamTotal() {
 
@@ -1209,16 +1218,27 @@ async function loadTeamTotal() {
 
         const data = await response.json();
 
-        const newDatabaseDonations =
+        const databaseTotal =
             Number(data.total || 0);
 
+        /*
+        Only donations added AFTER
+        the $705 database baseline
+        count toward the new total.
+        */
+        const newDonations = Math.max(
+            databaseTotal - DATABASE_BASELINE,
+            0
+        );
+
         const total =
-            STARTING_TOTAL + newDatabaseDonations;
+            STARTING_TOTAL + newDonations;
 
         const percent = Math.min(
             (total / TEAM_GOAL) * 100,
             100
         );
+
 
         document.getElementById("teamAmount").textContent =
             "$" + total.toLocaleString("en-US", {
@@ -1226,11 +1246,14 @@ async function loadTeamTotal() {
                 maximumFractionDigits: 2
             });
 
+
         document.getElementById("teamProgressPercent").textContent =
             percent.toFixed(1) + "%";
 
+
         document.getElementById("teamProgressFill").style.width =
             percent + "%";
+
 
     } catch (error) {
 
@@ -1238,6 +1261,11 @@ async function loadTeamTotal() {
             "Team total error:",
             error
         );
+
+        /*
+        If the database cannot load,
+        show the confirmed $706 amount.
+        */
 
         document.getElementById("teamAmount").textContent =
             "$706";
