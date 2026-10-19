@@ -2,16 +2,11 @@ export async function onRequestPost(context) {
   try {
     const body = await context.request.json();
 
-    const baseballs = Array.isArray(body.baseballs) ? body.baseballs.map(Number) : [];
-    const valid = baseballs.length > 0 && baseballs.length <= 100 &&
-      baseballs.every(n => Number.isInteger(n) && n >= 1 && n <= 100) &&
-      new Set(baseballs).size === baseballs.length;
-    if (!valid || body.playerKey !== "theodore-vista-2027") {
-      return Response.json({ error: "Please select valid baseballs for Theo." }, { status: 400 });
-    }
-    const amount = baseballs.reduce((sum,n) => sum+n,0);
-    if (amount !== Number(body.amount)) {
-      return Response.json({ error: "Donation amount did not match your selections." }, { status: 400 });
+    const amount = Number(body.amount);
+    if (body.playerKey !== "theodore-vista-2027" ||
+        !Number.isFinite(amount) || amount < 1 || amount > 5000 ||
+        Math.round(amount * 100) !== amount * 100) {
+      return Response.json({ error: "Enter a valid donation between $1 and $5,000." }, { status: 400 });
     }
     const stripeKey = context.env.STRIPE_SECRET_KEY;
 
@@ -96,12 +91,7 @@ export async function onRequestPost(context) {
       body.anonymous ? "yes" : "no"
     );
 
-    if (Array.isArray(body.baseballs)) {
-      params.append(
-        "metadata[baseballs]",
-        body.baseballs.join(", ")
-      );
-    }
+
 
     const stripeResponse = await fetch(
       "https://api.stripe.com/v1/checkout/sessions",
