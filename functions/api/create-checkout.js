@@ -2,15 +2,17 @@ export async function onRequestPost(context) {
   try {
     const body = await context.request.json();
 
-    const amount = Number(body.amount);
-
-    if (!amount || amount < 1) {
-      return Response.json(
-        { error: "Invalid donation amount." },
-        { status: 400 }
-      );
+    const baseballs = Array.isArray(body.baseballs) ? body.baseballs.map(Number) : [];
+    const valid = baseballs.length > 0 && baseballs.length <= 100 &&
+      baseballs.every(n => Number.isInteger(n) && n >= 1 && n <= 100) &&
+      new Set(baseballs).size === baseballs.length;
+    if (!valid || body.playerKey !== "theodore-vista-2027") {
+      return Response.json({ error: "Please select valid baseballs for Theo." }, { status: 400 });
     }
-
+    const amount = baseballs.reduce((sum,n) => sum+n,0);
+    if (amount !== Number(body.amount)) {
+      return Response.json({ error: "Donation amount did not match your selections." }, { status: 400 });
+    }
     const stripeKey = context.env.STRIPE_SECRET_KEY;
 
     if (!stripeKey) {
@@ -48,7 +50,7 @@ export async function onRequestPost(context) {
 
     params.append(
       "line_items[0][price_data][product_data][name]",
-      "Plantation Stars Red — Cooperstown Fundraiser"
+      "Theodore Vista — Road to Cooperstown 2027"
     );
 
     params.append(
