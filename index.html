@@ -47,6 +47,33 @@
 .stats-link{display:inline-block;margin:12px 0 0 18px;color:#fff;font-size:15px;font-weight:900;text-decoration:underline;text-underline-offset:5px}@media(max-width:600px){.stats-link{display:block;margin:18px 0 0}}
 
 .hero-career-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:18px 0 6px;width:100%;max-width:510px}.hero-career-stats>div{padding:12px 5px;text-align:center;background:#112c49;border:1px solid #3e5a75;border-radius:8px}.hero-career-stats strong{display:block;font-size:clamp(20px,2vw,27px);color:white}.hero-career-stats span{display:block;margin-top:4px;color:#e1e8f2;font-size:14px;font-weight:800;line-height:1.2}.hero-copy .hero-stats-note{font-size:14px;color:#c6d3df;margin:6px 0 20px;line-height:1.4}@media(max-width:490px){.hero-career-stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* 2027 cinematic sports hero — angled original photo, clean text and compact height */
+header{background:#03172e;border-bottom:1px solid #38526c;padding:15px max(22px,calc((100% - 1280px)/2));min-height:70px}
+.brand{font-style:normal;font-weight:1000;letter-spacing:3px;font-size:clamp(20px,2vw,28px)}
+nav a{letter-spacing:1.5px}
+.hero{position:relative;isolation:isolate;background:radial-gradient(ellipse at 70% 25%,#153658 0%,#071a33 46%,#031328 100%)!important;overflow:hidden!important;min-height:0!important}
+.hero::before{content:"";position:absolute;inset:0;background:linear-gradient(110deg,#00102766 0 54%,transparent 76%),repeating-linear-gradient(105deg,transparent 0 90px,#ffffff05 92px 93px,transparent 95px 180px);pointer-events:none}
+.hero::after{content:"2";display:block!important;position:absolute;inset:auto -2% 0 auto;width:auto;height:auto;background:none!important;font-style:italic;font-weight:1000;font-size:clamp(300px,42vw,670px);line-height:.85;color:transparent;-webkit-text-stroke:2px #ffffff19;transform:rotate(-6deg);z-index:0;pointer-events:none}
+.hero>.hero-layout{position:relative;z-index:1;display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;align-items:center!important;gap:clamp(24px,4vw,70px)!important;width:calc(100% - 44px)!important;max-width:1280px!important;margin:auto!important;padding:42px 0 48px!important;min-height:0!important}
+.hero-copy{position:relative;z-index:3;min-width:0}
+.hero-copy .eyebrow{font-size:14px;letter-spacing:4px}
+.hero-copy .eyebrow::after{content:"";display:inline-block;background:#ed2038;width:48px;height:4px;vertical-align:middle;margin-left:15px}
+.hero-copy h1{font-family:Arial,sans-serif;font-style:italic;font-weight:1000;letter-spacing:-2px;font-size:clamp(44px,5.25vw,78px)!important;line-height:.99!important;margin:17px 0 22px!important;text-shadow:3px 5px 0 #0003}
+.hero-copy p{max-width:520px!important;font-size:16px!important;line-height:1.52!important;color:#f4f6fb}
+.hero-career-stats{max-width:530px!important;margin-top:23px!important;gap:9px!important}
+.hero-career-stats>div{background:#0c2b4c!important;border:1px solid #3f6387!important;border-top:2px solid #e82b47!important;box-shadow:0 5px 14px #0004;border-radius:7px!important}
+.hero-career-stats strong{font-size:clamp(21px,2.1vw,31px)!important}
+.hero-career-stats span{font-size:14px!important}
+.hero-copy .hero-stats-note{font-size:14px!important;color:#b9cce1}
+.hero-copy>.btn{font-size:16px;padding:17px 29px;border-radius:5px;box-shadow:0 7px 18px #0005}
+.hero-photo{position:relative;z-index:2;height:clamp(410px,40vw,580px)!important;overflow:visible!important;border:0!important;background:transparent!important;box-shadow:none!important;border-radius:0!important;transform:skewX(-11deg);margin:12px 26px 12px 10px}
+.hero-photo::before{content:"";position:absolute;inset:5px -20px -12px 12px;background:#ed2038;clip-path:polygon(18% 0,100% 0,82% 100%,0 100%);border-radius:8px;filter:drop-shadow(0 15px 20px #0009)}
+.hero-photo::after{content:"";position:absolute;inset:-13px 15px -12px 15px;border-left:5px solid #ec203d;transform:translateX(-4px);pointer-events:none}
+.hero-photo img{position:relative;z-index:1;display:block;width:100%;height:100%;object-fit:cover!important;object-position:center center!important;clip-path:polygon(18% 0,100% 0,82% 100%,0 100%);border:0;filter:drop-shadow(0 15px 20px #0008)}
+.fundraising-tracker{margin:-4px auto 24px!important;max-width:1156px;z-index:3!important}
+@media(max-width:840px){.hero>.hero-layout{grid-template-columns:1fr!important;max-width:650px!important;gap:20px!important;padding:33px 0 40px!important}.hero-copy h1{font-size:clamp(42px,9vw,68px)!important}.hero-photo{height:360px!important;width:min(92%,510px);margin:12px auto 16px;transform:none}.hero-photo img{object-fit:contain!important;clip-path:none;border:2px solid #a8bac9;border-radius:12px}.hero-photo::before{inset:12px -12px -12px 12px;clip-path:none;border-radius:12px}.hero-photo::after{display:none}.hero::after{font-size:350px;bottom:0}.hero-career-stats{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media(max-width:490px){.hero-career-stats{grid-template-columns:repeat(2,minmax(0,1fr))}.hero-photo{height:310px!important}.hero-copy h1{letter-spacing:-1px}}
 </style><!-- Trigger Cloudflare production build for Theo fundraiser -->
 </head><body>
 <header><div class="brand">THEODORE <em>VISTA</em></div><nav><a href="#baseballs">SUPPORT</a><a href="https://www.instagram.com/theo2official/" target="_blank" rel="noopener noreferrer">INSTAGRAM ↗</a></nav></header>
