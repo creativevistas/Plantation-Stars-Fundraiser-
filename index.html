@@ -74,6 +74,20 @@ nav a{letter-spacing:1.5px}
 .fundraising-tracker{margin:-4px auto 24px!important;max-width:1156px;z-index:3!important}
 @media(max-width:840px){.hero>.hero-layout{grid-template-columns:1fr!important;max-width:650px!important;gap:20px!important;padding:33px 0 40px!important}.hero-copy h1{font-size:clamp(42px,9vw,68px)!important}.hero-photo{height:360px!important;width:min(92%,510px);margin:12px auto 16px;transform:none}.hero-photo img{object-fit:contain!important;clip-path:none;border:2px solid #a8bac9;border-radius:12px}.hero-photo::before{inset:12px -12px -12px 12px;clip-path:none;border-radius:12px}.hero-photo::after{display:none}.hero::after{font-size:350px;bottom:0}.hero-career-stats{grid-template-columns:repeat(4,minmax(0,1fr))}}
 @media(max-width:490px){.hero-career-stats{grid-template-columns:repeat(2,minmax(0,1fr))}.hero-photo{height:310px!important}.hero-copy h1{letter-spacing:-1px}}
+
+/* Larger, natural-proportion cinematic photo: no skewing of Theo */
+@media(min-width:841px){
+header{padding-left:max(34px,calc((100% - 1550px)/2));padding-right:max(34px,calc((100% - 1550px)/2))}
+.hero>.hero-layout{max-width:1550px!important;width:calc(100% - 90px)!important;grid-template-columns:minmax(0,.93fr) minmax(0,1.07fr)!important;gap:10px!important;padding:34px 0 38px!important;align-items:center!important}
+.hero-copy h1{font-size:clamp(53px,5.45vw,92px)!important;letter-spacing:-2.5px}
+.hero-copy p{max-width:540px!important;font-size:17px!important}
+.hero-photo{height:clamp(540px,48vw,720px)!important;width:100%!important;transform:none!important;margin:0!important}
+.hero-photo img{object-fit:cover!important;object-position:50% 49%!important;transform:none!important;clip-path:polygon(20% 0,100% 0,82% 100%,0 100%)!important}
+.hero-photo::before{inset:6px -12px -12px 10px!important;clip-path:polygon(20% 0,100% 0,82% 100%,0 100%)!important;transform:none!important}
+.hero-photo::after{inset:0 auto 0 0;width:6px;height:100%;background:#ed2038;border:0!important;transform:skewX(-16deg) translateX(30px)!important}
+.hero::after{right:0!important;opacity:.65}
+}
+@media(max-width:840px){.hero-photo{transform:none!important}.hero-photo img{object-fit:contain!important;transform:none!important}}
 </style><!-- Trigger Cloudflare production build for Theo fundraiser -->
 </head><body>
 <header><div class="brand">THEODORE <em>VISTA</em></div><nav><a href="#baseballs">SUPPORT</a><a href="https://www.instagram.com/theo2official/" target="_blank" rel="noopener noreferrer">INSTAGRAM ↗</a></nav></header>
