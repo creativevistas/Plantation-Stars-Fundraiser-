@@ -44,6 +44,33 @@ footer{border-top:1px solid #315576;padding:18px;text-align:center;font:700 14px
 @media(max-width:760px){.container{width:calc(100% - 36px)}.site-header{padding:12px 18px;min-height:60px}.brand{font-size:15px;letter-spacing:2.4px}.brand:after{width:26px;margin-left:9px}.site-nav>a:not(.nav-support){display:none}.site-nav .nav-support{padding:9px 14px;font-size:15px;letter-spacing:1.3px}.hero{grid-template-columns:1fr}.hero-photo{height:300px;min-height:300px}.hero-photo>img{object-position:50% 42%}.hero-photo:after{background:linear-gradient(0deg,#041b34 0,transparent 65%)}.hero-content{padding:0 20px 30px}.hero h1{font-size:clamp(59px,12.3vw,88px);max-width:640px;margin:6px 0 16px}.hero h1 .town{font-size:1.07em;letter-spacing:-1px}.slogan{font-size:21px;letter-spacing:3px}.tagline{font-size:20px}.intro{font-size:16px}.tracker{padding:13px}.tracker-head{font-size:17px}.tracker-head span:last-child{font-size:15px}.stats-grid{grid-template-columns:repeat(2,1fr);gap:10px}.stat-box strong{font-size:51px}.stat-box span{font-size:18px}.stat-section{padding:26px 0}.section-title{font-size:27px;letter-spacing:2.5px}.dream-title{font-size:52px}.value-grid{grid-template-columns:1fr;gap:16px}.value{border-right:0;border-bottom:1px solid #587d9a;padding-bottom:12px}.value:last-child{border:0}.footer-grid{grid-template-columns:1fr;gap:14px}.follow{border:0;border-bottom:1px solid #35648a;padding-right:0;padding-bottom:22px}.sponsorship{padding:0}.ig-fallback img{height:120px}.footer-grid .section-title{font-size:27px}}
 @media(max-width:385px){.brand{font-size:13px}.hero h1{font-size:55px}.tracker-head{font-size:15px;letter-spacing:1px}.tracker-head span:last-child{font-size:13px}.tracker-totals strong{font-size:28px}.stat-box strong{font-size:43px}.donate-modal{padding:13px}}
 
+
+/* Desktop width refinement: keep the hero aligned with the 1,220px content sections */
+@media (min-width:1101px) {
+  .hero {
+    width: min(100%, 1240px);
+    max-width: 1240px;
+    margin-inline: auto;
+    min-height: 610px;
+    grid-template-columns: 40% 60%;
+    box-shadow: 0 0 0 1px rgba(76, 123, 160, .28);
+  }
+  .hero-photo { min-height: 610px; }
+  .hero-content { padding: 26px 35px 27px 28px; }
+  .hero h1 {
+    font-size: clamp(64px, 4.9vw, 82px);
+    width: max-content;
+    max-width: 100%;
+    line-height: .88;
+    margin-bottom: 14px;
+  }
+  .hero h1 .year { font-size: .78em; text-align: right; padding-right: 2px; margin-top: 3px; }
+  .intro { font-size: 16px; max-width: 620px; }
+  .tagline { margin-bottom: 12px; }
+  .tracker { padding: 13px 17px 11px; }
+  .tracker-track { margin: 9px 0 6px; }
+  .cta-row { margin-top: 12px; }
+}
 </style></head><body>
 
 <header class="site-header" id="top">
