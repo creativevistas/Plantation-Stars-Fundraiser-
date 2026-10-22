@@ -125,6 +125,9 @@ footer{border-top:1px solid #315576;padding:18px;text-align:center;font:700 14px
  .social-section{margin-top:19px}
 }
 
+
+/* Raised amount and goal only — no percentage or remaining figure displayed. */
+.tracker-totals{justify-content:flex-start;margin-top:10px}
 </style></head><body>
 
 <header class="site-header" id="top">
@@ -143,8 +146,7 @@ footer{border-top:1px solid #315576;padding:18px;text-align:center;font:700 14px
    <div class="tracker" aria-label="Fundraising progress">
     <div class="tracker-head"><span>HELP THEO REACH COOPERSTOWN</span><span>$5,000 GOAL</span></div>
     <div class="tracker-track" id="trackerTrack" role="progressbar" aria-label="Fundraising progress" aria-valuemin="0" aria-valuemax="5000" aria-valuenow="0"><div class="tracker-fill" id="trackerFill"></div></div>
-    <div class="tracker-totals"><span><strong id="raisedTotal">—</strong> raised</span><span class="tracker-percent"><strong id="trackerPercent">—</strong></span></div>
-    <div class="tracker-meta">Remaining to goal: <span id="remainingTotal">—</span></div>
+    <div class="tracker-totals"><span><strong id="raisedTotal">—</strong> raised</span></div>
    </div>
    <div class="cta-row"><a class="btn" href="#support" data-open-donate>SUPPORT THEO ↓</a></div>
   </div>
@@ -222,7 +224,7 @@ function refreshChoice(){const valid=Number.isFinite(donationAmount)&&donationAm
 buttons.forEach(b=>{b.setAttribute("aria-pressed",String(b.classList.contains("selected")));b.addEventListener("click",()=>{buttons.forEach(x=>{x.classList.toggle("selected",x===b);x.setAttribute("aria-pressed",String(x===b))});const custom=b.dataset.amount==="custom";customWrap.hidden=!custom;donationAmount=custom?(customInput.value?Number(customInput.value):NaN):Number(b.dataset.amount);refreshChoice();if(custom)customInput.focus()})});
 customInput.addEventListener("input",()=>{donationAmount=customInput.value?Number(customInput.value):NaN;refreshChoice()});
 donateBtn.addEventListener("click",async()=>{if(donateBtn.disabled)return;const email=document.getElementById("donorEmail").value.trim();if(email&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){statusEl.textContent="Please enter a valid email address.";return}donateBtn.disabled=true;statusEl.textContent="Opening secure checkout…";try{const response=await fetch("/api/create-checkout",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({amount:donationAmount,player:"Theodore Vista",playerKey:"theodore-vista-2027",donorName:document.getElementById("donorName").value.trim(),donorEmail:email,anonymous:document.getElementById("anonymous").checked})});const data=await response.json();if(!response.ok||!data.url)throw new Error(data.error||"Unable to open checkout.");location.assign(data.url)}catch(e){statusEl.textContent=e.message||"Checkout unavailable. Please try again.";refreshChoice()}});
-async function loadRaised(){try{const r=await fetch("/api/donations?player=theodore-vista-2027",{cache:"no-store"});if(!r.ok)throw Error("Unable to load totals");const d=await r.json();const raised=Math.max(0,Number(d.total||0));const pct=Math.min(raised/5000,1);document.getElementById("raisedTotal").textContent=money(raised);document.getElementById("remainingTotal").textContent=money(Math.max(5000-raised,0));document.getElementById("trackerFill").style.width=(pct*100)+"%";document.getElementById("trackerPercent").textContent=Math.round(pct*100)+"% funded";document.getElementById("trackerTrack").setAttribute("aria-valuenow",String(Math.min(raised,5000)))}catch(e){document.getElementById("trackerPercent").textContent="Donation totals temporarily unavailable";document.getElementById("raisedTotal").textContent="—";document.getElementById("remainingTotal").textContent="—"}}
+async function loadRaised(){try{const r=await fetch("/api/donations?player=theodore-vista-2027",{cache:"no-store"});if(!r.ok)throw Error("Unable to load totals");const d=await r.json();const raised=Math.max(0,Number(d.total||0));const pct=Math.min(raised/5000,1);document.getElementById("raisedTotal").textContent=money(raised);document.getElementById("trackerFill").style.width=(pct*100)+"%";document.getElementById("trackerTrack").setAttribute("aria-valuenow",String(Math.min(raised,5000)))}catch(e){document.getElementById("raisedTotal").textContent="—";}}
 loadRaised();
 if(new URLSearchParams(location.search).get("donation")==="success"){statusEl.textContent="Thank you for supporting Theo! Your payment was received.";history.replaceState(null,"",location.pathname)}
 </script>
