@@ -71,6 +71,60 @@ footer{border-top:1px solid #315576;padding:18px;text-align:center;font:700 14px
   .tracker-track { margin: 9px 0 6px; }
   .cta-row { margin-top: 12px; }
 }
+
+/* Desktop headline: 2027 follows COOPERSTOWN, rather than floating to the far edge. */
+@media (min-width:761px) {
+ .hero h1 {
+   display: flex;
+   flex-direction: column;
+   align-self: flex-start;
+   flex: 0 0 auto;
+   width: max-content;
+   max-width: 100%;
+   font-size: clamp(56px,4.6vw,78px);
+   line-height: .91;
+   margin: 10px 0 16px;
+ }
+ .hero h1 .road { align-self:flex-start; }
+ .hero h1 .town { align-self:flex-start; font-size:1.08em; letter-spacing:-1px; white-space:nowrap; }
+ .hero h1 .year { align-self:flex-end; text-align:right; font-size:.72em; padding:0; margin-top:5px; }
+}
+@media(min-width:1101px) {
+ .hero h1 { font-size:clamp(61px,4.45vw,76px); }
+ .hero-content { padding-top:24px; padding-bottom:24px; }
+}
+.sponsor-feature {
+ position:relative; isolation:isolate; overflow:hidden;
+ margin-top:33px; margin-bottom:16px;
+ padding:clamp(26px,3.8vw,52px);
+ display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+ gap:clamp(25px,4.2vw,70px);
+ align-items:center;
+ border:3px solid #ed1d3b; border-radius:12px;
+ background:radial-gradient(ellipse at 10% 20%,#174166 0%,transparent 58%),linear-gradient(115deg,#0b2b4c,#031328 80%);
+ box-shadow:0 13px 32px #0008;
+}
+.sponsor-feature:before {content:"";position:absolute;inset:0 0 auto;height:7px;background:#ed1d3b;}
+.sponsor-feature:after {content:"";position:absolute;right:-30px;bottom:-100px;width:350px;height:350px;border:3px dashed #e92b4e24;border-radius:50%;z-index:-1;pointer-events:none;}
+.sponsor-eyebrow{font:800 16px 'Barlow Condensed',sans-serif;letter-spacing:4px;color:#ffb0bd;margin-bottom:13px}
+.sponsor-feature h2{font:900 clamp(43px,4.8vw,69px)/.95 'Barlow Condensed',sans-serif;letter-spacing:.6px;margin-bottom:17px;text-shadow:2px 4px 2px #0005}
+.sponsor-feature h2 span{color:#ff2947}
+.sponsor-subtitle{font:700 clamp(18px,2vw,24px) 'Barlow Condensed',sans-serif;letter-spacing:.3px;line-height:1.25;color:#e7eff8;margin-bottom:0}
+.sponsor-feature-details p{font-size:17px;line-height:1.55;color:#e3eaf4;margin:0 0 13px}
+.sponsor-inquire{margin-top:9px;font-size:20px;max-width:100%;width:100%;white-space:normal}
+.social-section{margin-top:22px;margin-bottom:38px;padding-top:16px;}
+.social-section .section-title{margin-bottom:10px}
+.social-subtitle{color:#d7e5f2;font-size:16px;margin-bottom:15px}
+.social-section .ig-live-feed{min-height:200px}
+.social-section .ig-caption{margin-top:14px}
+@media(max-width:760px){
+ .sponsor-feature {grid-template-columns:1fr;gap:18px;padding:27px 20px 25px;margin-top:23px}
+ .sponsor-feature h2{font-size:clamp(40px,10vw,60px)}
+ .sponsor-feature-details p{font-size:16px}
+ .sponsor-feature .btn{font-size:18px}
+ .social-section{margin-top:19px}
+}
+
 </style></head><body>
 
 <header class="site-header" id="top">
@@ -116,23 +170,27 @@ footer{border-top:1px solid #315576;padding:18px;text-align:center;font:700 14px
    </div>
   </div>
  </section>
- <section class="container footer-grid">
-  <div class="follow" id="follow">
-   <h2 class="section-title left">FOLLOW THE JOURNEY</h2>
-   <div class="ig-live-feed">
-    <script src="https://elfsightcdn.com/platform.js" async></script>
-    <div class="elfsight-app-062b4e54-89d1-4bc3-8575-4668c8e024ca" data-elfsight-app-lazy></div>
-   </div>
-   <p class="ig-caption"><a href="https://www.instagram.com/theo2official/" target="_blank" rel="noopener noreferrer">See Theo's latest posts on Instagram ↗</a></p>
+
+ <section class="container sponsor-feature" id="sponsor" aria-labelledby="sponsor-title">
+  <div class="sponsor-feature-heading">
+   <p class="sponsor-eyebrow">BE PART OF THE JOURNEY</p>
+   <h2 id="sponsor-title">SPONSORSHIP<br><span>OPPORTUNITIES</span></h2>
+   <p class="sponsor-subtitle">Help turn a baseball dream into a once-in-a-lifetime experience.</p>
   </div>
-  <aside class="sponsorship" id="sponsor">
-   <h2 class="section-title left">SPONSORSHIP OPPORTUNITIES</h2>
-   <div class="sponsor-lockup">
-    <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M18 15l6 5 6-5m-17-4l-9 8 11 13 5-4m15-17l9 8-11 13-5-4M16 20l8 8 8-8M15 32l5 5m0-9l8 8m0-8l5 4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    <p>Local businesses, families, and community partners can help make Theo's Cooperstown dream a reality.</p>
-   </div>
-   <a class="btn btn-outline" href="https://www.instagram.com/theo2official/" target="_blank" rel="noopener noreferrer">INQUIRE ABOUT SPONSORSHIP ↗</a>
-  </aside>
+  <div class="sponsor-feature-details">
+   <p>Interested in sponsoring Theo’s Road to Cooperstown 2027? We welcome support from local businesses, families, and community partners.</p>
+   <p>Your sponsorship helps make this special baseball journey possible. Reach out to learn more about sponsorship opportunities and how you can support Theo.</p>
+   <a class="btn sponsor-inquire" href="https://www.instagram.com/theo2official/" target="_blank" rel="noopener noreferrer" aria-label="Inquire about sponsorship by messaging Theo on Instagram">INQUIRE ABOUT SPONSORSHIP ↗</a>
+  </div>
+ </section>
+ <section class="container social-section" id="follow" aria-labelledby="follow-title">
+  <h2 class="section-title left" id="follow-title">FOLLOW THE JOURNEY</h2>
+  <p class="social-subtitle">Catch Theo’s latest photos, highlights, and Reels on Instagram.</p>
+  <div class="ig-live-feed">
+   <script src="https://elfsightcdn.com/platform.js" async></script>
+   <div class="elfsight-app-062b4e54-89d1-4bc3-8575-4668c8e024ca" data-elfsight-app-lazy></div>
+  </div>
+  <p class="ig-caption"><a href="https://www.instagram.com/theo2official/" target="_blank" rel="noopener noreferrer">Follow @theo2official ↗</a></p>
  </section>
 </main>
 <footer>THEODORE VISTA • ROAD TO COOPERSTOWN 2027</footer>
