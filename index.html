@@ -83,9 +83,9 @@ footer{border-top:1px solid #315576;padding:18px;text-align:center;font:700 14px
   <div class="container">
    <h2 class="dream-title">A DREAM<br>WORTH<br><em>SUPPORTING</em></h2>
    <div class="value-grid">
-    <div class="value"><span class="symbol" aria-hidden="true">♜</span><h3>ONCE IN A LIFETIME</h3><p>A special baseball experience designed for 12-year-old players.</p></div>
-    <div class="value"><span class="symbol" aria-hidden="true">✦</span><h3>BUILDS CHARACTER</h3><p>More than baseball. Cooperstown creates lifelong lessons.</p></div>
-    <div class="value"><span class="symbol" aria-hidden="true">♥</span><h3>YOUR SUPPORT MATTERS</h3><p>Every contribution brings Theo closer to this dream.</p></div>
+    <div class="value"><span class="symbol" aria-hidden="true"><svg viewBox="0 0 24 24" width="33" height="33" aria-hidden="true" fill="none" stroke="#f8faff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8M12 17v4M7 4h10v7a5 5 0 0 1-10 0V4Zm0 2H4v2a4 4 0 0 0 4 4m9-6h3v2a4 4 0 0 1-4 4"/></svg></span><h3>ONCE IN A LIFETIME</h3><p>A special baseball experience designed for 12-year-old players.</p></div>
+    <div class="value"><span class="symbol" aria-hidden="true"><svg viewBox="0 0 24 24" width="33" height="33" aria-hidden="true" fill="none" stroke="#f8faff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M2 20v-2a7 7 0 0 1 14 0v2M16 14a6 6 0 0 1 6 6"/></svg></span><h3>BUILDS CHARACTER</h3><p>More than baseball. Cooperstown creates lifelong lessons.</p></div>
+    <div class="value"><span class="symbol" aria-hidden="true"><svg viewBox="0 0 24 24" width="33" height="33" aria-hidden="true" fill="none" stroke="#f8faff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0l-1 1-1-1a5.5 5.5 0 0 0-7.8 7.8l8.8 8.5 8.8-8.5a5.5 5.5 0 0 0 0-7.8Z"/></svg></span><h3>YOUR SUPPORT MATTERS</h3><p>Every contribution brings Theo closer to this dream.</p></div>
    </div>
   </div>
  </section>
@@ -147,7 +147,7 @@ const modal=document.getElementById('donateModal');
 document.querySelectorAll('[data-open-donate]').forEach(link=>link.addEventListener('click',event=>{event.preventDefault();modal.showModal()}));
 document.getElementById('closeDonate').addEventListener('click',()=>modal.close());
 modal.addEventListener('click',event=>{if(event.target===modal)modal.close()});
-if(new URLSearchParams(location.search).has('donation')){modal.showModal()}
+if(new URLSearchParams(location.search).has('donation') || document.getElementById('donationStatus').textContent.includes('Thank you')){modal.showModal()}
 })();
 </script>
 </body></html>
