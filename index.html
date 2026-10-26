@@ -195,6 +195,82 @@ footer{border-top:1px solid #315576;padding:18px;text-align:center;font:700 14px
  .highlight-slide img{height:310px}
 }
 @media(prefers-reduced-motion:reduce){.highlight-track{scroll-behavior:auto}}
+
+/* Approved cinematic athlete hero. Theo's actual baseball photograph remains the only player image. */
+.site-header{min-height:70px;padding:13px max(24px,calc((100% - 1370px)/2));background:linear-gradient(108deg,#061a2e,#021120 55%,#071f35);border-bottom:1px solid #385875;box-shadow:0 3px 20px #0005}
+.site-header .brand{font:900 21px 'Barlow Condensed',sans-serif;letter-spacing:3px}
+.site-header .brand:after{width:7px;height:7px;border-radius:50%;margin-left:13px;background:#f72547}
+.site-nav{gap:clamp(16px,2.4vw,35px)}
+.site-nav>a:not(.nav-support){font-size:16px;letter-spacing:2px}
+.site-nav .nav-support{font-size:17px;padding:12px 26px;border-radius:7px;box-shadow:0 5px 18px #ed1d3b32}
+.hero{width:100%;max-width:1920px;margin:0 auto;min-height:690px;display:grid;grid-template-columns:minmax(0,51%) minmax(0,49%);position:relative;isolation:isolate;overflow:hidden;background:radial-gradient(ellipse at 75% 18%,#19476e 0%,#0a2949 35%,#031427 80%);border-bottom:2px solid #547e9b;box-shadow:none}
+.hero:before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:repeating-linear-gradient(115deg,transparent 0 250px,#e8f7ff07 252px 255px,transparent 257px 500px),radial-gradient(ellipse at 97% 90%,#3377ab55,transparent 45%)}
+.hero:after{content:"";position:absolute;z-index:3;pointer-events:none;inset:auto 0 0;height:12px;background:linear-gradient(90deg,#f21f43,#b8cedd 60%,transparent);clip-path:polygon(0 55%,100% 0,100% 17%,0 100%);opacity:.65}
+.hero-photo{position:relative;z-index:1;min-height:690px;overflow:hidden;isolation:isolate;background:#06182e}
+.hero-photo>img{position:absolute;inset:0;width:100%;height:100%;display:block;object-fit:cover;object-position:50% 45%;filter:contrast(1.14) saturate(.9) brightness(.9)}
+.hero-photo:before{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;background:radial-gradient(ellipse at 0 24%,#f0264a55,transparent 37%)}
+.hero-photo:after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(90deg,#ea224530,transparent 16%,transparent 62%,#031529 100%),linear-gradient(0deg,#06182d90,transparent 26%,transparent 80%,#03172991),repeating-linear-gradient(120deg,transparent 0 165px,#ee254925 168px 171px,transparent 174px 320px)}
+.hero-ghost-number{position:absolute;top:27%;left:1%;z-index:1;pointer-events:none;font:italic 900 clamp(140px,23vw,350px)/1 'Barlow Condensed',sans-serif;letter-spacing:-12px;-webkit-text-stroke:2px #ffffff64;color:transparent;opacity:.64;transform:rotate(-9deg)}
+.hero-content{position:relative;z-index:4;min-width:0;padding:clamp(35px,4.7vw,78px) clamp(24px,3.6vw,66px) clamp(35px,5vw,78px) clamp(12px,2.5vw,48px);display:flex;flex-direction:column;justify-content:center;background:radial-gradient(ellipse at 88% 4%,#347aa522,transparent 55%)}
+.hero-content:before{content:"";position:absolute;inset:0;z-index:-1;opacity:.065;pointer-events:none;background:url('/Unknown%203.jpeg') no-repeat center 37%/cover;filter:grayscale(1);mask-image:linear-gradient(90deg,black,transparent 80%);-webkit-mask-image:linear-gradient(90deg,black,transparent 80%)}
+.hero-eyebrow{font:700 clamp(12px,1.1vw,17px) 'Barlow Condensed',sans-serif;letter-spacing:clamp(1.5px,.25vw,3.8px);color:#a9c5dc;margin:0 0 16px}
+.hero-eyebrow span{color:#ff2850;margin:0 7px}
+.hero h1{display:flex;flex-direction:column;align-self:stretch;flex:initial;justify-items:initial;width:100%;max-width:100%;margin:0 0 20px;font:italic 900 clamp(64px,7.3vw,143px)/.8 'Barlow Condensed',Impact,sans-serif;letter-spacing:-.038em;transform:skew(-2deg);text-shadow:4px 6px 0 #0008}
+.hero h1 .road{display:block;width:100%;align-self:auto;text-align:left;white-space:nowrap;font-size:1em}
+.hero h1 .hero-name-row{display:flex;align-items:flex-end;gap:clamp(15px,2.5vw,42px);min-width:0;max-width:100%;margin:12px 0 0}
+.hero h1 .town{display:block;align-self:auto;color:#f52243;font-size:1.1em;letter-spacing:-.05em;white-space:nowrap}
+.hero h1 .year{display:block;align-self:auto;flex:none;width:auto;text-align:left;margin:0 0 .10em;padding:0;color:#fff;font:italic 900 .78em/.95 'Barlow Condensed',sans-serif;letter-spacing:-.05em;transform:rotate(-8deg);text-shadow:4px 4px #061323,6px 6px #f01a40;white-space:nowrap}
+.hero .slogan{font:900 clamp(21px,2.05vw,34px)/1.13 'Barlow Condensed',sans-serif;letter-spacing:clamp(2px,.34vw,5px);color:#eef6fd;text-shadow:2px 3px 3px #0008}
+.hero .tagline{font-size:clamp(16px,1.25vw,20px);color:#d9e8f4;margin:8px 0 10px}
+.hero .intro{font-size:clamp(14px,1.02vw,17px);line-height:1.54;max-width:640px;color:#e4edf6;margin:0}
+.hero-actions{display:flex;flex-wrap:wrap;gap:15px;align-items:center;margin-top:26px}
+.hero-actions .btn{white-space:nowrap;font-size:clamp(16px,1.55vw,23px);min-height:57px;padding:15px clamp(16px,2vw,34px);border-radius:8px}
+.hero-actions .btn span{font:400 1.2em Arial,sans-serif;margin-left:6px}
+.hero-actions .hero-primary{background:linear-gradient(110deg,#df1b3a,#ff2d4d);border-color:#ff4060;box-shadow:0 7px 20px #ed1d3b55,inset 0 1px #ffffff40}
+.hero-actions .hero-primary:hover{background:#ff3657}
+.hero-actions .hero-secondary{background:#04182edc;border-color:#8ca8bf;box-shadow:0 5px 15px #0007;color:#fff}
+.hero-actions .hero-secondary:hover{background:#193a57}
+.stat-section{padding:34px 0;background:radial-gradient(ellipse at 0 95%,#183d5e77,transparent 47%),radial-gradient(ellipse at 100% 95%,#1d496b77,transparent 44%),linear-gradient(110deg,#031326,#092c49,#031326)}
+.stat-section .section-title{font-size:clamp(29px,3vw,42px);margin-bottom:23px;letter-spacing:3px}
+.stat-section .stat-box{background:linear-gradient(145deg,#123955,#071d33);border-top:4px solid #f02749;border-radius:8px}
+@media(max-width:1180px) and (min-width:761px){
+ .hero{grid-template-columns:minmax(0,47%) minmax(0,53%);min-height:610px}
+ .hero-photo{min-height:610px}
+ .hero-content{padding:35px 26px 35px 20px}
+ .hero h1{font-size:clamp(62px,7.4vw,91px)}
+ .hero-actions{gap:10px}
+ .hero-actions .btn{font-size:16px;min-height:49px;padding:12px 19px}
+}
+@media(max-width:760px){
+ .site-header{min-height:63px;padding:10px 18px}
+ .site-header .brand{font-size:17px;letter-spacing:2px}
+ .site-header .brand:after{width:6px;height:6px;margin-left:8px}
+ .site-nav .nav-support{font-size:15px;padding:10px 14px}
+ .hero{grid-template-columns:1fr;min-height:auto}
+ .hero-photo{height:clamp(310px,88vw,495px);min-height:0}
+ .hero-photo>img{object-position:50% 42%}
+ .hero-photo:after{background:linear-gradient(0deg,#04192d,transparent 40%),linear-gradient(90deg,#e7204033,transparent 28%)}
+ .hero-ghost-number{font-size:clamp(145px,44vw,260px);top:25%}
+ .hero-content{padding:22px 22px 39px;background:radial-gradient(ellipse at 50% 0%,#18476c77,transparent 70%)}
+ .hero-content:before{opacity:.035}
+ .hero-eyebrow{font-size:13px;letter-spacing:1.8px;margin-bottom:13px}
+ .hero h1{font-size:clamp(58px,13.5vw,105px);line-height:.82;margin-bottom:19px}
+ .hero h1 .hero-name-row{gap:14px;margin-top:9px}
+ .hero h1 .town{font-size:1.08em}
+ .hero h1 .year{font-size:.68em}
+ .hero .slogan{font-size:clamp(19px,5vw,28px);letter-spacing:2.4px}
+ .hero .tagline{font-size:17px}
+ .hero .intro{font-size:15px}
+ .hero-actions{gap:11px;margin-top:22px}
+ .hero-actions .btn{flex:1;font-size:17px;min-height:49px;padding:11px 13px}
+ .stat-section{padding:27px 0}
+ .stat-section .section-title{font-size:28px}
+}
+@media(max-width:400px){
+ .hero h1{font-size:clamp(53px,13vw,64px)}
+ .hero h1 .hero-name-row{gap:10px}
+ .hero-actions .btn{font-size:15px}
+}
 </style></head><body>
 
 <header class="site-header" id="top">
@@ -206,16 +282,24 @@ footer{border-top:1px solid #315576;padding:18px;text-align:center;font:700 14px
 <main>
  <div class="about-player" id="about">
  <section class="hero" aria-labelledby="hero-title">
-  <div class="hero-photo"><img src="/Unknown%203.jpeg" alt="Theo wearing his black baseball uniform at bat" fetchpriority="high"></div>
+  <div class="hero-photo">
+   <img src="/Unknown%203.jpeg" alt="Theodore Vista batting in his black baseball uniform" fetchpriority="high">
+   <span class="hero-ghost-number" aria-hidden="true">#2</span>
+  </div>
   <div class="hero-content">
-   <h1 id="hero-title"><span class="road">THEODORE</span><span class="town">VISTA</span><span class="year">#2</span></h1>
-   <div class="slogan">BIG PLAYS. BIGGER PURPOSE.</div><p class="tagline">The journey is just getting started.</p>
+   <p class="hero-eyebrow">BASEBALL <span>/</span> PLAYER <span>/</span> BIGGER PURPOSE</p>
+   <h1 id="hero-title"><span class="road">THEODORE</span><span class="hero-name-row"><span class="town">VISTA</span><span class="year">#2</span></span></h1>
+   <div class="slogan">BIG PLAYS. BIGGER PURPOSE.</div>
+   <p class="tagline">The journey is just getting started.</p>
    <p class="intro">Meet Theodore Vista, a dedicated 12U AAA/Majors travel baseball player and versatile utility player with a passion for the game. This is Theo's home base for his baseball journey: the hard work, the highlights, the milestones and the dreams he's chasing, one season at a time.</p>
-   <div class="cta-row"><a class="btn" href="#campaign">SUPPORT THE JOURNEY ↓</a></div>
+   <div class="hero-actions">
+    <a class="btn hero-primary" href="#campaign">SUPPORT THE JOURNEY <span aria-hidden="true">→</span></a>
+    <a class="btn hero-secondary" href="#stats">VIEW STATS <span aria-hidden="true">↓</span></a>
+   </div>
   </div>
  </section>
 
- <section class="stat-section" aria-label="Theo's baseball career statistics">
+ <section class="stat-section" id="stats" aria-label="Theo's baseball career statistics">
   <div class="container">
    <h2 class="section-title center">THE NUMBERS BEHIND THE JOURNEY</h2>
    <div class="stats-grid">
