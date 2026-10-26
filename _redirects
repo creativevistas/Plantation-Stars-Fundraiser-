@@ -1,0 +1,3 @@
+# Redirect the legacy team homepage to Theodore Vista's personal Cooperstown fundraiser.
+# Keep /fundraiser and /api/* on the legacy site so existing player donation URLs and Stripe payment callbacks remain intact.
+/ https://theodore-vista-cooperstown.pages.dev/ 302
