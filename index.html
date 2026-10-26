@@ -94,35 +94,12 @@ footer{border-top:1px solid #315576;padding:18px;text-align:center;font:700 14px
  .hero h1 { font-size:clamp(61px,4.45vw,76px); }
  .hero-content { padding-top:24px; padding-bottom:24px; }
 }
-.sponsor-feature {
- position:relative; isolation:isolate; overflow:hidden;
- margin-top:33px; margin-bottom:16px;
- padding:clamp(26px,3.8vw,52px);
- display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr);
- gap:clamp(25px,4.2vw,70px);
- align-items:center;
- border:3px solid #ed1d3b; border-radius:12px;
- background:radial-gradient(ellipse at 10% 20%,#174166 0%,transparent 58%),linear-gradient(115deg,#0b2b4c,#031328 80%);
- box-shadow:0 13px 32px #0008;
-}
-.sponsor-feature:before {content:"";position:absolute;inset:0 0 auto;height:7px;background:#ed1d3b;}
-.sponsor-feature:after {content:"";position:absolute;right:-30px;bottom:-100px;width:350px;height:350px;border:3px dashed #e92b4e24;border-radius:50%;z-index:-1;pointer-events:none;}
-.sponsor-eyebrow{font:800 16px 'Barlow Condensed',sans-serif;letter-spacing:4px;color:#ffb0bd;margin-bottom:13px}
-.sponsor-feature h2{font:900 clamp(43px,4.8vw,69px)/.95 'Barlow Condensed',sans-serif;letter-spacing:.6px;margin-bottom:17px;text-shadow:2px 4px 2px #0005}
-.sponsor-feature h2 span{color:#ff2947}
-.sponsor-subtitle{font:700 clamp(18px,2vw,24px) 'Barlow Condensed',sans-serif;letter-spacing:.3px;line-height:1.25;color:#e7eff8;margin-bottom:0}
-.sponsor-feature-details p{font-size:17px;line-height:1.55;color:#e3eaf4;margin:0 0 13px}
-.sponsor-inquire{margin-top:9px;font-size:20px;max-width:100%;width:100%;white-space:normal}
 .social-section{margin-top:22px;margin-bottom:38px;padding-top:16px;}
 .social-section .section-title{margin-bottom:10px}
 .social-subtitle{color:#d7e5f2;font-size:16px;margin-bottom:15px}
 .social-section .ig-live-feed{min-height:200px}
 .social-section .ig-caption{margin-top:14px}
 @media(max-width:760px){
- .sponsor-feature {grid-template-columns:1fr;gap:18px;padding:27px 20px 25px;margin-top:23px}
- .sponsor-feature h2{font-size:clamp(40px,10vw,60px)}
- .sponsor-feature-details p{font-size:16px}
- .sponsor-feature .btn{font-size:18px}
  .social-section{margin-top:19px}
 }
 
@@ -190,10 +167,11 @@ footer{border-top:1px solid #315576;padding:18px;text-align:center;font:700 14px
 <header class="site-header" id="top">
  <a class="brand" href="#top">THEODORE VISTA • #2</a>
  <nav class="site-nav" aria-label="Main navigation">
-  <a class="active" href="#top">HOME</a><a href="#dream">ABOUT</a><a href="#sponsor">SPONSOR</a><a href="#follow">FOLLOW</a><a class="nav-support" href="#campaign">SUPPORT</a>
+  <a class="active" href="#top">HOME</a><a href="#about">ABOUT</a><a href="#campaign">SPONSOR</a><a href="#follow">FOLLOW</a><a class="nav-support" href="#campaign">SUPPORT</a>
  </nav>
 </header>
 <main>
+ <div class="about-player" id="about">
  <section class="hero" aria-labelledby="hero-title">
   <div class="hero-photo"><img src="/Unknown%203.jpeg" alt="Theo wearing his black baseball uniform at bat" fetchpriority="high"></div>
   <div class="hero-content">
@@ -204,16 +182,28 @@ footer{border-top:1px solid #315576;padding:18px;text-align:center;font:700 14px
   </div>
  </section>
 
+ <section class="stat-section" aria-label="Theo's baseball career statistics">
+  <div class="container">
+   <h2 class="section-title center">THE NUMBERS BEHIND THE JOURNEY</h2>
+   <div class="stats-grid">
+    <div class="stat-box"><strong>.417</strong><span>BATTING AVG</span></div>
+    <div class="stat-box"><strong>.558</strong><span>ON-BASE PCT</span></div>
+    <div class="stat-box"><strong>101</strong><span>CAREER HITS</span></div>
+    <div class="stat-box"><strong>1.103</strong><span>OPS</span></div>
+   </div><p class="stats-note">Career stats through Summer 2026</p>
+  </div>
+ </section>
+ </div><!-- /about-player -->
  <section class="career-support" id="campaign" aria-labelledby="career-support-title">
   <div class="container career-support-grid">
    <div class="career-support-copy">
-    <p class="career-kicker">EVERY REP. EVERY GAME. EVERY NEXT STEP.</p>
-    <h2 id="career-support-title">SUPPORT THEO'S<br><span>BASEBALL JOURNEY</span></h2>
-    <p class="career-intro">Big dreams are built one season at a time. Your support helps Theo keep reaching for new opportunities and milestones in the sport he loves. This website will grow alongside his baseball journey.</p>
+    <p class="career-kicker">BE PART OF THE JOURNEY</p>
+    <h2 id="career-support-title">SUPPORT THEO'S<br><span>BASEBALL DREAMS</span></h2>
+    <p class="career-intro">Behind every young athlete is a community that believes in them. Whether you're family, a friend, or a local business looking to support a dedicated young athlete, your generosity helps Theo continue growing, competing, and pursuing his passion for baseball.</p>
     <div class="current-campaign">
-     <span class="campaign-label">CURRENT FUNDRAISING CAMPAIGN</span>
+     <span class="campaign-label">CURRENT GOAL</span>
      <strong>ROAD TO COOPERSTOWN 2027</strong>
-     <p>Contributions made through this website currently go toward Theo's 2027 Cooperstown baseball trip and related tournament and travel expenses. We'll share new goals here as his journey continues.</p>
+     <p>All contributions currently support Theo's journey to Cooperstown 2027, helping with tournament and travel expenses.</p>
     </div>
    </div>
    <div class="career-donate-card">
@@ -228,17 +218,6 @@ footer{border-top:1px solid #315576;padding:18px;text-align:center;font:700 14px
    </div>
   </div>
  </section>
- <section class="stat-section" aria-label="Theo's baseball career statistics">
-  <div class="container">
-   <h2 class="section-title center">THE NUMBERS BEHIND THE DREAM</h2>
-   <div class="stats-grid">
-    <div class="stat-box"><strong>.417</strong><span>BATTING AVG</span></div>
-    <div class="stat-box"><strong>.558</strong><span>ON-BASE PCT</span></div>
-    <div class="stat-box"><strong>101</strong><span>CAREER HITS</span></div>
-    <div class="stat-box"><strong>1.103</strong><span>OPS</span></div>
-   </div><p class="stats-note">Career stats through Summer 2026</p>
-  </div>
- </section>
  <section class="dream" id="dream">
   <div class="container">
    <h2 class="dream-title">A DREAM<br>WORTH<br><em>SUPPORTING</em></h2>
@@ -250,18 +229,6 @@ footer{border-top:1px solid #315576;padding:18px;text-align:center;font:700 14px
   </div>
  </section>
 
- <section class="container sponsor-feature" id="sponsor" aria-labelledby="sponsor-title">
-  <div class="sponsor-feature-heading">
-   <p class="sponsor-eyebrow">BE PART OF THE JOURNEY</p>
-   <h2 id="sponsor-title">SPONSORSHIP<br><span>OPPORTUNITIES</span></h2>
-   <p class="sponsor-subtitle">Help turn a baseball dream into a once-in-a-lifetime experience.</p>
-  </div>
-  <div class="sponsor-feature-details">
-   <p>Interested in sponsoring Theo’s Road to Cooperstown 2027? We welcome support from local businesses, families, and community partners.</p>
-   <p>Your sponsorship helps support Theo’s baseball journey. Reach out to learn more about sponsorship packages and opportunities.</p>
-   <a class="btn sponsor-inquire" href="https://www.instagram.com/theo2official/" target="_blank" rel="noopener noreferrer" aria-label="Inquire about sponsorship by messaging Theo on Instagram">INQUIRE ABOUT SPONSORSHIP ↗</a>
-  </div>
- </section>
  <section class="container social-section" id="follow" aria-labelledby="follow-title">
   <h2 class="section-title left" id="follow-title">FOLLOW THE JOURNEY</h2>
   <p class="social-subtitle">Catch Theo’s latest photos, highlights, and Reels on Instagram.</p>
