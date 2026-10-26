@@ -173,17 +173,9 @@ footer{border-top:1px solid #315576;padding:18px;text-align:center;font:700 14px
  .current-campaign strong{font-size:24px}
 }
 
-/* Free self-hosted baseball photo slider - no subscription or external feed provider */
-.highlight-slider{margin-top:18px}
-.highlight-track{display:flex;gap:16px;overflow-x:auto;overscroll-behavior-inline:contain;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:thin;padding:2px 2px 12px}
-.highlight-slide{flex:0 0 calc((100% - 18px)/2);min-width:0;scroll-snap-align:start;margin:0;border:1px solid #437494;border-radius:12px;overflow:hidden;background:#0b2740;box-shadow:0 5px 16px #0005}
-.highlight-slide img{width:100%;height:clamp(230px,28vw,380px);display:block;object-fit:contain;background:#061426}
-.highlight-slide figcaption{font:800 16px 'Barlow Condensed',sans-serif;letter-spacing:2px;padding:14px 16px;color:#e8eff7}
-.highlight-controls{display:flex;align-items:center;justify-content:center;gap:18px;margin:13px 0}
-.highlight-controls button{border:1px solid #5b86a7;background:#0e2b48;color:#fff;font-size:23px;line-height:1;border-radius:8px;min-width:47px;height:43px;cursor:pointer}
-.highlight-controls button:hover{background:#df2542;border-color:#df2542}
-.highlight-controls button:disabled{opacity:.4;cursor:default}
-.highlight-controls span{font:700 16px 'Barlow Condensed',sans-serif;letter-spacing:2px;min-width:58px;text-align:center}
+/* Instagram feed via Simpleembed, with the site's existing Instagram link as fallback. */
+.instagram-live-embed{min-height:260px;width:100%;max-width:100%;margin:18px 0 12px;overflow:hidden}
+.instagram-live-embed iframe{max-width:100%}
 @media(max-width:760px){
  .dream{padding:32px 0}
  .dream-top{grid-template-columns:1fr;gap:22px}
@@ -191,11 +183,8 @@ footer{border-top:1px solid #315576;padding:18px;text-align:center;font:700 14px
  .dream-photo img{max-height:380px}
  .dream-intro{font-size:16px}
  .dream-note{font-size:16px}
- .highlight-slide{flex-basis:85%}
- .highlight-slide img{height:310px}
+ .instagram-live-embed{min-height:220px}
 }
-@media(prefers-reduced-motion:reduce){.highlight-track{scroll-behavior:auto}}
-
 /* Approved cinematic athlete hero. Theo's actual baseball photograph remains the only player image. */
 .site-header{min-height:70px;padding:13px max(24px,calc((100% - 1370px)/2));background:linear-gradient(108deg,#061a2e,#021120 55%,#071f35);border-bottom:1px solid #385875;box-shadow:0 3px 20px #0005}
 .site-header .brand{font:900 21px 'Barlow Condensed',sans-serif;letter-spacing:3px}
@@ -353,18 +342,9 @@ footer{border-top:1px solid #315576;padding:18px;text-align:center;font:700 14px
 
  <section class="container social-section" id="follow" aria-labelledby="follow-title">
   <h2 class="section-title left" id="follow-title">FOLLOW THE JOURNEY</h2>
-  <p class="social-subtitle">Explore Theo's baseball photos below, then visit Instagram for his latest highlights and Reels.</p>
-  <div class="highlight-slider" aria-label="Theo's baseball photo gallery">
-   <div class="highlight-track" id="highlightTrack" tabindex="0" aria-label="Swipe or use arrows to browse photos">
-    <figure class="highlight-slide"><img src="/Unknown.jpeg" alt="Baseball photo of Theodore Vista" loading="lazy"><figcaption>THEO #2 • BASEBALL HIGHLIGHTS</figcaption></figure>
-    <figure class="highlight-slide"><img src="/Unknown%202.jpeg" alt="Another photo of Theodore Vista" loading="lazy"><figcaption>THEO #2 • THE JOURNEY</figcaption></figure>
-    <figure class="highlight-slide"><img src="/Unknown%203.jpeg" alt="Theo wearing his black baseball uniform at bat" loading="lazy"><figcaption>THEO #2 • ROAD TO THE NEXT LEVEL</figcaption></figure>
-   </div>
-   <div class="highlight-controls">
-    <button id="highlightPrev" type="button" aria-label="Previous photo">←</button>
-    <span id="highlightCount" aria-live="polite">1 / 3</span>
-    <button id="highlightNext" type="button" aria-label="Next photo">→</button>
-   </div>
+  <p class="social-subtitle">See Theo's latest Instagram photos and Reels, updated from @theo2official.</p>
+  <div class="instagram-live-embed" aria-label="Latest Instagram posts from Theodore Vista">
+   <script src="https://simpleembed.com/embed.js" data-feed-id="Nm3Ckn6QDbLfkzMZ779F" async></script>
   </div>
   <p class="ig-caption"><a href="https://www.instagram.com/theo2official/" target="_blank" rel="noopener noreferrer">MORE ON INSTAGRAM • @theo2official ↗</a></p>
  </section>
@@ -412,23 +392,4 @@ if(new URLSearchParams(location.search).has('donation') || document.getElementBy
 })();
 </script>
 
-<script>
-(function(){
- const track=document.getElementById("highlightTrack");
- const slides=[...track.querySelectorAll(".highlight-slide")];
- const previous=document.getElementById("highlightPrev"),next=document.getElementById("highlightNext"),count=document.getElementById("highlightCount");
- function step(){return slides.length>1?slides[1].offsetLeft-slides[0].offsetLeft:track.clientWidth;}
- function update(){
-  const index=Math.max(0,Math.min(slides.length-1,Math.round(track.scrollLeft/Math.max(1,step()))));
-  count.textContent=(index+1)+" / "+slides.length;
-  previous.disabled=track.scrollLeft<2;
-  next.disabled=track.scrollLeft>=track.scrollWidth-track.clientWidth-2;
- }
- previous.addEventListener("click",()=>track.scrollBy({left:-step(),behavior:"smooth"}));
- next.addEventListener("click",()=>track.scrollBy({left:step(),behavior:"smooth"}));
- track.addEventListener("scroll",update,{passive:true});
- window.addEventListener("resize",update);
- update();
-})();
-</script>
 </body></html>
