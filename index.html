@@ -313,6 +313,8 @@ footer{border-top:1px solid #315576;padding:18px;text-align:center;font:700 14px
 .contact-field input:focus,.contact-field select:focus,.contact-field textarea:focus{outline:3px solid #e9294a;outline-offset:1px}
 .contact-submit{display:block;width:100%;margin-top:18px;font-size:21px}
 .contact-form-note{margin:12px 0 0;color:#c4d9e8;font-size:13px;line-height:1.5}
+.contact-send-status{margin:14px 0 0;padding:11px 13px;border:1px solid #658dad;border-radius:6px;background:#102f49;color:#f0f6fb;font-size:15px;line-height:1.45}
+.contact-send-status[hidden]{display:none}
 .contact-honey{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
 @media(max-width:760px){.contact-section{padding:38px 0 43px}.contact-grid{grid-template-columns:1fr;gap:20px}.theo-contact-form{padding:20px}.site-nav{flex-wrap:wrap;row-gap:5px}}
 @media(max-width:450px){.contact-fields{grid-template-columns:1fr}.site-nav{gap:7px 14px}.site-nav>a{font-size:12px;letter-spacing:1px}}
@@ -407,7 +409,7 @@ footer{border-top:1px solid #315576;padding:18px;text-align:center;font:700 14px
     <p>Interested in inviting Theo to guest play, partnering as a business sponsor, or discussing another baseball opportunity? Send the details below to connect with Theo's parents.</p>
     <p class="contact-note">For guest-player invites, please include the team name and tournament information, including the tournament name, dates, and location.</p>
    </div>
-   <form class="theo-contact-form" action="https://formsubmit.co/jlsvista@aol.com" method="POST">
+   <form class="theo-contact-form" id="theoContactForm" action="#contact" method="POST">
     <input type="hidden" name="_subject" value="New guest-player or sponsorship inquiry for Theodore Vista">
     <input type="hidden" name="_template" value="table">
     <input type="hidden" name="_url" value="https://theodore-vista-cooperstown.pages.dev/#contact">
@@ -420,6 +422,7 @@ footer{border-top:1px solid #315576;padding:18px;text-align:center;font:700 14px
      <div class="contact-field contact-full"><label for="contactMessage">Tell us about the opportunity *</label><textarea id="contactMessage" name="message" rows="6" maxlength="3000" required placeholder="Share the opportunity, dates, location, and anything else we should know."></textarea></div>
     </div>
     <button class="btn contact-submit" type="submit">SEND INQUIRY ↗</button>
+    <p id="contactSendStatus" class="contact-send-status" role="status" aria-live="polite" hidden></p>
     <p class="contact-form-note">We look forward to hearing from you!</p>
    </form>
   </div>
@@ -575,6 +578,43 @@ if(new URLSearchParams(location.search).has('donation') || document.getElementBy
  .then(async r=>{const data=await r.json();if(!r.ok||!data.ok||!data.posts?.length)throw Error("Not available");return data.posts})
  .then(posts=>{const latest=posts.slice(0,8);const autoplayId=latest.find(p=>p.type==="VIDEO" && p.video)?.id;grid.replaceChildren(...latest.map(p=>render(p,autoplayId)));status.textContent="Latest 8 posts from @theo2official · Updated automatically";})
  .catch(()=>{status.textContent="Instagram updates are temporarily unavailable. Theo's photo highlights are displayed instead.";});
+})();
+</script>
+
+<script>
+(function(){
+ const form=document.getElementById("theoContactForm");
+ const status=document.getElementById("contactSendStatus");
+ const button=form?.querySelector('button[type="submit"]');
+ if(!form||!status||!button)return;
+ form.addEventListener("submit",async event=>{
+  event.preventDefault(); // Remain on Theo's website; never navigate to an email-based URL.
+  if(!form.reportValidity()||button.disabled)return;
+  button.disabled=true;
+  button.textContent="SENDING…";
+  status.hidden=false;
+  status.textContent="Sending your inquiry…";
+  try{
+   // FormSubmit supports JSON AJAX requests; no external thank-you page.
+   const payload=Object.fromEntries(new FormData(form).entries());
+   const response=await fetch("https://formsubmit.co/ajax/jlsvista@aol.com",{
+    method:"POST",
+    headers:{"Content-Type":"application/json","Accept":"application/json"},
+    body:JSON.stringify(payload)
+   });
+   const result=await response.json();
+   if(!response.ok || (result.success!==true && result.success!=="true")){
+    throw new Error("Form submission was not accepted.");
+   }
+   status.textContent="Thank you! Your message has been sent.";
+   form.reset();
+  }catch(_){
+   status.textContent="Sorry, we couldn't send your message. Please try again.";
+  }finally{
+   button.disabled=false;
+   button.textContent="SEND INQUIRY ↗";
+  }
+ });
 })();
 </script>
 </body></html>
