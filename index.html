@@ -487,7 +487,13 @@ if(new URLSearchParams(location.search).has('donation') || document.getElementBy
    }
    article.addEventListener("mouseenter",previewOnHover);
    article.addEventListener("mouseleave",()=>{hoverActive=false;pause(video,play)});
-   video.addEventListener("error",()=>{hoverActive=false;play.classList.remove("is-playing");play.textContent="WATCH ON INSTAGRAM";play.setAttribute("aria-label","Watch Reel on Instagram");play.onclick=()=>window.open(post.permalink,"_blank","noopener,noreferrer")});
+   video.addEventListener("error",()=>{
+    hoverActive=false;
+    const watch=element("a","theo-ig-play theo-ig-play-link","WATCH REEL ↗");
+    watch.href=post.permalink;watch.target="_blank";watch.rel="noopener noreferrer";
+    watch.setAttribute("aria-label","Watch Reel on Instagram");
+    play.replaceWith(watch);
+   });
    document.addEventListener("visibilitychange",()=>{if(document.hidden)pause(video,play)});
    media.appendChild(play);
   }else{
