@@ -22,7 +22,17 @@ async function mediaRequest(token, fields) {
   });
 }
 export async function onRequestGet(context) {
-  const token = context.env.INSTAGRAM_ACCESS_TOKEN;
+  const env = context.env || {};
+  // Safe troubleshooting: publish boolean binding presence only; never expose values.
+  if (new URL(context.request.url).searchParams.get("check") === "1") {
+    return Response.json({
+      diagnostic: true,
+      instagramSecretFound: typeof env.INSTAGRAM_ACCESS_TOKEN === "string" && env.INSTAGRAM_ACCESS_TOKEN.trim().length > 0,
+      stripeSecretFound: typeof env.STRIPE_SECRET_KEY === "string" && env.STRIPE_SECRET_KEY.trim().length > 0,
+      databaseBindingFound: Boolean(env.DB)
+    }, { headers: { "Cache-Control": "no-store" } });
+  }
+  const token = env.INSTAGRAM_ACCESS_TOKEN;
   if (!token) return Response.json({ ok: false, error: "Instagram connection not configured." }, {
     status: 503, headers: { "Cache-Control": "no-store" }
   });
