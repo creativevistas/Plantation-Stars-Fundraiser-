@@ -10,3 +10,5 @@ The separate `main` branch contains the legacy Plantation Stars team fundraiser.
 Deployment refresh: apply updated Cloudflare Stripe secret configuration (October 26, 2026).
 
 Deployment refresh: activate Cloudflare production INSTAGRAM_ACCESS_TOKEN secret (October 26, 2026).
+
+Cloudflare production deployment refresh after Instagram token was confirmed in Pages settings on October 27, 2026.
