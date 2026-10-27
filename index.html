@@ -292,12 +292,33 @@ footer{border-top:1px solid #315576;padding:18px;text-align:center;font:700 14px
  .hero h1 .hero-name-row{gap:10px}
  .hero-actions .btn{font-size:15px}
 }
+/* Bottom-of-page baseball opportunities and sponsorship contact */
+.contact-section{padding:55px 0 62px;border-top:1px solid #365f82;background:radial-gradient(ellipse at 15% 5%,#183f61 0,transparent 56%),linear-gradient(125deg,#071c32,#031325)}
+.contact-grid{display:grid;grid-template-columns:minmax(0,.87fr) minmax(0,1.13fr);gap:clamp(25px,5vw,72px);align-items:start}
+.contact-kicker{font:800 15px 'Barlow Condensed',sans-serif;letter-spacing:3px;color:#ff9caf;margin:0 0 10px}
+.contact-copy h2{font:900 clamp(35px,4.5vw,54px)/.99 'Barlow Condensed',sans-serif;letter-spacing:.7px;margin:0 0 20px}
+.contact-copy h2 span{color:#f34a65}
+.contact-copy p:not(.contact-kicker){font-size:17px;line-height:1.55;color:#e2ebf4}
+.contact-copy .contact-note{font-size:15px!important;color:#b9cfe2!important}
+.theo-contact-form{position:relative;padding:26px;background:#0b2a45;border:1px solid #49779a;border-top:4px solid var(--red);border-radius:12px;box-shadow:0 12px 29px #0005}
+.contact-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:17px 15px}
+.contact-field{min-width:0}
+.contact-field.contact-full{grid-column:1/-1}
+.contact-field label{display:block;font:700 15px 'Barlow',Arial,sans-serif;color:#f5f8fc;margin:0 0 7px}
+.contact-field input,.contact-field select,.contact-field textarea{display:block;width:100%;border:1px solid #7195b1;border-radius:5px;background:#f9fbfd;color:#09213a;font:500 15px 'Barlow',Arial,sans-serif;padding:12px;min-height:46px}
+.contact-field textarea{resize:vertical;min-height:132px;line-height:1.45}
+.contact-field input:focus,.contact-field select:focus,.contact-field textarea:focus{outline:3px solid #e9294a;outline-offset:1px}
+.contact-submit{display:block;width:100%;margin-top:18px;font-size:21px}
+.contact-form-note{margin:12px 0 0;color:#c4d9e8;font-size:13px;line-height:1.5}
+.contact-honey{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+@media(max-width:760px){.contact-section{padding:38px 0 43px}.contact-grid{grid-template-columns:1fr;gap:20px}.theo-contact-form{padding:20px}.site-nav{flex-wrap:wrap;row-gap:5px}}
+@media(max-width:450px){.contact-fields{grid-template-columns:1fr}.site-nav{gap:7px 14px}.site-nav>a{font-size:12px;letter-spacing:1px}}
 </style></head><body>
 
 <header class="site-header" id="top">
  <a class="brand" href="#top">THEODORE VISTA • #2</a>
  <nav class="site-nav" aria-label="Main navigation">
-  <a href="#top">HOME</a><a href="#about">ABOUT</a><a href="#follow">FOLLOW</a><a href="#campaign">SUPPORT</a>
+  <a href="#top">HOME</a><a href="#about">ABOUT</a><a href="#follow">FOLLOW</a><a href="#campaign">SUPPORT</a><a href="#contact">CONTACT</a>
  </nav>
 </header>
 <main>
@@ -308,11 +329,10 @@ footer{border-top:1px solid #315576;padding:18px;text-align:center;font:700 14px
    <span class="hero-ghost-number" aria-hidden="true">#2</span>
   </div>
   <div class="hero-content">
-   <p class="hero-eyebrow">BASEBALL <span>/</span> PLAYER <span>/</span> BIGGER PURPOSE</p>
    <h1 id="hero-title"><span class="road">THEODORE</span><span class="hero-name-row"><span class="town">VISTA</span><span class="year">#2</span></span></h1>
    <div class="slogan">BIG PLAYS. BIGGER PURPOSE.</div>
    <p class="tagline">The journey is just getting started.</p>
-   <p class="intro">Meet Theodore Vista, a dedicated 12U AAA/Majors travel baseball player and versatile utility player with a passion for the game. This is Theo's home base for his baseball journey: the hard work, the highlights, the milestones and the dreams he's chasing, one season at a time.</p>
+   <p class="intro">Meet Theodore Vista, a 12U AAA/Majors travel baseball player and versatile utility player. Explore his game highlights, training, and progress on the field, and discover ways to support his journey through donations, business sponsorships, and guest-player opportunities.</p>
    <div class="hero-actions">
     <a class="btn hero-primary" href="#campaign">SUPPORT THE JOURNEY <span aria-hidden="true">→</span></a>
     <a class="btn hero-secondary" href="#stats">VIEW STATS <span aria-hidden="true">↓</span></a>
@@ -374,6 +394,31 @@ footer{border-top:1px solid #315576;padding:18px;text-align:center;font:700 14px
   </div>
   <p class="theo-ig-status" id="theoIgStatus" role="status">Connect Instagram to display Theo's newest posts automatically. Showing baseball highlights for now.</p>
   <p class="ig-caption">Follow <a href="https://www.instagram.com/theo2official/" target="_blank" rel="noopener noreferrer">@theo2official</a> for more baseball highlights.</p>
+ </section>
+ <section class="contact-section" id="contact" aria-labelledby="contact-title">
+  <div class="container contact-grid">
+   <div class="contact-copy">
+    <p class="contact-kicker">LET'S CONNECT</p>
+    <h2 id="contact-title">GUEST PLAYER &amp;<br><span>SPONSORSHIP INQUIRIES</span></h2>
+    <p>Interested in inviting Theo to guest play, partnering as a business sponsor, or discussing another baseball opportunity? Send the details below to connect with Theo's family.</p>
+    <p class="contact-note">For guest-player invites, please include the team, tournament, dates, and location. For sponsorships, tell us about your business and what you have in mind.</p>
+   </div>
+   <form class="theo-contact-form" action="https://formsubmit.co/jlsvista@aol.com" method="POST">
+    <input type="hidden" name="_subject" value="New guest-player or sponsorship inquiry for Theodore Vista">
+    <input type="hidden" name="_template" value="table">
+    <input type="hidden" name="_url" value="https://theodore-vista-cooperstown.pages.dev/#contact">
+    <div class="contact-honey" aria-hidden="true"><label for="contactWebsite">Leave blank</label><input id="contactWebsite" type="text" name="_honey" tabindex="-1" autocomplete="off"></div>
+    <div class="contact-fields">
+     <div class="contact-field"><label for="contactName">Your name *</label><input id="contactName" name="name" type="text" maxlength="120" autocomplete="name" required></div>
+     <div class="contact-field"><label for="contactEmail">Email address *</label><input id="contactEmail" name="email" type="email" maxlength="160" autocomplete="email" required></div>
+     <div class="contact-field"><label for="contactType">Inquiry type *</label><select id="contactType" name="inquiry_type" required><option value="" disabled selected>Select an option</option><option value="Guest-player invitation">Guest-player invitation</option><option value="Business sponsorship">Business sponsorship</option><option value="Other baseball opportunity">Other baseball opportunity</option></select></div>
+     <div class="contact-field"><label for="contactOrg">Team or business</label><input id="contactOrg" name="team_or_business" type="text" maxlength="160" autocomplete="organization"></div>
+     <div class="contact-field contact-full"><label for="contactMessage">Tell us about the opportunity *</label><textarea id="contactMessage" name="message" rows="6" maxlength="3000" required placeholder="Share the opportunity, dates, location, and anything else we should know."></textarea></div>
+    </div>
+    <button class="btn contact-submit" type="submit">SEND INQUIRY ↗</button>
+    <p class="contact-form-note">Your message is delivered to Theo's family by our form service. Please don't include sensitive personal information.</p>
+   </form>
+  </div>
  </section>
 </main>
 <footer>THEODORE VISTA • #2 • BASEBALL JOURNEY</footer>
