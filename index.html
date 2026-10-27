@@ -409,7 +409,7 @@ footer{border-top:1px solid #315576;padding:18px;text-align:center;font:700 14px
     <p>Interested in inviting Theo to guest play, partnering as a business sponsor, or discussing another baseball opportunity? Send the details below to connect with Theo's parents.</p>
     <p class="contact-note">For guest-player invites, please include the team name and tournament information, including the tournament name, dates, and location.</p>
    </div>
-   <form class="theo-contact-form" id="theoContactForm" action="https://formsubmit.co/jlsvista@aol.com" method="POST">
+   <form class="theo-contact-form" id="theoContactForm" action="https://formsubmit.co/jlsvista@aol.com" method="POST" target="_self">
     <input type="hidden" name="_subject" value="New guest-player or sponsorship inquiry for Theodore Vista">
     <input type="hidden" name="_template" value="table">
     <input type="hidden" name="_next" value="https://theodore-vista-cooperstown.pages.dev/contact-sent.html">
@@ -423,6 +423,7 @@ footer{border-top:1px solid #315576;padding:18px;text-align:center;font:700 14px
      <div class="contact-field contact-full"><label for="contactMessage">Tell us about the opportunity *</label><textarea id="contactMessage" name="message" rows="6" maxlength="3000" required placeholder="Share the opportunity, dates, location, and anything else we should know."></textarea></div>
     </div>
     <button class="btn contact-submit" type="submit">SEND INQUIRY ↗</button>
+    <p class="contact-send-status" id="contactSendStatus" role="status" aria-live="polite" hidden></p>
     <p class="contact-form-note">We look forward to hearing from you!</p>
    </form>
   </div>
@@ -581,4 +582,49 @@ if(new URLSearchParams(location.search).has('donation') || document.getElementBy
 })();
 </script>
 
+<script>
+(function(){
+ const form=document.getElementById("theoContactForm");
+ const button=form?.querySelector('button[type="submit"]');
+ const status=document.getElementById("contactSendStatus");
+ if(!form||!button||!status)return;
+ let submitting=false;
+ function show(message){status.hidden=false;status.textContent=message;}
+ function showMissingFields(){
+  show("Please complete all required fields and select an inquiry type.");
+  const invalid=form.querySelector(":invalid");
+  if(invalid){invalid.focus();form.reportValidity();}
+ }
+ form.addEventListener("invalid",()=>{
+  show("Please complete all required fields and select an inquiry type.");
+ },true);
+ button.addEventListener("click",event=>{
+  if(submitting){event.preventDefault();return;}
+  if(!form.checkValidity()){event.preventDefault();showMissingFields();}
+ });
+ form.addEventListener("submit",event=>{
+  event.preventDefault();
+  if(submitting)return;
+  if(!form.checkValidity()){showMissingFields();return;}
+  submitting=true;
+  button.disabled=true;
+  button.textContent="SUBMITTING…";
+  show("Submitting your inquiry securely…");
+  // Use native HTML form navigation; no cross-origin AJAX or Cloudflare proxy.
+  HTMLFormElement.prototype.submit.call(form);
+  // Restore the button if the browser blocks the external navigation.
+  setTimeout(()=>{
+   if(document.visibilityState==="visible"){
+    submitting=false;
+    button.disabled=false;
+    button.textContent="SEND INQUIRY ↗";
+    show("If the confirmation page did not open, please check Safari's content blockers and try again.");
+   }
+  },8000);
+ });
+ window.addEventListener("pageshow",()=>{
+  submitting=false;button.disabled=false;button.textContent="SEND INQUIRY ↗";
+ });
+})();
+</script>
 </body></html>
