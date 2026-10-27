@@ -13,6 +13,32 @@ function instagramLink(value) {
     return host === "instagram.com" || host === "www.instagram.com" ? u : "";
   } catch { return ""; }
 }
+
+// Instagram occasionally supplies UTF-8 text misread as Windows-1252;
+// fix those captions without altering correctly encoded text.
+function repairCaption(text) {
+  const original = String(text || "");
+  if (!/[ÃÂâðï]/.test(original)) return original;
+  const cp1252 = {
+    0x20AC:0x80,0x201A:0x82,0x0192:0x83,0x201E:0x84,0x2026:0x85,
+    0x2020:0x86,0x2021:0x87,0x02C6:0x88,0x2030:0x89,0x0160:0x8A,
+    0x2039:0x8B,0x0152:0x8C,0x017D:0x8E,0x2018:0x91,0x2019:0x92,
+    0x201C:0x93,0x201D:0x94,0x2022:0x95,0x2013:0x96,0x2014:0x97,
+    0x02DC:0x98,0x2122:0x99,0x0161:0x9A,0x203A:0x9B,0x0153:0x9C,
+    0x017E:0x9E,0x0178:0x9F
+  };
+  try {
+    const bytes = [];
+    for (const ch of original) {
+      const cp = ch.codePointAt(0);
+      if (cp <= 0xFF) bytes.push(cp);
+      else if (cp1252[cp] !== undefined) bytes.push(cp1252[cp]);
+      else return original;
+    }
+    return new TextDecoder("utf-8", { fatal:true }).decode(Uint8Array.from(bytes));
+  } catch { return original; }
+}
+
 async function mediaRequest(token, fields) {
   const url = new URL(ENDPOINT);
   url.searchParams.set("fields", fields);
@@ -37,7 +63,7 @@ export async function onRequestGet(context) {
     status: 503, headers: { "Cache-Control": "no-store" }
   });
   const cache = caches.default;
-  const cacheKey = new Request(new URL("/api/instagram-feed?v=1", context.request.url));
+  const cacheKey = new Request(new URL("/api/instagram-feed?v=2", context.request.url));
   try {
     const hit = await cache.match(cacheKey);
     if (hit) return hit;
@@ -64,7 +90,7 @@ export async function onRequestGet(context) {
       posts.push({
         id: String(m.id || ""),
         type: kind, thumbnail, video, permalink,
-        caption: String(m.caption || "").slice(0, 2200),
+        caption: repairCaption(m.caption).slice(0, 2200),
         timestamp: String(m.timestamp || "")
       });
       if (posts.length >= 12) break;
