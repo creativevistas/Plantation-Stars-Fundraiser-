@@ -23,7 +23,7 @@ export async function onRequestPost({request}) {
   const inquiry_type=clean(data.inquiry_type,80);
   const team_or_business=clean(data.team_or_business,160);
   const message=clean(data.message,3000);
-  if(!name||!message||!VALID_TYPES.has(inquiry_type)||!/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(email)) {
+  if(!name||!message||!VALID_TYPES.has(inquiry_type)||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return json({ok:false,error:"Please complete the required fields."},400);
   }
   const payload={
