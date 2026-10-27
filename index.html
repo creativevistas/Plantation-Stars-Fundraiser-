@@ -313,6 +313,8 @@ footer{border-top:1px solid #315576;padding:18px;text-align:center;font:700 14px
 .contact-field input:focus,.contact-field select:focus,.contact-field textarea:focus{outline:3px solid #e9294a;outline-offset:1px}
 .contact-submit{display:block;width:100%;margin-top:18px;font-size:21px}
 .contact-form-note{margin:12px 0 0;color:#c4d9e8;font-size:13px;line-height:1.5}
+.contact-copy{display:block;margin:10px auto 0;background:transparent;border:1px solid #6088a7;border-radius:6px;padding:10px 20px;font:700 15px 'Barlow Condensed',sans-serif;color:#dcecf7;letter-spacing:1px}
+.contact-copy:hover,.contact-copy:focus-visible{border-color:#f02849;color:#fff}
 .contact-send-status{margin:14px 0 0;padding:11px 13px;border:1px solid #658dad;border-radius:6px;background:#102f49;color:#f0f6fb;font-size:15px;line-height:1.45}
 .contact-send-status[hidden]{display:none}
 .contact-honey{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
@@ -409,11 +411,7 @@ footer{border-top:1px solid #315576;padding:18px;text-align:center;font:700 14px
     <p>Interested in inviting Theo to guest play, partnering as a business sponsor, or discussing another baseball opportunity? Send the details below to connect with Theo's parents.</p>
     <p class="contact-note">For guest-player invites, please include the team name and tournament information, including the tournament name, dates, and location.</p>
    </div>
-   <form class="theo-contact-form" id="theoContactForm" action="https://formsubmit.co/jlsvista@aol.com" method="POST" target="_self">
-    <input type="hidden" name="_subject" value="New guest-player or sponsorship inquiry for Theodore Vista">
-    <input type="hidden" name="_template" value="table">
-    <input type="hidden" name="_next" value="https://theodore-vista-cooperstown.pages.dev/contact-sent.html">
-    <input type="hidden" name="_url" value="https://theodore-vista-cooperstown.pages.dev/#contact">
+   <form class="theo-contact-form" id="theoContactForm" action="#contact" method="POST">
     <div class="contact-honey" aria-hidden="true"><label for="contactWebsite">Leave blank</label><input id="contactWebsite" type="text" name="_honey" tabindex="-1" autocomplete="off"></div>
     <div class="contact-fields">
      <div class="contact-field"><label for="contactName">Your name *</label><input id="contactName" name="name" type="text" maxlength="120" autocomplete="name" required></div>
@@ -422,9 +420,10 @@ footer{border-top:1px solid #315576;padding:18px;text-align:center;font:700 14px
      <div class="contact-field"><label for="contactOrg">Team or business</label><input id="contactOrg" name="team_or_business" type="text" maxlength="160" autocomplete="organization"></div>
      <div class="contact-field contact-full"><label for="contactMessage">Tell us about the opportunity *</label><textarea id="contactMessage" name="message" rows="6" maxlength="3000" required placeholder="Share the opportunity, dates, location, and anything else we should know."></textarea></div>
     </div>
-    <button class="btn contact-submit" type="submit">SEND INQUIRY ↗</button>
+    <button class="btn contact-submit" type="submit">OPEN EMAIL DRAFT ↗</button>
+    <button class="contact-copy" id="copyContactInquiry" type="button">COPY INQUIRY INSTEAD</button>
     <p class="contact-send-status" id="contactSendStatus" role="status" aria-live="polite" hidden></p>
-    <p class="contact-form-note">We look forward to hearing from you!</p>
+    <p class="contact-form-note">This opens a prepared message in your email app. Please press Send there to finish your inquiry.</p>
    </form>
   </div>
  </section>
@@ -586,15 +585,51 @@ if(new URLSearchParams(location.search).has('donation') || document.getElementBy
 (function(){
  const form=document.getElementById("theoContactForm");
  const status=document.getElementById("contactSendStatus");
- if(!form||!status)return;
- // Leave native HTML form submission untouched. Browsers navigate directly
- // to FormSubmit and FormSubmit redirects to Theo's own thank-you page.
- form.addEventListener("invalid",()=>{
-   status.hidden=false;
-   status.textContent="Please complete all required fields, including the inquiry type.";
- },true);
+ const copy=document.getElementById("copyContactInquiry");
+ if(!form||!status||!copy)return;
+ const recipient=["jlsvista","aol.com"].join("@");
+ const show=message=>{status.hidden=false;status.textContent=message;};
+ const fields=()=>Object.fromEntries(new FormData(form).entries());
+ const compose=()=>{
+  const data=fields();
+  const subject="Theo Vista #2 — "+data.inquiry_type;
+  const body=[
+   "Hello Theo's parents,","","I would like to get in touch about the following opportunity:","",
+   "Name: "+data.name,
+   "Email: "+data.email,
+   "Inquiry type: "+data.inquiry_type,
+   "Team or business: "+(data.team_or_business||"Not provided"),
+   "","Message:",data.message
+  ].join("\n");
+  return {subject,body};
+ };
+ const validate=()=>{
+  if(form.checkValidity())return true;
+  show("Please complete all required fields, including the inquiry type.");
+  form.reportValidity();
+  return false;
+ };
+ form.addEventListener("invalid",()=>{show("Please complete all required fields, including the inquiry type.");},true);
  form.addEventListener("input",()=>{status.hidden=true;status.textContent="";});
  form.addEventListener("change",()=>{status.hidden=true;status.textContent="";});
+ form.addEventListener("submit",event=>{
+  event.preventDefault();
+  if(!validate())return;
+  const data=compose();
+  show("Your email app should open with a prepared draft. Please press Send there to deliver your inquiry. If nothing opens, use Copy Inquiry Instead.");
+  location.href="mailto:"+recipient+"?subject="+encodeURIComponent(data.subject)+"&body="+encodeURIComponent(data.body);
+ });
+ copy.addEventListener("click",async()=>{
+  if(!validate())return;
+  const data=compose();
+  const text="To: "+recipient+"\nSubject: "+data.subject+"\n\n"+data.body;
+  try{
+   await navigator.clipboard.writeText(text);
+   show("Inquiry copied. Paste it into a new email and send it to Theo's parents.");
+  }catch(_){
+   show("Copy is unavailable in this browser. Please use Open Email Draft instead.");
+  }
+ });
 })();
 </script>
 </body></html>
