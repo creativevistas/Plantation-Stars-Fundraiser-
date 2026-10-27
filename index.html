@@ -663,7 +663,7 @@ html.hero-final-ready .hero-actions .btn:focus-visible{opacity:1;outline:3px sol
    </div>
    </div>
    <div class="career-video" aria-label="Theo baseball video">
-    <video id="theoSponsorVideo" controls playsinline preload="metadata" aria-label="Watch Theo's complete baseball sponsorship video">
+    <video id="theoSponsorVideo" autoplay muted loop controls playsinline webkit-playsinline preload="metadata" aria-label="Watch Theo's complete baseball sponsorship video">
      <source src="/theo-sponsorship-full-v2.mp4" type="video/mp4">
      Your browser does not support HTML5 video.
     </video>
@@ -962,6 +962,38 @@ if(new URLSearchParams(location.search).has('donation') || document.getElementBy
    if(loaded===2)document.documentElement.classList.add('hero-final-ready');
   };
   img.src=src;
+ });
+})();
+</script>
+<script>
+/* Muted, inline sponsorship autoplay; pause while offscreen to save mobile data. */
+(function(){
+ const video=document.getElementById('theoSponsorVideo');
+ if(!video)return;
+ video.defaultMuted=true;
+ video.muted=true;
+ const reducedMotion=window.matchMedia &&
+   window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+ if(reducedMotion)return;
+ let inView=false;
+ const playVisible=()=>{
+   if(inView && !document.hidden && video.paused)
+     video.play().catch(()=>{});
+ };
+ if('IntersectionObserver' in window){
+   const observer=new IntersectionObserver(entries=>{
+     inView=entries[0].isIntersecting;
+     if(inView)playVisible();
+     else if(!video.paused)video.pause();
+   },{threshold:0.2});
+   observer.observe(video);
+ }else{
+   inView=true;
+   playVisible();
+ }
+ document.addEventListener('visibilitychange',()=>{
+   if(document.hidden){if(!video.paused)video.pause();}
+   else playVisible();
  });
 })();
 </script>
