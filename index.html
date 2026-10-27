@@ -372,7 +372,7 @@ footer{border-top:1px solid #315576;padding:18px;text-align:center;font:700 14px
  <section class="container social-section" id="follow" aria-labelledby="follow-title">
   <div class="theo-ig-head">
    <div><h2 class="section-title left" id="follow-title">FOLLOW THE JOURNEY</h2>
-   <p class="social-subtitle">Theo's latest Instagram posts &amp; Reels — straight from @theo2official.</p></div>
+   <p class="social-subtitle">Theo's latest Instagram posts &amp; reels.</p></div>
    <a class="theo-ig-profile" href="https://www.instagram.com/theo2official/" target="_blank" rel="noopener noreferrer">INSTAGRAM ↗</a>
   </div>
   <div class="theo-ig-grid" id="theoIgGrid" aria-label="Theo's latest Instagram photos and Reels">
@@ -381,7 +381,7 @@ footer{border-top:1px solid #315576;padding:18px;text-align:center;font:700 14px
    <article class="theo-ig-post"><img src="/Unknown%203.jpeg" alt="Theo at bat" loading="lazy"><p>THEO #2 • THE JOURNEY</p></article>
   </div>
   <p class="theo-ig-status" id="theoIgStatus" role="status">Connect Instagram to display Theo's newest posts automatically. Showing baseball highlights for now.</p>
-  <p class="ig-caption"><a href="https://www.instagram.com/theo2official/" target="_blank" rel="noopener noreferrer">FOLLOW @THEO2OFFICIAL FOR MORE HIGHLIGHTS ↗</a></p>
+  <p class="ig-caption">Follow <a href="https://www.instagram.com/theo2official/" target="_blank" rel="noopener noreferrer">@theo2official</a> for more baseball highlights.</p>
  </section>
 </main>
 <footer>THEODORE VISTA • #2 • BASEBALL JOURNEY</footer>
@@ -527,9 +527,7 @@ if(new URLSearchParams(location.search).has('donation') || document.getElementBy
   article.appendChild(media);
   const body=element("div","theo-ig-post-body");
   body.appendChild(element("p","theo-ig-caption",post.caption||"Follow Theo's baseball journey. ⚾"));
-  const link=element("a","theo-ig-permalink","VIEW ON INSTAGRAM ↗");
-  link.href=post.permalink;link.target="_blank";link.rel="noopener noreferrer";
-  body.appendChild(link);article.appendChild(body);
+  article.appendChild(body);
   return article;
  }
  fetch("/api/instagram-feed",{cache:"no-store"})
