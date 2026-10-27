@@ -555,6 +555,36 @@ html.hero-approved-ready .hero-actions .btn:focus-visible{opacity:1;outline:3px 
  .social-section .ig-caption,.social-section .theo-ig-status{font-size:17px}
 }
 
+
+/* Final approved header artwork only. Existing nav, layout, copy and sections stay intact.
+   Old image remains visible until both final artwork files are present. */
+.hero-photo .hero-final-poster{display:none}
+html.hero-final-ready .hero{display:block;aspect-ratio:1920 / 893;min-height:0;max-width:1920px}
+html.hero-final-ready .hero-photo{position:absolute;inset:0;width:100%;height:100%;min-height:0}
+html.hero-final-ready .hero-photo .theo-poster,
+html.hero-final-ready .hero-photo .approved-poster{display:none}
+html.hero-final-ready .hero-photo .hero-final-poster{position:absolute;inset:0;display:block;width:100%;height:100%;z-index:1}
+html.hero-final-ready .hero-photo .hero-final-poster img{display:block;width:100%;height:100%;object-fit:contain;object-position:center;filter:none}
+html.hero-final-ready .hero-photo:before,html.hero-final-ready .hero-photo:after{display:none}
+html.hero-final-ready .hero-content{position:absolute;inset:0;padding:0;background:none;pointer-events:none;display:block;min-height:0}
+html.hero-final-ready .hero-content h1,
+html.hero-final-ready .hero-content .slogan,
+html.hero-final-ready .hero-content .intro{position:absolute!important;opacity:0!important;width:1px;height:1px;overflow:hidden;pointer-events:none}
+html.hero-final-ready .hero-actions{position:absolute;left:54%;top:82%;width:43%;height:8%;margin:0;display:flex;align-items:stretch;gap:3%;flex-wrap:nowrap;pointer-events:none}
+html.hero-final-ready .hero-actions .btn{display:flex;align-items:center;justify-content:center;flex:1 1 53%;width:auto;height:100%;min-height:0;padding:8px 10px;opacity:1;font-size:clamp(15px,1.35vw,23px);pointer-events:auto;white-space:nowrap}
+html.hero-final-ready .hero-actions .hero-secondary{flex:0 0 40%}
+html.hero-final-ready .hero-actions .btn:focus-visible{opacity:1;outline:3px solid #fff;outline-offset:2px}
+@media(max-width:980px){
+ html.hero-final-ready .hero{display:grid;grid-template-columns:1fr;aspect-ratio:auto;min-height:0}
+ html.hero-final-ready .hero-photo{position:relative;inset:auto;min-height:0;height:auto;width:100%;aspect-ratio:900 / 1365}
+ html.hero-final-ready .hero-photo .hero-final-poster{position:absolute;inset:0;width:100%;height:100%}
+ html.hero-final-ready .hero-photo .hero-final-poster img{object-fit:contain}
+ html.hero-final-ready .hero-content{position:relative;inset:auto;padding:15px 18px 25px;pointer-events:auto;background:linear-gradient(180deg,#041a35,#061c38)}
+ html.hero-final-ready .hero-actions{position:static;width:100%;height:auto;margin:0;display:flex;align-items:center;justify-content:center;gap:11px;flex-wrap:wrap;pointer-events:auto}
+ html.hero-final-ready .hero-actions .btn,
+ html.hero-final-ready .hero-actions .hero-secondary{display:inline-flex;align-items:center;justify-content:center;flex:1 1 155px;width:auto;height:auto;min-height:50px;opacity:1;font-size:clamp(15px,3.7vw,19px);padding:11px 12px;white-space:normal}
+}
+
 </style></head><body>
 
 <header class="site-header" id="top">
@@ -574,6 +604,10 @@ html.hero-approved-ready .hero-actions .btn:focus-visible{opacity:1;outline:3px 
    <picture class="approved-poster" aria-hidden="true">
     <source media="(max-width:980px)" srcset="/theo-hero-mobile-2.jpg">
     <img src="/theo-hero-desktop.jpg" alt="">
+   </picture>
+   <picture class="hero-final-poster" aria-hidden="true">
+    <source media="(max-width:980px)" srcset="/theo-header-mobile-final.jpg">
+    <img src="/theo-header-desktop-final.jpg" alt="">
    </picture>
    <span class="hero-ghost-number" aria-hidden="true">#2</span>
    <button id="theoHeroSound" class="hero-sound" type="button" aria-label="Turn header video sound on" title="Turn sound on" hidden>🔇</button>
@@ -913,6 +947,20 @@ if(new URLSearchParams(location.search).has('donation') || document.getElementBy
  sources.forEach(function(src){
   const img=new Image();
   img.onload=function(){ready++;if(ready===sources.length)document.documentElement.classList.add('hero-approved-ready')};
+  img.src=src;
+ });
+})();
+</script>
+<script>
+/* Activate the new artwork only when both assets are uploaded to this branch. */
+(function(){
+ let loaded=0;
+ ['/theo-header-desktop-final.jpg','/theo-header-mobile-final.jpg'].forEach(function(src){
+  const img=new Image();
+  img.onload=function(){
+   loaded++;
+   if(loaded===2)document.documentElement.classList.add('hero-final-ready');
+  };
   img.src=src;
  });
 })();
