@@ -409,9 +409,10 @@ footer{border-top:1px solid #315576;padding:18px;text-align:center;font:700 14px
     <p>Interested in inviting Theo to guest play, partnering as a business sponsor, or discussing another baseball opportunity? Send the details below to connect with Theo's parents.</p>
     <p class="contact-note">For guest-player invites, please include the team name and tournament information, including the tournament name, dates, and location.</p>
    </div>
-   <form class="theo-contact-form" id="theoContactForm" action="#contact" method="POST">
+   <form class="theo-contact-form" id="theoContactForm" action="https://formsubmit.co/jlsvista@aol.com" method="POST">
     <input type="hidden" name="_subject" value="New guest-player or sponsorship inquiry for Theodore Vista">
     <input type="hidden" name="_template" value="table">
+    <input type="hidden" name="_next" value="https://theodore-vista-cooperstown.pages.dev/contact-sent.html">
     <input type="hidden" name="_url" value="https://theodore-vista-cooperstown.pages.dev/#contact">
     <div class="contact-honey" aria-hidden="true"><label for="contactWebsite">Leave blank</label><input id="contactWebsite" type="text" name="_honey" tabindex="-1" autocomplete="off"></div>
     <div class="contact-fields">
@@ -422,7 +423,6 @@ footer{border-top:1px solid #315576;padding:18px;text-align:center;font:700 14px
      <div class="contact-field contact-full"><label for="contactMessage">Tell us about the opportunity *</label><textarea id="contactMessage" name="message" rows="6" maxlength="3000" required placeholder="Share the opportunity, dates, location, and anything else we should know."></textarea></div>
     </div>
     <button class="btn contact-submit" type="submit">SEND INQUIRY ↗</button>
-    <p id="contactSendStatus" class="contact-send-status" role="status" aria-live="polite" hidden></p>
     <p class="contact-form-note">We look forward to hearing from you!</p>
    </form>
   </div>
@@ -581,48 +581,4 @@ if(new URLSearchParams(location.search).has('donation') || document.getElementBy
 })();
 </script>
 
-<script>
-(function(){
- const form=document.getElementById("theoContactForm");
- const status=document.getElementById("contactSendStatus");
- const button=form?.querySelector('button[type="submit"]');
- if(!form||!status||!button)return;
- form.addEventListener("submit",async event=>{
-  event.preventDefault();
-  if(!form.reportValidity()||button.disabled)return;
-  button.disabled=true;
-  button.textContent="SENDING…";
-  status.hidden=false;
-  status.textContent="Sending your inquiry…";
-  const controller=new AbortController();
-  const timer=setTimeout(()=>controller.abort(),15000);
-  try{
-   const payload=Object.fromEntries(new FormData(form).entries());
-   const response=await fetch("/api/contact",{
-    method:"POST",
-    headers:{"Content-Type":"application/json","Accept":"application/json"},
-    body:JSON.stringify(payload),
-    signal:controller.signal
-   });
-   const result=await response.json();
-   if(!response.ok || result.ok!==true){
-    status.textContent=result.code==="activation_required"
-     ?"Our contact form is awaiting activation. Please try again later."
-     :(result.error||"Sorry, your inquiry could not be sent. Please try again.");
-    return;
-   }
-   status.textContent="Thank you! Your inquiry has been submitted.";
-   form.reset();
-  }catch(error){
-   status.textContent=error?.name==="AbortError"
-    ?"The contact service is taking too long. Please try again."
-    :"Sorry, we couldn't send your inquiry. Please try again.";
-  }finally{
-   clearTimeout(timer);
-   button.disabled=false;
-   button.textContent="SEND INQUIRY ↗";
-  }
- });
-})();
-</script>
 </body></html>
