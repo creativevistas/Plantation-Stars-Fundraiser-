@@ -585,6 +585,107 @@ html.hero-final-ready .hero-actions .btn:focus-visible{opacity:1;outline:3px sol
  html.hero-final-ready .hero-actions .hero-secondary{display:inline-flex;align-items:center;justify-content:center;flex:1 1 155px;width:auto;height:auto;min-height:50px;opacity:1;font-size:clamp(15px,3.7vw,19px);padding:11px 12px;white-space:normal}
 }
 
+
+/* Fall 2026 approved artwork: do not modify menu, content, or other sections.
+   Render full image naturally at all widths (no cropping or fixed heights).
+   Retain clickable real Support and View Stats buttons below each artwork. */
+.hero-photo .hero-2026-poster{display:none}
+html.hero-2026-ready .hero{
+ display:block;
+ height:auto;
+ min-height:0;
+ aspect-ratio:auto;
+ overflow:hidden;
+}
+html.hero-2026-ready .hero-photo{
+ position:relative;
+ inset:auto;
+ display:block;
+ min-height:0;
+ height:auto;
+ width:100%;
+ overflow:hidden;
+}
+html.hero-2026-ready .hero-photo .theo-poster,
+html.hero-2026-ready .hero-photo .approved-poster,
+html.hero-2026-ready .hero-photo .hero-final-poster{display:none}
+html.hero-2026-ready .hero-photo .hero-2026-poster{
+ display:block;
+ position:relative;
+ inset:auto;
+ width:100%;
+ height:auto;
+ z-index:1;
+}
+html.hero-2026-ready .hero-photo .hero-2026-poster img{
+ display:block;
+ width:100%;
+ height:auto;
+ max-width:100%;
+ object-fit:contain;
+ object-position:center;
+ filter:none;
+}
+html.hero-2026-ready .hero-photo:before,
+html.hero-2026-ready .hero-photo:after{display:none}
+html.hero-2026-ready .hero-content{
+ position:relative;
+ inset:auto;
+ display:block;
+ min-height:0;
+ padding:12px 22px 18px;
+ background:linear-gradient(112deg,#06162f,#091f44,#06162f);
+ pointer-events:auto;
+}
+html.hero-2026-ready .hero-content h1,
+html.hero-2026-ready .hero-content .slogan,
+html.hero-2026-ready .hero-content .intro{
+ position:absolute!important;
+ width:1px!important;
+ height:1px!important;
+ padding:0!important;
+ margin:0!important;
+ overflow:hidden!important;
+ opacity:0!important;
+ pointer-events:none;
+}
+html.hero-2026-ready .hero-actions{
+ position:static;
+ width:100%;
+ height:auto;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ flex-wrap:wrap;
+ gap:14px;
+ margin:0;
+ pointer-events:auto;
+}
+html.hero-2026-ready .hero-actions .btn,
+html.hero-2026-ready .hero-actions .hero-secondary{
+ display:inline-flex;
+ align-items:center;
+ justify-content:center;
+ flex:0 1 295px;
+ width:auto;
+ height:auto;
+ min-height:50px;
+ opacity:1;
+ font-size:clamp(17px,1.55vw,22px);
+ padding:12px 20px;
+ pointer-events:auto;
+ white-space:normal;
+}
+html.hero-2026-ready .hero-actions .btn:focus-visible{opacity:1;outline:3px solid #fff;outline-offset:3px}
+@media(max-width:980px){
+ html.hero-2026-ready .hero{display:block;aspect-ratio:auto;min-height:0}
+ html.hero-2026-ready .hero-photo{position:relative;aspect-ratio:auto;height:auto;min-height:0}
+ html.hero-2026-ready .hero-content{position:relative;padding:13px 16px 20px}
+ html.hero-2026-ready .hero-actions{gap:11px}
+ html.hero-2026-ready .hero-actions .btn,
+ html.hero-2026-ready .hero-actions .hero-secondary{flex:1 1 155px;font-size:clamp(15px,3.9vw,19px);min-height:50px;padding:11px 10px}
+}
+
 </style></head><body>
 
 <header class="site-header" id="top">
@@ -608,6 +709,10 @@ html.hero-final-ready .hero-actions .btn:focus-visible{opacity:1;outline:3px sol
    <picture class="hero-final-poster" aria-hidden="true">
     <source media="(max-width:980px)" srcset="/theo-header-mobile-final.jpg">
     <img src="/theo-header-desktop-final.jpg" alt="">
+   </picture>
+   <picture class="hero-2026-poster" aria-hidden="true">
+    <source media="(max-width:980px)" srcset="/Theodore%20Vista%20%232_%20Bigger%20Purpose.png">
+    <img src="/Sunset%20Softball%20Banner_%20Theodore%20Vista%20%232.png" alt="" fetchpriority="high">
    </picture>
    <span class="hero-ghost-number" aria-hidden="true">#2</span>
    <button id="theoHeroSound" class="hero-sound" type="button" aria-label="Turn header video sound on" title="Turn sound on" hidden>🔇</button>
@@ -994,6 +1099,21 @@ if(new URLSearchParams(location.search).has('donation') || document.getElementBy
  document.addEventListener('visibilitychange',()=>{
    if(document.hidden){if(!video.paused)video.pause();}
    else playVisible();
+ });
+})();
+</script>
+<script>
+/* Swap headers only when both new assets are confirmed to load. */
+(function(){
+ const imgs=['/Sunset%20Softball%20Banner_%20Theodore%20Vista%20%232.png','/Theodore%20Vista%20%232_%20Bigger%20Purpose.png'];
+ let ok=0;
+ imgs.forEach(function(src){
+  const img=new Image();
+  img.onload=function(){
+   ok++;
+   if(ok===imgs.length)document.documentElement.classList.add('hero-2026-ready');
+  };
+  img.src=src;
  });
 })();
 </script>
