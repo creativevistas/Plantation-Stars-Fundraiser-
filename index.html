@@ -387,6 +387,25 @@ html.hero-approved-ready .hero-actions .btn:focus-visible{opacity:1;outline:3px 
  html.hero-approved-ready .hero-actions .hero-secondary{flex:1 1 180px;width:auto;height:auto;min-height:49px;display:inline-flex;align-items:center;justify-content:center;opacity:1;font-size:clamp(15px,3.7vw,20px);padding:11px 13px;white-space:nowrap}
 }
 
+
+/* Approved portrait artwork on phones: show all flags and every part of the poster.
+   The image contains its own type and button art. Only link hit-areas are overlaid. */
+@media (max-width:980px){
+ html.hero-approved-ready .hero{display:block;position:relative;min-height:0;aspect-ratio:2 / 3;width:100%;overflow:hidden}
+ html.hero-approved-ready .hero-photo{position:absolute;inset:0;width:100%;height:100%;min-height:0;aspect-ratio:auto;overflow:hidden}
+ html.hero-approved-ready .hero-photo .approved-poster{position:absolute;inset:0;width:100%;height:100%;display:block}
+ html.hero-approved-ready .hero-photo .approved-poster img{display:block;width:100%;height:100%;object-fit:contain;object-position:center;filter:none}
+ html.hero-approved-ready .hero-content{position:absolute;inset:0;padding:0;display:block;min-height:0;background:none;pointer-events:none}
+ html.hero-approved-ready .hero-content h1,
+ html.hero-approved-ready .hero-content .slogan,
+ html.hero-approved-ready .hero-content .intro{position:absolute;opacity:0;width:1px;height:1px;overflow:hidden;pointer-events:none}
+ html.hero-approved-ready .hero-actions{position:absolute;left:6.9%;top:88.5%;width:86%;height:6.4%;margin:0;display:flex;align-items:stretch;gap:3%;flex-wrap:nowrap;pointer-events:none}
+ html.hero-approved-ready .hero-actions .btn,
+ html.hero-approved-ready .hero-actions .hero-secondary{display:block;opacity:0;flex:0 0 56.1%;width:56.1%;height:100%;min-height:0;padding:0;margin:0;font-size:0;pointer-events:auto}
+ html.hero-approved-ready .hero-actions .hero-secondary{flex-basis:40.9%;width:40.9%}
+ html.hero-approved-ready .hero-actions .btn:focus-visible{opacity:1;outline:3px solid white;outline-offset:-2px}
+}
+
 </style></head><body>
 
 <header class="site-header" id="top">
