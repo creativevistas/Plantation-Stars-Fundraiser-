@@ -489,7 +489,7 @@ if(new URLSearchParams(location.search).has('donation') || document.getElementBy
  }
  fetch("/api/instagram-feed",{cache:"no-store"})
  .then(async r=>{const data=await r.json();if(!r.ok||!data.ok||!data.posts?.length)throw Error("Not available");return data.posts})
- .then(posts=>{grid.replaceChildren(...posts.map(render));status.textContent="Latest posts from @theo2official · Updated automatically";})
+ .then(posts=>{grid.replaceChildren(...posts.slice(0,9).map(render));status.textContent="Latest 9 posts from @theo2official · Hover over playable Reels to preview · Updated automatically";})
  .catch(()=>{status.textContent="Instagram updates are temporarily unavailable. Theo's photo highlights are displayed instead.";});
 })();
 </script>
