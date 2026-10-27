@@ -448,6 +448,98 @@ html.hero-approved-ready .hero-actions .btn:focus-visible{opacity:1;outline:3px 
  .site-header .site-nav>a{font-size:14px;letter-spacing:.15px}
 }
 
+
+/* Consistent 2026 typography scale across About, Support, Stats, Follow and Contact.
+   Keep the approved hero images and all interactive behaviors unchanged. */
+:root{
+  --theo-body-size:clamp(18px,1.45vw,21px);
+  --theo-heading-size:clamp(38px,4.1vw,56px);
+  --theo-body-leading:1.6;
+}
+.about-bio h2,
+.career-support h2,
+.contact-copy h2,
+.stat-section .section-title,
+.social-section .section-title{
+  font-family:'Barlow Condensed',Impact,sans-serif;
+  font-size:var(--theo-heading-size);
+  font-weight:900;
+  line-height:1.04;
+  letter-spacing:.3px;
+}
+.about-bio h2,.career-support h2,.contact-copy h2{margin-bottom:20px}
+.stat-section .section-title,.social-section .section-title{margin-bottom:25px}
+.about-bio-inner{grid-template-columns:minmax(270px,.34fr) minmax(0,1fr)}
+.about-bio p,
+.career-support .career-intro,
+.career-support .current-campaign p,
+.contact-section .contact-copy p:not(.contact-kicker),
+.social-section .social-subtitle{
+  font-family:'Barlow',Arial,sans-serif;
+  font-size:var(--theo-body-size);
+  line-height:var(--theo-body-leading);
+}
+.contact-section .contact-copy .contact-note{
+  font-size:var(--theo-body-size)!important;
+  line-height:var(--theo-body-leading);
+}
+.career-support .current-campaign strong{
+  font-family:'Barlow Condensed',Impact,sans-serif;
+  font-size:clamp(24px,2.1vw,30px);
+}
+.career-support .donate-card-kicker{
+  font-size:clamp(18px,1.55vw,21px);
+  letter-spacing:1.6px;
+  line-height:1.2;
+}
+.career-support .career-donate-card .tracker-totals,
+.career-support .career-donate-card .tracker-totals span,
+.career-support .career-donate-card .donate-card-note{
+  font-size:var(--theo-body-size);
+  line-height:1.45;
+}
+.contact-section .contact-field label,
+.contact-section .contact-field input,
+.contact-section .contact-field select,
+.contact-section .contact-field textarea,
+.contact-section .contact-form-note,
+.contact-section .contact-send-status{
+  font-size:clamp(17px,1.3vw,19px);
+  line-height:1.45;
+}
+.contact-section .contact-field input,
+.contact-section .contact-field select,
+.contact-section .contact-field textarea{min-height:50px}
+.site-header .site-nav>a{
+  font-size:clamp(19px,1.65vw,23px);
+  font-weight:800;
+  letter-spacing:1.2px;
+  padding:9px 0;
+}
+.site-header .site-nav{gap:clamp(14px,2vw,31px)}
+.site-header .brand{font-size:clamp(20px,1.8vw,25px)}
+@media(max-width:900px){
+ .about-bio-inner{grid-template-columns:1fr}
+}
+@media(max-width:760px){
+ :root{--theo-body-size:18px;--theo-heading-size:clamp(34px,8.7vw,43px)}
+ .about-bio h2,.career-support h2,.contact-copy h2{margin-bottom:15px}
+ .stat-section .section-title,.social-section .section-title{margin-bottom:19px}
+ .site-header .site-nav{column-gap:clamp(12px,3.5vw,19px);row-gap:4px}
+ .site-header .site-nav>a{font-size:clamp(16px,4.3vw,19px);letter-spacing:.35px;padding:8px 0}
+ .site-header .brand{font-size:20px}
+ .career-support .donate-card-kicker{font-size:18px}
+ .contact-section .contact-field label,
+ .contact-section .contact-field input,
+ .contact-section .contact-field select,
+ .contact-section .contact-field textarea,
+ .contact-section .contact-form-note,
+ .contact-section .contact-send-status{font-size:17px}
+}
+@media(max-width:360px){
+ .site-header .site-nav>a{font-size:16px;letter-spacing:.15px}
+}
+
 </style></head><body>
 
 <header class="site-header" id="top">
