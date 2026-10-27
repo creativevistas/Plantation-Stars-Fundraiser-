@@ -686,6 +686,10 @@ html.hero-2026-ready .hero-actions .btn:focus-visible{opacity:1;outline:3px soli
  html.hero-2026-ready .hero-actions .hero-secondary{flex:1 1 155px;font-size:clamp(15px,3.9vw,19px);min-height:50px;padding:11px 10px}
 }
 
+
+/* 2026 image already includes the hero message; remove empty action band. */
+html.hero-2026-ready .hero-content{display:none!important}
+
 </style></head><body>
 
 <header class="site-header" id="top">
@@ -696,7 +700,7 @@ html.hero-2026-ready .hero-actions .btn:focus-visible{opacity:1;outline:3px soli
 </header>
 <main>
  <div class="about-player" id="about">
- <section class="hero" aria-labelledby="hero-title">
+ <section class="hero" aria-labelledby="hero-title" aria-label="Theodore Vista number 2 — Big Plays. Bigger Purpose.">
   <div class="hero-photo">
    <picture class="theo-poster">
     <source media="(max-width:760px)" srcset="/theo-illustrated-header-mobile.jpg">
@@ -721,10 +725,7 @@ html.hero-2026-ready .hero-actions .btn:focus-visible{opacity:1;outline:3px soli
    <h1 id="hero-title"><span class="road">THEODORE</span><span class="hero-name-row"><span class="town">VISTA</span><span class="year">#2</span></span></h1>
    <div class="slogan">BIG PLAYS. BIGGER PURPOSE.</div>
    <p class="intro">Meet Theodore Vista, a 12U AAA/Majors travel baseball player and versatile utility player. Explore his game highlights, training, and progress on the field, and discover ways to support his journey through donations, business sponsorships, and guest-player opportunities.</p>
-   <div class="hero-actions">
-    <a class="btn hero-primary" href="#campaign">SUPPORT THE JOURNEY <span aria-hidden="true">→</span></a>
-    <a class="btn hero-secondary" href="#stats">VIEW STATS <span aria-hidden="true">↓</span></a>
-   </div>
+
   </div>
  </section>
  <section class="about-bio" aria-labelledby="readable-about-heading">
