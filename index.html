@@ -690,6 +690,21 @@ html.hero-2026-ready .hero-actions .btn:focus-visible{opacity:1;outline:3px soli
 /* 2026 image already includes the hero message; remove empty action band. */
 html.hero-2026-ready .hero-content{display:none!important}
 
+
+/* Overlay sound activation without adding text beneath the video. */
+.sponsor-video-wrap{position:relative;width:100%;max-width:440px}
+.sponsor-video-wrap video{max-width:none}
+.sponsor-sound-button{
+ position:absolute;z-index:3;right:14px;top:14px;
+ display:inline-flex;align-items:center;justify-content:center;
+ padding:10px 14px;min-height:42px;max-width:calc(100% - 28px);
+ border:1px solid #ffffffba;border-radius:7px;
+ background:#061831e8;color:#fff;cursor:pointer;
+ font:800 16px/1.2 'Barlow Condensed',Arial,sans-serif;letter-spacing:.7px;
+ box-shadow:0 3px 14px #0008;
+}
+.sponsor-sound-button:focus-visible{outline:3px solid #ff4964;outline-offset:3px}
+.sponsor-sound-button:hover{background:#c91d3b}
 </style></head><body>
 
 <header class="site-header" id="top">
@@ -769,11 +784,13 @@ html.hero-2026-ready .hero-content{display:none!important}
    </div>
    </div>
    <div class="career-video" aria-label="Theo baseball video">
-    <video id="theoSponsorVideo" autoplay muted loop controls playsinline webkit-playsinline preload="metadata" aria-label="Watch Theo's complete baseball sponsorship video">
-     <source src="/theo-sponsorship-full-v2.mp4" type="video/mp4">
-     Your browser does not support HTML5 video.
-    </video>
-    
+    <div class="sponsor-video-wrap">
+     <video id="theoSponsorVideo" autoplay muted loop controls playsinline webkit-playsinline preload="metadata" aria-label="Watch Theo's complete baseball sponsorship video">
+      <source src="/theo-sponsorship-full-v2.mp4" type="video/mp4">
+      Your browser does not support HTML5 video.
+     </video>
+     <button type="button" class="sponsor-sound-button" id="theoSponsorSound" aria-label="Turn video sound on" aria-pressed="false">🔊 TURN ON SOUND</button>
+    </div>
    </div>
   </div>
  </section>
@@ -1072,19 +1089,52 @@ if(new URLSearchParams(location.search).has('donation') || document.getElementBy
 })();
 </script>
 <script>
-/* Muted, inline sponsorship autoplay; pause while offscreen to save mobile data. */
+/* Try audible autoplay if supported. Browser restrictions fall back to muted
+   autoplay; the visitor can always activate sound with one tap. */
 (function(){
  const video=document.getElementById('theoSponsorVideo');
- if(!video)return;
+ const sound=document.getElementById('theoSponsorSound');
+ if(!video||!sound)return;
  video.defaultMuted=true;
  video.muted=true;
+ let inView=false;
+ let triedAudible=false;
  const reducedMotion=window.matchMedia &&
    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+ const updateSound=()=>{
+   const muted=video.muted||video.volume===0;
+   sound.textContent=muted?'🔊 TURN ON SOUND':'🔇 MUTE VIDEO';
+   sound.setAttribute('aria-label',muted?'Turn video sound on':'Mute video');
+   sound.setAttribute('aria-pressed',String(!muted));
+ };
+ sound.addEventListener('click',()=>{
+   video.muted=!video.muted;
+   triedAudible=true;
+   updateSound();
+   if(video.paused)video.play().catch(()=>{});
+ });
+ video.addEventListener('volumechange',updateSound);
+ updateSound();
  if(reducedMotion)return;
- let inView=false;
- const playVisible=()=>{
-   if(inView && !document.hidden && video.paused)
-     video.play().catch(()=>{});
+ const playVisible=async()=>{
+   if(!inView||document.hidden)return;
+   if(!triedAudible){
+     triedAudible=true;
+     video.muted=false;
+     try{
+       await video.play();
+     }catch(_){
+       video.muted=true;
+       video.play().catch(()=>{});
+     }
+     updateSound();
+   }else if(video.paused){
+     video.play().catch(()=>{
+       video.muted=true;
+       updateSound();
+       video.play().catch(()=>{});
+     });
+   }
  };
  if('IntersectionObserver' in window){
    const observer=new IntersectionObserver(entries=>{
