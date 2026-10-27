@@ -591,40 +591,45 @@ if(new URLSearchParams(location.search).has('donation') || document.getElementBy
  const status=document.getElementById("contactSendStatus");
  const frame=document.getElementById("theoContactResponse");
  if(!form||!button||!status||!frame)return;
- let pending=false, timer=null;
+ let submitted=false;
  const show=message=>{status.hidden=false;status.textContent=message;};
- const restore=()=>{pending=false;button.disabled=false;button.textContent="SEND INQUIRY ↗";if(timer){clearTimeout(timer);timer=null;}};
+ const resetForNewInquiry=()=>{
+   if(submitted){
+     submitted=false;
+     button.disabled=false;
+     button.textContent="SEND INQUIRY ↗";
+   }
+   status.hidden=true;status.textContent="";
+ };
  form.addEventListener("invalid",()=>{
    show("Please complete all required fields, including the inquiry type.");
  },true);
- form.addEventListener("input",()=>{if(!pending){status.hidden=true;status.textContent="";}});
- form.addEventListener("change",()=>{if(!pending){status.hidden=true;status.textContent="";}});
- // Keep the browser's native POST intact; it goes into the invisible frame.
+ form.addEventListener("input",resetForNewInquiry);
+ form.addEventListener("change",resetForNewInquiry);
+ // FormSubmit receives a regular browser POST in a hidden frame.
+ // A cross-origin iframe does not reliably expose the provider's response.
  form.addEventListener("submit",event=>{
-   if(pending){event.preventDefault();return;}
+   if(submitted){event.preventDefault();return;}
    if(!form.checkValidity()){event.preventDefault();form.reportValidity();return;}
-   pending=true;
+   submitted=true;
    button.disabled=true;
-   button.textContent="SENDING…";
-   show("Sending your inquiry…");
-   timer=setTimeout(()=>{
-     if(!pending)return;
-     restore();
-     show("Your inquiry was submitted, but we couldn't verify the confirmation. Please avoid resubmitting immediately.");
-   },20000);
+   button.textContent="INQUIRY SUBMITTED";
+   // Acknowledge sending the POST, not an unverified email delivery.
+   show("Thank you! Your inquiry has been submitted.");
  });
+ // If FormSubmit redirects to our page, we can additionally confirm success.
  frame.addEventListener("load",()=>{
-   if(!pending)return;
-   // Only a redirect back from FormSubmit to our confirmation page counts as verified.
+   if(!submitted)return;
    let confirmed=false;
    try{
      const url=new URL(frame.contentWindow.location.href);
-     confirmed=url.origin===location.origin && url.pathname==="/contact-sent.html" && url.searchParams.get("embedded")==="1";
-   }catch(_){ /* External response; browser correctly restricts access. */ }
+     confirmed=url.origin===location.origin &&
+       url.pathname==="/contact-sent.html" &&
+       url.searchParams.get("embedded")==="1";
+   }catch(_){ /* Cross-origin response is not readable by this page. */ }
    if(confirmed){
-     restore();
-     form.reset();
      show("Thank you! Your inquiry has been sent. We look forward to hearing from you!");
+     form.reset();
    }
  });
 })();
