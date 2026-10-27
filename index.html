@@ -411,8 +411,8 @@ footer{border-top:1px solid #315576;padding:18px;text-align:center;font:700 14px
     <p>Interested in inviting Theo to guest play, partnering as a business sponsor, or discussing another baseball opportunity? Send the details below to connect with Theo's parents.</p>
     <p class="contact-note">For guest-player invites, please include the team name and tournament information, including the tournament name, dates, and location.</p>
    </div>
-   <form class="theo-contact-form" id="theoContactForm" action="#contact" method="POST">
-    <input type="hidden" name="access_key" id="contactWeb3FormsKey" value="">
+   <form class="theo-contact-form" id="theoContactForm" action="https://api.web3forms.com/submit" method="POST">
+    <input type="hidden" name="access_key" id="contactWeb3FormsKey" value="9ae3826c-0bd0-40ae-a508-f7d9c32e4090">
     <input type="hidden" name="subject" value="New guest-player or sponsorship inquiry for Theodore Vista">
     <input type="checkbox" name="botcheck" value="1" hidden tabindex="-1" aria-hidden="true">
     <div class="contact-honey" aria-hidden="true"><label for="contactWebsite">Leave blank</label><input id="contactWebsite" type="text" name="_honey" tabindex="-1" autocomplete="off"></div>
@@ -423,10 +423,10 @@ footer{border-top:1px solid #315576;padding:18px;text-align:center;font:700 14px
      <div class="contact-field"><label for="contactOrg">Team or business</label><input id="contactOrg" name="team_or_business" type="text" maxlength="160" autocomplete="organization"></div>
      <div class="contact-field contact-full"><label for="contactMessage">Tell us about the opportunity *</label><textarea id="contactMessage" name="message" rows="6" maxlength="3000" required placeholder="Share the opportunity, dates, location, and anything else we should know."></textarea></div>
     </div>
-    <button class="btn contact-submit" type="submit">OPEN EMAIL DRAFT ↗</button>
-    <button class="contact-copy" id="contactAlternate" type="button">COPY INQUIRY INSTEAD</button>
+    <button class="btn contact-submit" type="submit">SEND INQUIRY ↗</button>
+    <button class="contact-copy" id="contactAlternate" type="button">OPEN EMAIL DRAFT INSTEAD</button>
     <p class="contact-send-status" id="contactSendStatus" role="status" aria-live="polite" hidden></p>
-    <p class="contact-form-note" id="contactMethodNote">This opens a prepared email in your email app. Please press Send there to deliver your inquiry.</p>
+    <p class="contact-form-note" id="contactMethodNote">We look forward to hearing from you!</p>
    </form>
   </div>
  </section>
