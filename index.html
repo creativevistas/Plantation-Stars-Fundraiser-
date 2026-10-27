@@ -189,6 +189,8 @@ footer{border-top:1px solid #315576;padding:18px;text-align:center;font:700 14px
 .theo-ig-media .theo-ig-play{position:absolute;z-index:3;top:50%;left:50%;transform:translate(-50%,-50%);width:58px;height:58px;border:2px solid #ffffffda;border-radius:50%;background:#05182bc9;color:white;font-size:26px;display:grid;place-items:center;cursor:pointer;transition:opacity .2s}
 .theo-ig-post:hover .theo-ig-play.is-playing{opacity:0}
 .theo-ig-media .theo-ig-play.is-playing:focus-visible{opacity:1}
+.theo-ig-media a.theo-ig-play{text-decoration:none;font-family:Arial,sans-serif;box-shadow:0 4px 16px #0009}
+.theo-ig-media a.theo-ig-play:hover{background:#dd2345;border-color:white;transform:translate(-50%,-50%) scale(1.1)}
 .theo-ig-type{position:absolute;top:13px;right:12px;z-index:2;border-radius:5px;background:#061a2fe0;padding:6px 9px;font:800 13px 'Barlow Condensed',sans-serif;letter-spacing:1.4px}
 .theo-ig-post-body{padding:14px 15px 18px;min-height:104px}
 .theo-ig-post-body p,.theo-ig-post>p{font-size:15px;line-height:1.42;color:#dbe9f5;margin:0}
@@ -443,9 +445,10 @@ if(new URLSearchParams(location.search).has('donation') || document.getElementBy
  function render(post){
   const article=element("article","theo-ig-post");
   const media=element("div","theo-ig-media");
-  const isVideo=post.type==="VIDEO" && post.video;
+  const isReel=post.type==="VIDEO";
+  const hasVideoFile=isReel && Boolean(post.video);
   const poster=post.thumbnail || "";
-  if(isVideo){
+  if(hasVideoFile){
    const video=document.createElement("video");
    video.src=post.video;video.playsInline=true;video.muted=true;video.loop=true;video.preload="none";
    if(poster)video.poster=poster;
@@ -462,9 +465,20 @@ if(new URLSearchParams(location.search).has('donation') || document.getElementBy
    document.addEventListener("visibilitychange",()=>{if(document.hidden)pause(video,play)});
    media.appendChild(play);
   }else{
-   const img=document.createElement("img");img.src=poster;img.alt="Theo Instagram post";img.loading="lazy";media.appendChild(img);
+   const img=document.createElement("img");
+   img.src=poster;img.alt=isReel?"Cover image for Theo's Instagram Reel":"Theo Instagram post";
+   img.loading="lazy";media.appendChild(img);
+   if(isReel){
+    // Meta sometimes excludes video files (for example licensed-audio Reels).
+    // Keep the Reel cover/caption and send viewers to its original on Instagram.
+    const watch=element("a","theo-ig-play theo-ig-play-link","▶");
+    watch.href=post.permalink;watch.target="_blank";watch.rel="noopener noreferrer";
+    watch.title="Watch Reel on Instagram";
+    watch.setAttribute("aria-label","Watch Reel on Instagram");
+    media.appendChild(watch);
+   }
   }
-  media.appendChild(element("span","theo-ig-type",isVideo?"REEL":post.type==="CAROUSEL"?"ALBUM":"PHOTO"));
+  media.appendChild(element("span","theo-ig-type",isReel?"REEL":post.type==="CAROUSEL"?"ALBUM":"PHOTO"));
   article.appendChild(media);
   const body=element("div","theo-ig-post-body");
   body.appendChild(element("p","theo-ig-caption",post.caption||"Follow Theo's baseball journey. ⚾"));
