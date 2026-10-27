@@ -231,7 +231,14 @@ footer{border-top:1px solid #315576;padding:18px;text-align:center;font:700 14px
 .hero:before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:repeating-linear-gradient(115deg,transparent 0 250px,#e8f7ff07 252px 255px,transparent 257px 500px),radial-gradient(ellipse at 97% 90%,#3377ab55,transparent 45%)}
 .hero:after{content:"";position:absolute;z-index:3;pointer-events:none;inset:auto 0 0;height:12px;background:linear-gradient(90deg,#f21f43,#b8cedd 60%,transparent);clip-path:polygon(0 55%,100% 0,100% 17%,0 100%);opacity:.65}
 .hero-photo{position:relative;z-index:1;min-height:690px;overflow:hidden;isolation:isolate;background:#06182e}
-.hero-photo>img{position:absolute;inset:0;width:100%;height:100%;display:block;object-fit:cover;object-position:50% 45%;filter:none;image-rendering:auto}
+.hero-photo>img{position:absolute;inset:0;width:100%;height:100%;display:block;object-fit:cover;object-position:50% 45%;filter:none;image-rendering:auto;z-index:0}
+/* Video occupies the existing media box; no hero grid, mobile height or text alignment changes. */
+.hero-reel{position:absolute;inset:0;width:100%;height:100%;z-index:1;object-fit:contain;object-position:center;display:block;opacity:0;background:#06182e;transition:opacity .3s}
+.hero-reel.is-ready{opacity:1}
+.hero-sound{position:absolute;z-index:4;bottom:19px;left:19px;display:flex;align-items:center;justify-content:center;width:43px;height:43px;border:1px solid #ffffffaa;border-radius:50%;background:#051527b8;color:white;font-size:22px;line-height:1;box-shadow:0 3px 13px #0009;cursor:pointer}
+.hero-sound[hidden]{display:none}
+.hero-sound:focus-visible{outline:3px solid #fff;outline-offset:3px}
+@media(prefers-reduced-motion:reduce){.hero-reel{transition:none}}
 .hero-photo:before{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;background:radial-gradient(ellipse at 0 24%,#f0264a55,transparent 37%)}
 .hero-photo:after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(90deg,#ea224530,transparent 16%,transparent 62%,#031529 100%),linear-gradient(0deg,#06182d90,transparent 26%,transparent 80%,#03172991),repeating-linear-gradient(120deg,transparent 0 165px,#ee254925 168px 171px,transparent 174px 320px)}
 .hero-ghost-number{position:absolute;top:27%;left:1%;z-index:1;pointer-events:none;font:italic 900 clamp(140px,23vw,350px)/1 'Barlow Condensed',sans-serif;letter-spacing:-12px;-webkit-text-stroke:2px #ffffff64;color:transparent;opacity:.64;transform:rotate(-9deg)}
@@ -331,7 +338,11 @@ footer{border-top:1px solid #315576;padding:18px;text-align:center;font:700 14px
  <section class="hero" aria-labelledby="hero-title">
   <div class="hero-photo">
    <img src="/Unknown%203.jpeg" alt="Theodore Vista batting in his black baseball uniform" fetchpriority="high">
+   <video id="theoHeroReel" class="hero-reel" autoplay muted playsinline loop preload="metadata" aria-label="Theo's baseball highlight Reel">
+    <source src="/theo-header-reel.mp4" type="video/mp4">
+   </video>
    <span class="hero-ghost-number" aria-hidden="true">#2</span>
+   <button id="theoHeroSound" class="hero-sound" type="button" aria-label="Turn header video sound on" title="Turn sound on" hidden>🔇</button>
   </div>
   <div class="hero-content">
    <h1 id="hero-title"><span class="road">THEODORE</span><span class="hero-name-row"><span class="town">VISTA</span><span class="year">#2</span></span></h1>
@@ -625,6 +636,32 @@ if(new URLSearchParams(location.search).has('donation') || document.getElementBy
      button.disabled=false;
      button.textContent="SEND INQUIRY";
    }
+ });
+})();
+</script>
+<script>
+(function(){
+ const video=document.getElementById("theoHeroReel");
+ const sound=document.getElementById("theoHeroSound");
+ if(!video||!sound)return;
+ const reducedMotion=window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches||false;
+ function playable(){
+   video.classList.add("is-ready");
+   sound.hidden=false;
+   if(reducedMotion)video.pause();
+   else video.play().catch(()=>{});
+ }
+ video.addEventListener("canplay",playable,{once:true});
+ video.addEventListener("error",()=>{
+   video.classList.remove("is-ready");
+   sound.hidden=true; // Original header photo stays visible if the file is unavailable.
+ });
+ sound.addEventListener("click",()=>{
+   video.muted=!video.muted;
+   sound.textContent=video.muted?"🔇":"🔊";
+   sound.setAttribute("aria-label",video.muted?"Turn header video sound on":"Mute header video");
+   sound.title=video.muted?"Turn sound on":"Mute sound";
+   if(video.paused)video.play().catch(()=>{});
  });
 })();
 </script>
