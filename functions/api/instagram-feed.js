@@ -63,7 +63,7 @@ export async function onRequestGet(context) {
     status: 503, headers: { "Cache-Control": "no-store" }
   });
   const cache = caches.default;
-  const cacheKey = new Request(new URL("/api/instagram-feed?v=2", context.request.url));
+  const cacheKey = new Request(new URL("/api/instagram-feed?v=3", context.request.url));
   try {
     const hit = await cache.match(cacheKey);
     if (hit) return hit;
@@ -93,7 +93,7 @@ export async function onRequestGet(context) {
         caption: repairCaption(m.caption).slice(0, 2200),
         timestamp: String(m.timestamp || "")
       });
-      if (posts.length >= 12) break;
+      if (posts.length >= 9) break;
     }
     if (!posts.length) return Response.json({ ok: false, error: "Instagram posts not available." }, {
       status: 502, headers: { "Cache-Control": "no-store" }
