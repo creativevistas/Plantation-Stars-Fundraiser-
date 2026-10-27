@@ -313,7 +313,6 @@ footer{border-top:1px solid #315576;padding:18px;text-align:center;font:700 14px
 .contact-field input:focus,.contact-field select:focus,.contact-field textarea:focus{outline:3px solid #e9294a;outline-offset:1px}
 .contact-submit{display:block;width:100%;margin-top:18px;font-size:21px}
 .contact-form-note{margin:12px 0 0;color:#c4d9e8;font-size:13px;line-height:1.5}
-.contact-response-frame{position:absolute;width:0;height:0;border:0;opacity:0;pointer-events:none;overflow:hidden}
 .contact-send-status{margin:14px 0 0;padding:11px 13px;border:1px solid #658dad;border-radius:6px;background:#102f49;color:#f0f6fb;font-size:15px;line-height:1.45}
 .contact-send-status[hidden]{display:none}
 .contact-honey{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
@@ -410,10 +409,10 @@ footer{border-top:1px solid #315576;padding:18px;text-align:center;font:700 14px
     <p>Interested in inviting Theo to guest play, partnering as a business sponsor, or discussing another baseball opportunity? Send the details below to connect with Theo's parents.</p>
     <p class="contact-note">For guest-player invites, please include the team name and tournament information, including the tournament name, dates, and location.</p>
    </div>
-   <form class="theo-contact-form" id="theoContactForm" action="https://formsubmit.co/jlsvista@aol.com" method="POST" target="theoContactResponse">
+   <form class="theo-contact-form" id="theoContactForm" action="https://formsubmit.co/jlsvista@aol.com" method="POST">
     <input type="hidden" name="_subject" value="New guest-player or sponsorship inquiry for Theodore Vista">
     <input type="hidden" name="_template" value="table">
-    <input type="hidden" name="_next" value="https://theodore-vista-cooperstown.pages.dev/contact-sent.html?embedded=1">
+    <input type="hidden" name="_next" value="https://theodore-vista-cooperstown.pages.dev/contact-sent.html">
     <input type="hidden" name="_url" value="https://theodore-vista-cooperstown.pages.dev/#contact">
     <div class="contact-honey" aria-hidden="true"><label for="contactWebsite">Leave blank</label><input id="contactWebsite" type="text" name="_honey" tabindex="-1" autocomplete="off"></div>
     <div class="contact-fields">
@@ -427,7 +426,6 @@ footer{border-top:1px solid #315576;padding:18px;text-align:center;font:700 14px
     <p class="contact-send-status" id="contactSendStatus" role="status" aria-live="polite" hidden></p>
     <p class="contact-form-note">We look forward to hearing from you!</p>
    </form>
-   <iframe id="theoContactResponse" name="theoContactResponse" title="Inquiry submission response" class="contact-response-frame" tabindex="-1" aria-hidden="true"></iframe>
   </div>
  </section>
 </main>
@@ -587,51 +585,16 @@ if(new URLSearchParams(location.search).has('donation') || document.getElementBy
 <script>
 (function(){
  const form=document.getElementById("theoContactForm");
- const button=form?.querySelector('button[type="submit"]');
  const status=document.getElementById("contactSendStatus");
- const frame=document.getElementById("theoContactResponse");
- if(!form||!button||!status||!frame)return;
- let submitted=false;
- const show=message=>{status.hidden=false;status.textContent=message;};
- const resetForNewInquiry=()=>{
-   if(submitted){
-     submitted=false;
-     button.disabled=false;
-     button.textContent="SEND INQUIRY ↗";
-   }
-   status.hidden=true;status.textContent="";
- };
+ if(!form||!status)return;
+ // Preserve native HTML form submit so FormSubmit can perform its own security checks
+ // and redirect to our hosted confirmation page after accepting the inquiry.
  form.addEventListener("invalid",()=>{
-   show("Please complete all required fields, including the inquiry type.");
+   status.hidden=false;
+   status.textContent="Please complete all required fields, including the inquiry type.";
  },true);
- form.addEventListener("input",resetForNewInquiry);
- form.addEventListener("change",resetForNewInquiry);
- // FormSubmit receives a regular browser POST in a hidden frame.
- // A cross-origin iframe does not reliably expose the provider's response.
- form.addEventListener("submit",event=>{
-   if(submitted){event.preventDefault();return;}
-   if(!form.checkValidity()){event.preventDefault();form.reportValidity();return;}
-   submitted=true;
-   button.disabled=true;
-   button.textContent="INQUIRY SUBMITTED";
-   // Acknowledge sending the POST, not an unverified email delivery.
-   show("Thank you! Your inquiry has been submitted.");
- });
- // If FormSubmit redirects to our page, we can additionally confirm success.
- frame.addEventListener("load",()=>{
-   if(!submitted)return;
-   let confirmed=false;
-   try{
-     const url=new URL(frame.contentWindow.location.href);
-     confirmed=url.origin===location.origin &&
-       url.pathname==="/contact-sent.html" &&
-       url.searchParams.get("embedded")==="1";
-   }catch(_){ /* Cross-origin response is not readable by this page. */ }
-   if(confirmed){
-     show("Thank you! Your inquiry has been sent. We look forward to hearing from you!");
-     form.reset();
-   }
- });
+ form.addEventListener("input",()=>{status.hidden=true;status.textContent="";});
+ form.addEventListener("change",()=>{status.hidden=true;status.textContent="";});
 })();
 </script>
 </body></html>
