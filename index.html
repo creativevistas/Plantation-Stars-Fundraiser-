@@ -189,7 +189,9 @@ footer{border-top:1px solid #315576;padding:18px;text-align:center;font:700 14px
 .theo-ig-media .theo-ig-play{position:absolute;z-index:3;top:50%;left:50%;transform:translate(-50%,-50%);width:58px;height:58px;border:2px solid #ffffffda;border-radius:50%;background:#05182bc9;color:white;font-size:26px;display:grid;place-items:center;cursor:pointer;transition:opacity .2s}
 .theo-ig-post:hover .theo-ig-play.is-playing{opacity:0}
 .theo-ig-media .theo-ig-play.is-playing:focus-visible{opacity:1}
-.theo-ig-media a.theo-ig-play{text-decoration:none;font:800 12px 'Barlow Condensed',sans-serif;letter-spacing:.9px;text-align:center;line-height:1.2;padding:10px;width:92px;height:92px;box-shadow:0 4px 16px #0009}
+.theo-ig-media a.theo-ig-play{text-decoration:none;font:800 27px Arial,sans-serif;letter-spacing:0;text-align:center;line-height:1;padding:0;width:58px;height:58px;box-shadow:0 4px 16px #0009}
+.theo-ig-media .theo-ig-sound{position:absolute;z-index:4;bottom:14px;right:14px;width:44px;height:44px;border:1px solid #ffffffaa;border-radius:50%;background:#04182bd9;color:white;font-size:22px;display:grid;place-items:center;cursor:pointer}
+.theo-ig-media .theo-ig-sound:hover{background:#d9284d}
 .theo-ig-media a.theo-ig-play:hover{background:#dd2345;border-color:white;transform:translate(-50%,-50%) scale(1.1)}
 .theo-ig-type{position:absolute;top:13px;right:12px;z-index:2;border-radius:5px;background:#061a2fe0;padding:6px 9px;font:800 13px 'Barlow Condensed',sans-serif;letter-spacing:1.4px}
 .theo-ig-post-body{padding:14px 15px 18px;min-height:104px}
@@ -430,85 +432,96 @@ if(new URLSearchParams(location.search).has('donation') || document.getElementBy
 (function(){
  const grid=document.getElementById("theoIgGrid"),status=document.getElementById("theoIgStatus");
  if(!grid||!status)return;
- function pause(video,button){
-  if(!video)return;
-  video.pause();
-  try{video.currentTime=0}catch(_){}
-  if(button){button.classList.remove("is-playing");button.textContent="▶";button.setAttribute("aria-label","Play Reel")}
- }
  function element(tag,cls,txt){
   const node=document.createElement(tag);
   if(cls)node.className=cls;
   if(txt!==undefined)node.textContent=txt;
   return node;
  }
- function render(post){
+ function instagramPlayLink(post){
+  const link=element("a","theo-ig-play theo-ig-play-link","▶");
+  link.href=post.permalink;
+  link.target="_blank";
+  link.rel="noopener noreferrer";
+  link.title="Open Reel on Instagram";
+  link.setAttribute("aria-label","Play Reel on Instagram");
+  return link;
+ }
+ function render(post,autoplayId){
   const article=element("article","theo-ig-post");
   const media=element("div","theo-ig-media");
   const isReel=post.type==="VIDEO";
-  const hasVideoFile=isReel && Boolean(post.video);
+  const isAutoplayReel=isReel && Boolean(post.video) && post.id===autoplayId;
   const poster=post.thumbnail || "";
-  if(hasVideoFile){
+  if(isAutoplayReel){
+   // Browsers require autoplay to be muted. Sound is enabled by a user click.
    const video=document.createElement("video");
-   // Safari requires a genuinely muted, inline video for no-click hover playback.
    video.playsInline=true;
    video.setAttribute("playsinline","");
    video.setAttribute("webkit-playsinline","");
    video.defaultMuted=true;
    video.muted=true;
-   video.setAttribute("muted","");
+   video.autoplay=true;
    video.loop=true;
    video.preload="metadata";
    if(poster)video.poster=poster;
    video.src=post.video;
-   video.setAttribute("aria-label","Theo Instagram Reel");
+   video.setAttribute("aria-label","Theo's latest playable Instagram Reel");
    media.appendChild(video);
-   const play=element("button","theo-ig-play","▶");
-   play.type="button";play.setAttribute("aria-label","Play Reel");
-   play.addEventListener("click",async()=>{
-    if(video.paused){try{await video.play();play.textContent="❚❚";play.classList.add("is-playing");play.setAttribute("aria-label","Pause Reel")}catch(_){play.textContent="▶"}}
-    else{pause(video,play)}
-   });
-   let hoverActive=false;
-   async function previewOnHover(){
-    hoverActive=true;
-    video.muted=true;
-    try{
-     await video.play();
-     if(!hoverActive){pause(video,play);return}
-     play.classList.add("is-playing");
-     play.textContent="❚❚";
-     play.setAttribute("aria-label","Pause Reel");
-    }catch(_){
-     // Safari can still block autoplay. The manual play button remains available.
-     play.classList.remove("is-playing");
-     play.textContent="▶";
+   const sound=element("button","theo-ig-sound","🔇");
+   sound.type="button";
+   sound.title="Turn sound on";
+   sound.setAttribute("aria-label","Turn sound on");
+   sound.addEventListener("click",async()=>{
+    const enable=video.muted;
+    video.muted=!enable;
+    if(enable)video.defaultMuted=false;
+    sound.textContent=enable?"🔊":"🔇";
+    sound.title=enable?"Mute Reel":"Turn sound on";
+    sound.setAttribute("aria-label",sound.title);
+    if(enable){
+     try{await video.play()}catch(_){
+      video.muted=true;video.defaultMuted=true;
+      sound.textContent="🔇";sound.title="Turn sound on";
+      sound.setAttribute("aria-label","Turn sound on");
+      video.play().catch(()=>{});
+     }
     }
-   }
-   article.addEventListener("mouseenter",previewOnHover);
-   article.addEventListener("mouseleave",()=>{hoverActive=false;pause(video,play)});
-   video.addEventListener("error",()=>{
-    hoverActive=false;
-    const watch=element("a","theo-ig-play theo-ig-play-link","WATCH REEL ↗");
-    watch.href=post.permalink;watch.target="_blank";watch.rel="noopener noreferrer";
-    watch.setAttribute("aria-label","Watch Reel on Instagram");
-    play.replaceWith(watch);
    });
-   document.addEventListener("visibilitychange",()=>{if(document.hidden)pause(video,play)});
-   media.appendChild(play);
+   media.appendChild(sound);
+   let failed=false;
+   video.addEventListener("error",()=>{
+    if(failed)return;
+    failed=true;
+    video.remove();
+    sound.remove();
+    const img=element("img");
+    img.src=poster;
+    img.alt="Cover for Theo's Instagram Reel";
+    img.loading="lazy";
+    media.prepend(img);
+    media.appendChild(instagramPlayLink(post));
+   });
+   // Play only when the featured Reel comes into view, and pause offscreen.
+   const playVisible=()=>{if(!failed && !document.hidden)video.play().catch(()=>{})};
+   if("IntersectionObserver" in window){
+    const observer=new IntersectionObserver(entries=>{
+     if(entries[0]?.isIntersecting)playVisible();
+     else video.pause();
+    },{threshold:0.25});
+    observer.observe(article);
+   }else{video.addEventListener("loadeddata",playVisible,{once:true})}
+   document.addEventListener("visibilitychange",()=>{
+    if(document.hidden)video.pause();
+    else if(article.getBoundingClientRect().top<window.innerHeight && article.getBoundingClientRect().bottom>0)playVisible();
+   });
   }else{
-   const img=document.createElement("img");
-   img.src=poster;img.alt=isReel?"Cover image for Theo's Instagram Reel":"Theo Instagram post";
-   img.loading="lazy";media.appendChild(img);
-   if(isReel){
-    // Meta sometimes excludes video files (for example licensed-audio Reels).
-    // Keep the Reel cover/caption and send viewers to its original on Instagram.
-    const watch=element("a","theo-ig-play theo-ig-play-link","WATCH REEL ↗");
-    watch.href=post.permalink;watch.target="_blank";watch.rel="noopener noreferrer";
-    watch.title="Watch Reel on Instagram";
-    watch.setAttribute("aria-label","Watch Reel on Instagram");
-    media.appendChild(watch);
-   }
+   const img=element("img");
+   img.src=poster;
+   img.alt=isReel?"Cover image for Theo's Instagram Reel":"Theo Instagram post";
+   img.loading="lazy";
+   media.appendChild(img);
+   if(isReel)media.appendChild(instagramPlayLink(post));
   }
   media.appendChild(element("span","theo-ig-type",isReel?"REEL":post.type==="CAROUSEL"?"ALBUM":"PHOTO"));
   article.appendChild(media);
@@ -521,7 +534,7 @@ if(new URLSearchParams(location.search).has('donation') || document.getElementBy
  }
  fetch("/api/instagram-feed",{cache:"no-store"})
  .then(async r=>{const data=await r.json();if(!r.ok||!data.ok||!data.posts?.length)throw Error("Not available");return data.posts})
- .then(posts=>{grid.replaceChildren(...posts.slice(0,9).map(render));status.textContent="Latest 9 posts from @theo2official · Hover over playable Reels to preview · Updated automatically";})
+ .then(posts=>{const latest=posts.slice(0,9);const autoplayId=latest.find(p=>p.type==="VIDEO" && p.video)?.id;grid.replaceChildren(...latest.map(p=>render(p,autoplayId)));status.textContent="Latest 9 posts from @theo2official · Updated automatically";})
  .catch(()=>{status.textContent="Instagram updates are temporarily unavailable. Theo's photo highlights are displayed instead.";});
 })();
 </script>
