@@ -180,13 +180,14 @@ footer{border-top:1px solid #315576;padding:18px;text-align:center;font:700 14px
 }
 
 
-/* Direct Instagram API gallery: three portrait Reel-size cards, no paid widgets. */
+/* Direct Instagram API gallery: four portrait Reel-size cards per desktop row, no paid widgets. */
 .theo-ig-head{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:18px}
 .theo-ig-head .section-title{margin-bottom:9px}
 .theo-ig-head .social-subtitle{margin:0}
 .theo-ig-profile{flex:none;font:800 17px 'Barlow Condensed',sans-serif;letter-spacing:2px;color:#fff;border:1px solid #6a91ae;border-radius:7px;padding:11px 19px}
 .theo-ig-profile:hover{background:#cf2040}
-.theo-ig-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(12px,1.8vw,22px);align-items:start;margin-top:20px}
+.theo-ig-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(12px,1.8vw,22px);align-items:start;margin-top:20px}
+@media(max-width:1050px){.theo-ig-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .theo-ig-post{position:relative;min-width:0;overflow:hidden;background:linear-gradient(160deg,#0d3051,#04162b);border:1px solid #406e91;border-radius:12px;box-shadow:0 9px 22px #0006;transition:transform .2s,border-color .2s}
 .theo-ig-post:hover{transform:translateY(-4px);border-color:#e72b4e}
 .theo-ig-media{position:relative;aspect-ratio:9/16;background:#041325;overflow:hidden}
@@ -572,7 +573,7 @@ if(new URLSearchParams(location.search).has('donation') || document.getElementBy
  }
  fetch("/api/instagram-feed",{cache:"no-store"})
  .then(async r=>{const data=await r.json();if(!r.ok||!data.ok||!data.posts?.length)throw Error("Not available");return data.posts})
- .then(posts=>{const latest=posts.slice(0,9);const autoplayId=latest.find(p=>p.type==="VIDEO" && p.video)?.id;grid.replaceChildren(...latest.map(p=>render(p,autoplayId)));status.textContent="Latest 9 posts from @theo2official · Updated automatically";})
+ .then(posts=>{const latest=posts.slice(0,8);const autoplayId=latest.find(p=>p.type==="VIDEO" && p.video)?.id;grid.replaceChildren(...latest.map(p=>render(p,autoplayId)));status.textContent="Latest 8 posts from @theo2official · Updated automatically";})
  .catch(()=>{status.textContent="Instagram updates are temporarily unavailable. Theo's photo highlights are displayed instead.";});
 })();
 </script>
