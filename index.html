@@ -356,6 +356,37 @@ body{background:#020e21}
  .hero-photo .theo-poster img{object-position:center 34%;object-fit:cover}
  .hero-photo:after{background:linear-gradient(0deg,#04192d,transparent 27%)}
 }
+
+/* Approved full-width desktop artwork and legible, uncropped mobile hero.
+   Switch happens only after BOTH uploaded images load successfully. */
+.hero-photo .approved-poster{display:none}
+html.hero-approved-ready .hero{display:block;min-height:0;aspect-ratio:1855 / 848;max-width:1920px}
+html.hero-approved-ready .hero-photo{position:absolute;inset:0;width:100%;height:100%;min-height:0}
+html.hero-approved-ready .hero-photo .theo-poster{display:none}
+html.hero-approved-ready .hero-photo .approved-poster{position:absolute;inset:0;display:block;width:100%;height:100%}
+html.hero-approved-ready .hero-photo .approved-poster img{display:block;width:100%;height:100%;object-fit:contain;object-position:center;filter:none}
+html.hero-approved-ready .hero-photo:before,html.hero-approved-ready .hero-photo:after{display:none}
+html.hero-approved-ready .hero-content{position:absolute;inset:0;display:block;padding:0;background:none;min-width:0;pointer-events:none}
+html.hero-approved-ready .hero-content h1,
+html.hero-approved-ready .hero-content .slogan,
+html.hero-approved-ready .hero-content .intro{position:absolute;opacity:0;pointer-events:none}
+html.hero-approved-ready .hero-actions{position:absolute;left:58.4%;top:77.2%;width:35%;height:8.8%;margin:0;display:flex;flex-wrap:nowrap;align-items:stretch;gap:2.6%;pointer-events:none}
+html.hero-approved-ready .hero-actions .btn{flex:0 0 55%;display:block;width:55%;height:100%;min-height:0;padding:0;margin:0;opacity:0;font-size:0;pointer-events:auto}
+html.hero-approved-ready .hero-actions .hero-secondary{flex-basis:42.4%;width:42.4%}
+html.hero-approved-ready .hero-actions .btn:focus-visible{opacity:1;outline:3px solid #fff;outline-offset:2px}
+@media(max-width:980px){
+ html.hero-approved-ready .hero{display:grid;grid-template-columns:1fr;aspect-ratio:auto}
+ html.hero-approved-ready .hero-photo{position:relative;inset:auto;width:100%;height:auto;min-height:0;aspect-ratio:1040 / 848}
+ html.hero-approved-ready .hero-content{position:relative;inset:auto;display:flex;flex-direction:column;justify-content:center;padding:23px 22px 36px;pointer-events:auto;background:radial-gradient(ellipse at 60% 0%,#1a497388,transparent 70%)}
+ html.hero-approved-ready .hero-content h1,
+ html.hero-approved-ready .hero-content .slogan,
+ html.hero-approved-ready .hero-content .intro{position:static;opacity:1;pointer-events:auto}
+ html.hero-approved-ready .hero-content h1{display:flex;width:100%;margin:0 0 17px;font-size:clamp(53px,11vw,95px)}
+ html.hero-approved-ready .hero-actions{position:static;width:100%;height:auto;margin-top:22px;display:flex;flex-wrap:wrap;align-items:center;gap:11px;pointer-events:auto}
+ html.hero-approved-ready .hero-actions .btn,
+ html.hero-approved-ready .hero-actions .hero-secondary{flex:1 1 180px;width:auto;height:auto;min-height:49px;display:inline-flex;align-items:center;justify-content:center;opacity:1;font-size:clamp(15px,3.7vw,20px);padding:11px 13px;white-space:nowrap}
+}
+
 </style></head><body>
 
 <header class="site-header" id="top">
@@ -371,6 +402,10 @@ body{background:#020e21}
    <picture class="theo-poster">
     <source media="(max-width:760px)" srcset="/theo-illustrated-header-mobile.jpg">
     <img src="/theo-illustrated-header-desktop.jpg" alt="Illustrated Theodore Vista in his blue baseball uniform, with Dominican, Puerto Rican and Ecuadorian flags" fetchpriority="high">
+   </picture>
+   <picture class="approved-poster" aria-hidden="true">
+    <source media="(max-width:980px)" srcset="/theo-hero-mobile.jpg">
+    <img src="/theo-hero-desktop.jpg" alt="">
    </picture>
    <span class="hero-ghost-number" aria-hidden="true">#2</span>
    <button id="theoHeroSound" class="hero-sound" type="button" aria-label="Turn header video sound on" title="Turn sound on" hidden>🔇</button>
@@ -693,6 +728,18 @@ if(new URLSearchParams(location.search).has('donation') || document.getElementBy
    sound.setAttribute("aria-label",video.muted?"Turn header video sound on":"Mute header video");
    sound.title=video.muted?"Turn sound on":"Mute sound";
    if(video.paused)video.play().catch(()=>{});
+ });
+})();
+</script>
+<script>
+/* Preserve the original hero until the new desktop AND mobile files are uploaded. */
+(function(){
+ const sources=['/theo-hero-desktop.jpg','/theo-hero-mobile.jpg'];
+ let ready=0;
+ sources.forEach(function(src){
+  const img=new Image();
+  img.onload=function(){ready++;if(ready===sources.length)document.documentElement.classList.add('hero-approved-ready')};
+  img.src=src;
  });
 })();
 </script>
