@@ -37,10 +37,10 @@ h1,h2,h3,p{margin-top:0}.container{max-width:1220px;width:calc(100% - 64px);marg
 
 .dream{position:relative;isolation:isolate;padding:46px 0;background:radial-gradient(ellipse at 75% 15%,#153b5d,#091a30 59%,#061426);overflow:hidden;border-bottom:1px solid #42739b}
 .dream:after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(161deg,transparent 0 90px,#ffffff06 92px 94px,transparent 95px 187px);z-index:-1;pointer-events:none}
-.dream-top{display:flex;justify-content:center;align-items:center;margin-bottom:32px}
-.dream-photo{margin:0;max-width:345px;border:2px solid #4b7799;border-radius:12px;background:#061426;overflow:hidden;box-shadow:0 12px 28px #0008}
-.dream-photo img{display:block;width:100%;max-height:430px;height:auto;object-fit:contain}
-.dream-photo figcaption{font:700 14px 'Barlow Condensed',sans-serif;letter-spacing:2px;color:#dce8f3;padding:10px 12px;text-align:center;background:#102b46}
+.dream-top{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;margin-bottom:32px}
+.dream-eyebrow{font:800 15px 'Barlow Condensed',sans-serif;letter-spacing:3px;color:#ffadba;margin:0 0 9px}
+.dream-top h2{font:900 clamp(38px,4.8vw,60px)/1 'Barlow Condensed',sans-serif;letter-spacing:1.2px;margin:0 0 13px}
+.dream-top p:last-child{font-size:18px;line-height:1.5;max-width:700px;margin:0;color:#dce7f1}
 .dream-title{font:italic 900 clamp(46px,5.2vw,72px)/.87 'Barlow Condensed',sans-serif;letter-spacing:-.7px;margin:0 0 22px;text-shadow:3px 4px #0007}
 .dream-title em{color:var(--red);font-style:italic}
 .dream-intro{font-size:19px;line-height:1.55;color:#e5edf5;max-width:720px;margin:0}
@@ -353,18 +353,17 @@ footer{border-top:1px solid #315576;padding:18px;text-align:center;font:700 14px
    </div>
   </div>
  </section>
- <section class="dream" id="dream">
+ <section class="dream" id="dream" aria-labelledby="dream-heading">
   <div class="container">
    <div class="dream-top">
-    <figure class="dream-photo">
-     <img src="/Unknown%202.jpeg" alt="Photo of Theodore Vista" loading="lazy">
-     <figcaption>THEODORE VISTA • #2</figcaption>
-    </figure>
+    <p class="dream-eyebrow">MORE THAN ONE MILESTONE</p>
+    <h2 id="dream-heading">EVERY SEASON BUILDS THE STORY</h2>
+    <p>Theo's baseball journey is about development, dedication, and new opportunities that go far beyond any one tournament.</p>
    </div>
    <div class="value-grid">
-    <div class="value"><span class="symbol" aria-hidden="true"><svg viewBox="0 0 24 24" width="33" height="33" aria-hidden="true" fill="none" stroke="#f8faff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8M12 17v4M7 4h10v7a5 5 0 0 1-10 0V4Zm0 2H4v2a4 4 0 0 0 4 4m9-6h3v2a4 4 0 0 1-4 4"/></svg></span><h3>ONCE IN A LIFETIME</h3><p>A special baseball experience designed for 12-year-old players.</p></div>
-    <div class="value"><span class="symbol" aria-hidden="true"><svg viewBox="0 0 24 24" width="33" height="33" aria-hidden="true" fill="none" stroke="#f8faff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M2 20v-2a7 7 0 0 1 14 0v2M16 14a6 6 0 0 1 6 6"/></svg></span><h3>BUILDS CHARACTER</h3><p>More than baseball. Cooperstown creates lifelong lessons.</p></div>
-    <div class="value"><span class="symbol" aria-hidden="true"><svg viewBox="0 0 24 24" width="33" height="33" aria-hidden="true" fill="none" stroke="#f8faff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0l-1 1-1-1a5.5 5.5 0 0 0-7.8 7.8l8.8 8.5 8.8-8.5a5.5 5.5 0 0 0 0-7.8Z"/></svg></span><h3>YOUR SUPPORT MATTERS</h3><p>Every contribution brings Theo closer to this dream.</p></div>
+    <div class="value"><span class="symbol" aria-hidden="true"><svg viewBox="0 0 24 24" width="33" height="33" aria-hidden="true" fill="none" stroke="#f8faff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8M12 17v4M7 4h10v7a5 5 0 0 1-10 0V4Zm0 2H4v2a4 4 0 0 0 4 4m9-6h3v2a4 4 0 0 1-4 4"/></svg></span><h3>OPPORTUNITIES TO GROW</h3><p>Each practice, game, and challenge helps Theo sharpen his skills and gain experience.</p></div>
+    <div class="value"><span class="symbol" aria-hidden="true"><svg viewBox="0 0 24 24" width="33" height="33" aria-hidden="true" fill="none" stroke="#f8faff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M2 20v-2a7 7 0 0 1 14 0v2M16 14a6 6 0 0 1 6 6"/></svg></span><h3>BUILDS CHARACTER</h3><p>Baseball builds discipline, teamwork, confidence, and resilience on and off the field.</p></div>
+    <div class="value"><span class="symbol" aria-hidden="true"><svg viewBox="0 0 24 24" width="33" height="33" aria-hidden="true" fill="none" stroke="#f8faff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0l-1 1-1-1a5.5 5.5 0 0 0-7.8 7.8l8.8 8.5 8.8-8.5a5.5 5.5 0 0 0 0-7.8Z"/></svg></span><h3>YOUR SUPPORT MATTERS</h3><p>Your encouragement and contributions help make Theo's next opportunities and milestones possible.</p></div>
    </div>
   </div>
  </section>
