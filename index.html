@@ -159,7 +159,11 @@ footer{border-top:1px solid #315576;padding:18px;text-align:center;font:700 14px
 .career-donate-card{background:linear-gradient(150deg,#0c304f,#05172a);border:1px solid #4e80a6;border-top:5px solid var(--red);box-shadow:0 14px 32px #0006;border-radius:12px;padding:27px clamp(18px,2.5vw,32px)}
 .career-donate-card .donate-card-kicker{font-size:15px;letter-spacing:2px;color:#d6e3f1}
 .career-donate-card .tracker{background:transparent;border:0;box-shadow:none;padding:0}
-.career-donate-card .tracker-head{font-size:19px}
+.career-donate-card .tracker-totals{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:14px}
+.career-donate-card .tracker-amount{flex:0 0 auto;white-space:nowrap}
+.career-donate-card .tracker-goal-summary{flex:0 1 auto;text-align:right;color:#dbe8f4;font:800 15px/1.25 'Barlow Condensed',sans-serif;letter-spacing:.4px}
+@media(max-width:450px){.career-donate-card .tracker-goal-summary{font-size:12px;max-width:60%}}
+
 .career-donate-card .cta-row{text-align:center;margin-top:21px}
 .career-donate-card .btn{width:100%;padding:13px 14px;font-size:21px}
 .donate-card-note{text-align:center;font-size:14px;line-height:1.5;color:#c1d5e7;margin:13px 0 0}
@@ -336,20 +340,18 @@ footer{border-top:1px solid #315576;padding:18px;text-align:center;font:700 14px
     <h2 id="career-support-title">SUPPORT THEO'S<br><span>BASEBALL DREAMS</span></h2>
     <p class="career-intro">Behind every young athlete is a community that believes in them. Whether you're family, a friend, or a local business looking to support a dedicated young athlete, your generosity helps Theo continue growing, competing, and pursuing his passion for baseball.</p>
     <div class="current-campaign">
-     <span class="campaign-label">CURRENT GOAL</span>
      <strong>ROAD TO COOPERSTOWN 2027</strong>
-     <p>All contributions currently support Theo's Road to Cooperstown 2027, helping with tournament and travel expenses.</p>
+     <p>Thank you for supporting Theodore's Road to Cooperstown 2027. Your contribution helps cover tournament fees, equipment, and travel expenses.</p>
     </div>
    </div>
    <div class="career-donate-card">
     <p class="donate-card-kicker">HELP MAKE THE NEXT MILESTONE POSSIBLE</p>
     <div class="tracker" aria-label="Cooperstown 2027 fundraising progress">
-     <div class="tracker-head"><span>COOPERSTOWN 2027</span><span>$5,000 GOAL</span></div>
      <div class="tracker-track" id="trackerTrack" role="progressbar" aria-label="Cooperstown 2027 fundraising progress" aria-valuemin="0" aria-valuemax="5000" aria-valuenow="0"><div class="tracker-fill" id="trackerFill"></div></div>
-     <div class="tracker-totals"><span><strong id="raisedTotal">—</strong> raised</span></div>
+     <div class="tracker-totals"><span class="tracker-amount"><strong id="raisedTotal">—</strong> raised</span><span class="tracker-goal-summary">COOPERSTOWN 2027 · $5,000 GOAL</span></div>
     </div>
-    <div class="cta-row"><a class="btn" href="#support" data-open-donate>DONATE TO THEO'S JOURNEY ↗</a></div>
-    <p class="donate-card-note">Your contribution will support the current Cooperstown 2027 campaign. Secure checkout powered by Stripe.</p>
+    <div class="cta-row"><a class="btn" href="#support" data-open-donate>SUPPORT THE DREAM</a></div>
+    <p class="donate-card-note">Secure checkout powered by Stripe.</p>
    </div>
   </div>
   <div class="container support-benefits" aria-label="Why supporting Theo matters">
