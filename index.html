@@ -423,7 +423,7 @@ html.hero-approved-ready .hero-actions .btn:focus-visible{opacity:1;outline:3px 
     <img src="/theo-illustrated-header-desktop.jpg" alt="Illustrated Theodore Vista in his blue baseball uniform, with Dominican, Puerto Rican and Ecuadorian flags" fetchpriority="high">
    </picture>
    <picture class="approved-poster" aria-hidden="true">
-    <source media="(max-width:980px)" srcset="/theo-hero-mobile.jpg">
+    <source media="(max-width:980px)" srcset="/theo-hero-mobile-2.jpg">
     <img src="/theo-hero-desktop.jpg" alt="">
    </picture>
    <span class="hero-ghost-number" aria-hidden="true">#2</span>
@@ -753,7 +753,7 @@ if(new URLSearchParams(location.search).has('donation') || document.getElementBy
 <script>
 /* Preserve the original hero until the new desktop AND mobile files are uploaded. */
 (function(){
- const sources=['/theo-hero-desktop.jpg','/theo-hero-mobile.jpg'];
+ const sources=['/theo-hero-desktop.jpg','/theo-hero-mobile-2.jpg'];
  let ready=0;
  sources.forEach(function(src){
   const img=new Image();
