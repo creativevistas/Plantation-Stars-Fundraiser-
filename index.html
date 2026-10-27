@@ -313,6 +313,8 @@ footer{border-top:1px solid #315576;padding:18px;text-align:center;font:700 14px
 .contact-field input:focus,.contact-field select:focus,.contact-field textarea:focus{outline:3px solid #e9294a;outline-offset:1px}
 .contact-submit{display:block;width:100%;margin-top:18px;font-size:21px}
 .contact-form-note{margin:12px 0 0;color:#c4d9e8;font-size:13px;line-height:1.5}
+.contact-copy{display:block;margin:10px auto 0;background:transparent;border:1px solid #6088a7;border-radius:6px;padding:10px 20px;font:700 15px 'Barlow Condensed',sans-serif;color:#dcecf7;letter-spacing:1px}
+.contact-copy:hover,.contact-copy:focus-visible{border-color:#f02849;color:#fff}
 .contact-send-status{margin:14px 0 0;padding:11px 13px;border:1px solid #658dad;border-radius:6px;background:#102f49;color:#f0f6fb;font-size:15px;line-height:1.45}
 .contact-send-status[hidden]{display:none}
 .contact-honey{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
@@ -409,11 +411,10 @@ footer{border-top:1px solid #315576;padding:18px;text-align:center;font:700 14px
     <p>Interested in inviting Theo to guest play, partnering as a business sponsor, or discussing another baseball opportunity? Send the details below to connect with Theo's parents.</p>
     <p class="contact-note">For guest-player invites, please include the team name and tournament information, including the tournament name, dates, and location.</p>
    </div>
-   <form class="theo-contact-form" id="theoContactForm" action="https://formsubmit.co/jlsvista@aol.com" method="POST">
-    <input type="hidden" name="_subject" value="New guest-player or sponsorship inquiry for Theodore Vista">
-    <input type="hidden" name="_template" value="table">
-    <input type="hidden" name="_next" value="https://theodore-vista-cooperstown.pages.dev/contact-sent.html">
-    <input type="hidden" name="_url" value="https://theodore-vista-cooperstown.pages.dev/#contact">
+   <form class="theo-contact-form" id="theoContactForm" action="#contact" method="POST">
+    <input type="hidden" name="access_key" id="contactWeb3FormsKey" value="">
+    <input type="hidden" name="subject" value="New guest-player or sponsorship inquiry for Theodore Vista">
+    <input type="checkbox" name="botcheck" value="1" hidden tabindex="-1" aria-hidden="true">
     <div class="contact-honey" aria-hidden="true"><label for="contactWebsite">Leave blank</label><input id="contactWebsite" type="text" name="_honey" tabindex="-1" autocomplete="off"></div>
     <div class="contact-fields">
      <div class="contact-field"><label for="contactName">Your name *</label><input id="contactName" name="name" type="text" maxlength="120" autocomplete="name" required></div>
@@ -422,9 +423,10 @@ footer{border-top:1px solid #315576;padding:18px;text-align:center;font:700 14px
      <div class="contact-field"><label for="contactOrg">Team or business</label><input id="contactOrg" name="team_or_business" type="text" maxlength="160" autocomplete="organization"></div>
      <div class="contact-field contact-full"><label for="contactMessage">Tell us about the opportunity *</label><textarea id="contactMessage" name="message" rows="6" maxlength="3000" required placeholder="Share the opportunity, dates, location, and anything else we should know."></textarea></div>
     </div>
-    <button class="btn contact-submit" type="submit">SEND INQUIRY ↗</button>
+    <button class="btn contact-submit" type="submit">OPEN EMAIL DRAFT ↗</button>
+    <button class="contact-copy" id="contactAlternate" type="button">COPY INQUIRY INSTEAD</button>
     <p class="contact-send-status" id="contactSendStatus" role="status" aria-live="polite" hidden></p>
-    <p class="contact-form-note">We look forward to hearing from you!</p>
+    <p class="contact-form-note" id="contactMethodNote">This opens a prepared email in your email app. Please press Send there to deliver your inquiry.</p>
    </form>
   </div>
  </section>
@@ -585,16 +587,93 @@ if(new URLSearchParams(location.search).has('donation') || document.getElementBy
 <script>
 (function(){
  const form=document.getElementById("theoContactForm");
+ const key=form?.querySelector('[name="access_key"]');
+ const button=form?.querySelector('button[type="submit"]');
+ const alternate=document.getElementById("contactAlternate");
  const status=document.getElementById("contactSendStatus");
- if(!form||!status)return;
- // Preserve native HTML form submit so FormSubmit can perform its own security checks
- // and redirect to our hosted confirmation page after accepting the inquiry.
- form.addEventListener("invalid",()=>{
-   status.hidden=false;
-   status.textContent="Please complete all required fields, including the inquiry type.";
- },true);
- form.addEventListener("input",()=>{status.hidden=true;status.textContent="";});
- form.addEventListener("change",()=>{status.hidden=true;status.textContent="";});
+ const note=document.getElementById("contactMethodNote");
+ if(!form||!key||!button||!alternate||!status||!note)return;
+ const recipient=["jlsvista","aol.com"].join("@");
+ const ready=()=>Boolean(key.value.trim());
+ let busy=false;
+ const show=message=>{status.hidden=false;status.textContent=message;};
+ const clear=()=>{if(!busy){status.hidden=true;status.textContent="";}};
+ const fields=()=>Object.fromEntries(new FormData(form).entries());
+ const validate=()=>{
+   if(form.checkValidity())return true;
+   show("Please complete all required fields, including the inquiry type.");
+   form.reportValidity();
+   return false;
+ };
+ const compose=()=>{
+   const data=fields();
+   const subject="Theo Vista #2 — "+data.inquiry_type;
+   const body=[
+     "Hello Theo's parents,","",
+     "I'd like to get in touch about the following opportunity:","",
+     "Name: "+data.name,
+     "Email: "+data.email,
+     "Inquiry type: "+data.inquiry_type,
+     "Team or business: "+(data.team_or_business||"Not provided"),
+     "","Message:",data.message
+   ].join("\n");
+   return {subject,body};
+ };
+ const draft=()=>{
+   const data=compose();
+   show("Your email app should open with a prepared inquiry. Please press Send in your email app to deliver it.");
+   location.href="mailto:"+recipient+"?subject="+encodeURIComponent(data.subject)+"&body="+encodeURIComponent(data.body);
+ };
+ // With an access key, submit to Web3Forms and show success only when confirmed.
+ // Until a key is supplied, the form deliberately opens a mail draft instead.
+ if(ready()){
+   button.textContent="SEND INQUIRY ↗";
+   alternate.textContent="OPEN EMAIL DRAFT INSTEAD";
+   note.textContent="We look forward to hearing from you!";
+ }
+ form.addEventListener("invalid",()=>show("Please complete all required fields, including the inquiry type."),true);
+ form.addEventListener("input",clear);
+ form.addEventListener("change",clear);
+ form.addEventListener("submit",async event=>{
+   event.preventDefault();
+   if(busy||!validate())return;
+   if(!ready()){draft();return;}
+   busy=true;
+   button.disabled=true;
+   button.textContent="SENDING…";
+   show("Sending your inquiry…");
+   const controller=new AbortController();
+   const timeout=setTimeout(()=>controller.abort(),14000);
+   try{
+     const result=await fetch("https://api.web3forms.com/submit",{
+       method:"POST",body:new FormData(form),headers:{"Accept":"application/json"},
+       signal:controller.signal
+     });
+     const json=await result.json();
+     if(!result.ok||json.success!==true)throw Error("Submission unconfirmed");
+     form.reset();
+     show("Thank you! Your inquiry has been sent. We look forward to hearing from you!");
+   }catch(_){
+     show("We couldn't confirm delivery. Please use Open Email Draft Instead, or try again later.");
+   }finally{
+     clearTimeout(timeout);
+     busy=false;
+     button.disabled=false;
+     button.textContent="SEND INQUIRY ↗";
+   }
+ });
+ alternate.addEventListener("click",async()=>{
+   if(!validate())return;
+   if(ready()){draft();return;}
+   const data=compose();
+   const message="To: "+recipient+"\nSubject: "+data.subject+"\n\n"+data.body;
+   try{
+     await navigator.clipboard.writeText(message);
+     show("Inquiry copied. Paste it into a new email and press Send.");
+   }catch(_){
+     show("Copy is unavailable in this browser. Please use Open Email Draft instead.");
+   }
+ });
 })();
 </script>
 </body></html>
