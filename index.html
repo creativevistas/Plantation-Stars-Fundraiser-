@@ -313,8 +313,7 @@ footer{border-top:1px solid #315576;padding:18px;text-align:center;font:700 14px
 .contact-field input:focus,.contact-field select:focus,.contact-field textarea:focus{outline:3px solid #e9294a;outline-offset:1px}
 .contact-submit{display:block;width:100%;margin-top:18px;font-size:21px}
 .contact-form-note{margin:12px 0 0;color:#c4d9e8;font-size:13px;line-height:1.5}
-.contact-copy{display:block;margin:10px auto 0;background:transparent;border:1px solid #6088a7;border-radius:6px;padding:10px 20px;font:700 15px 'Barlow Condensed',sans-serif;color:#dcecf7;letter-spacing:1px}
-.contact-copy:hover,.contact-copy:focus-visible{border-color:#f02849;color:#fff}
+.contact-response-frame{position:absolute;width:0;height:0;border:0;opacity:0;pointer-events:none;overflow:hidden}
 .contact-send-status{margin:14px 0 0;padding:11px 13px;border:1px solid #658dad;border-radius:6px;background:#102f49;color:#f0f6fb;font-size:15px;line-height:1.45}
 .contact-send-status[hidden]{display:none}
 .contact-honey{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
@@ -411,7 +410,11 @@ footer{border-top:1px solid #315576;padding:18px;text-align:center;font:700 14px
     <p>Interested in inviting Theo to guest play, partnering as a business sponsor, or discussing another baseball opportunity? Send the details below to connect with Theo's parents.</p>
     <p class="contact-note">For guest-player invites, please include the team name and tournament information, including the tournament name, dates, and location.</p>
    </div>
-   <form class="theo-contact-form" id="theoContactForm" action="#contact" method="POST">
+   <form class="theo-contact-form" id="theoContactForm" action="https://formsubmit.co/jlsvista@aol.com" method="POST" target="theoContactResponse">
+    <input type="hidden" name="_subject" value="New guest-player or sponsorship inquiry for Theodore Vista">
+    <input type="hidden" name="_template" value="table">
+    <input type="hidden" name="_next" value="https://theodore-vista-cooperstown.pages.dev/contact-sent.html?embedded=1">
+    <input type="hidden" name="_url" value="https://theodore-vista-cooperstown.pages.dev/#contact">
     <div class="contact-honey" aria-hidden="true"><label for="contactWebsite">Leave blank</label><input id="contactWebsite" type="text" name="_honey" tabindex="-1" autocomplete="off"></div>
     <div class="contact-fields">
      <div class="contact-field"><label for="contactName">Your name *</label><input id="contactName" name="name" type="text" maxlength="120" autocomplete="name" required></div>
@@ -420,11 +423,11 @@ footer{border-top:1px solid #315576;padding:18px;text-align:center;font:700 14px
      <div class="contact-field"><label for="contactOrg">Team or business</label><input id="contactOrg" name="team_or_business" type="text" maxlength="160" autocomplete="organization"></div>
      <div class="contact-field contact-full"><label for="contactMessage">Tell us about the opportunity *</label><textarea id="contactMessage" name="message" rows="6" maxlength="3000" required placeholder="Share the opportunity, dates, location, and anything else we should know."></textarea></div>
     </div>
-    <button class="btn contact-submit" type="submit">OPEN EMAIL DRAFT ↗</button>
-    <button class="contact-copy" id="copyContactInquiry" type="button">COPY INQUIRY INSTEAD</button>
+    <button class="btn contact-submit" type="submit">SEND INQUIRY ↗</button>
     <p class="contact-send-status" id="contactSendStatus" role="status" aria-live="polite" hidden></p>
-    <p class="contact-form-note">This opens a prepared message in your email app. Please press Send there to finish your inquiry.</p>
+    <p class="contact-form-note">We look forward to hearing from you!</p>
    </form>
+   <iframe id="theoContactResponse" name="theoContactResponse" title="Inquiry submission response" class="contact-response-frame" tabindex="-1" aria-hidden="true"></iframe>
   </div>
  </section>
 </main>
@@ -584,51 +587,45 @@ if(new URLSearchParams(location.search).has('donation') || document.getElementBy
 <script>
 (function(){
  const form=document.getElementById("theoContactForm");
+ const button=form?.querySelector('button[type="submit"]');
  const status=document.getElementById("contactSendStatus");
- const copy=document.getElementById("copyContactInquiry");
- if(!form||!status||!copy)return;
- const recipient=["jlsvista","aol.com"].join("@");
+ const frame=document.getElementById("theoContactResponse");
+ if(!form||!button||!status||!frame)return;
+ let pending=false, timer=null;
  const show=message=>{status.hidden=false;status.textContent=message;};
- const fields=()=>Object.fromEntries(new FormData(form).entries());
- const compose=()=>{
-  const data=fields();
-  const subject="Theo Vista #2 — "+data.inquiry_type;
-  const body=[
-   "Hello Theo's parents,","","I would like to get in touch about the following opportunity:","",
-   "Name: "+data.name,
-   "Email: "+data.email,
-   "Inquiry type: "+data.inquiry_type,
-   "Team or business: "+(data.team_or_business||"Not provided"),
-   "","Message:",data.message
-  ].join("\n");
-  return {subject,body};
- };
- const validate=()=>{
-  if(form.checkValidity())return true;
-  show("Please complete all required fields, including the inquiry type.");
-  form.reportValidity();
-  return false;
- };
- form.addEventListener("invalid",()=>{show("Please complete all required fields, including the inquiry type.");},true);
- form.addEventListener("input",()=>{status.hidden=true;status.textContent="";});
- form.addEventListener("change",()=>{status.hidden=true;status.textContent="";});
+ const restore=()=>{pending=false;button.disabled=false;button.textContent="SEND INQUIRY ↗";if(timer){clearTimeout(timer);timer=null;}};
+ form.addEventListener("invalid",()=>{
+   show("Please complete all required fields, including the inquiry type.");
+ },true);
+ form.addEventListener("input",()=>{if(!pending){status.hidden=true;status.textContent="";}});
+ form.addEventListener("change",()=>{if(!pending){status.hidden=true;status.textContent="";}});
+ // Keep the browser's native POST intact; it goes into the invisible frame.
  form.addEventListener("submit",event=>{
-  event.preventDefault();
-  if(!validate())return;
-  const data=compose();
-  show("Your email app should open with a prepared draft. Please press Send there to deliver your inquiry. If nothing opens, use Copy Inquiry Instead.");
-  location.href="mailto:"+recipient+"?subject="+encodeURIComponent(data.subject)+"&body="+encodeURIComponent(data.body);
+   if(pending){event.preventDefault();return;}
+   if(!form.checkValidity()){event.preventDefault();form.reportValidity();return;}
+   pending=true;
+   button.disabled=true;
+   button.textContent="SENDING…";
+   show("Sending your inquiry…");
+   timer=setTimeout(()=>{
+     if(!pending)return;
+     restore();
+     show("Your inquiry was submitted, but we couldn't verify the confirmation. Please avoid resubmitting immediately.");
+   },20000);
  });
- copy.addEventListener("click",async()=>{
-  if(!validate())return;
-  const data=compose();
-  const text="To: "+recipient+"\nSubject: "+data.subject+"\n\n"+data.body;
-  try{
-   await navigator.clipboard.writeText(text);
-   show("Inquiry copied. Paste it into a new email and send it to Theo's parents.");
-  }catch(_){
-   show("Copy is unavailable in this browser. Please use Open Email Draft instead.");
-  }
+ frame.addEventListener("load",()=>{
+   if(!pending)return;
+   // Only a redirect back from FormSubmit to our confirmation page counts as verified.
+   let confirmed=false;
+   try{
+     const url=new URL(frame.contentWindow.location.href);
+     confirmed=url.origin===location.origin && url.pathname==="/contact-sent.html" && url.searchParams.get("embedded")==="1";
+   }catch(_){ /* External response; browser correctly restricts access. */ }
+   if(confirmed){
+     restore();
+     form.reset();
+     show("Thank you! Your inquiry has been sent. We look forward to hearing from you!");
+   }
  });
 })();
 </script>
