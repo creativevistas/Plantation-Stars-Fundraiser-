@@ -335,6 +335,27 @@ footer{border-top:1px solid #315576;padding:18px;text-align:center;font:700 14px
 .hero .slogan{color:#fff;}
 .hero-actions .hero-primary{background:linear-gradient(115deg,#ce1535,#fa3454);}
 @media(max-width:760px){.hero-photo>img{object-position:50% 33%;}.hero-photo:after{background:linear-gradient(0deg,#04192d,transparent 46%),linear-gradient(90deg,#e7204033,transparent 31%);}}
+
+/* Illustrated baseball header — desktop/mobile artwork; copy, controls, nav and order unchanged. */
+:root{--navy:#020d20;--navy2:#0a2552;--red:#f12645;--ice:#ecf3fc;--line:#346fc0}
+body{background:#020e21}
+.site-header{background:linear-gradient(110deg,#010c1e,#061b3b 58%,#09183b);border-bottom-color:#2355a2}
+.hero{background:radial-gradient(ellipse at 80% 15%,#163c79,#051b3d 52%,#020d20 95%);border-bottom-color:#255dc1}
+.hero-photo{background:#04122b}
+.hero-photo .theo-poster{position:absolute;inset:0;display:block;width:100%;height:100%;z-index:0}
+.hero-photo .theo-poster img{display:block;width:100%;height:100%;object-fit:cover;object-position:58% center;filter:none}
+.hero-photo:before{background:none}
+.hero-photo:after{background:linear-gradient(90deg,transparent 72%,#03182fe8 100%),linear-gradient(0deg,#03182f7d,transparent 25%);}
+.hero-ghost-number{display:none}
+.hero-content{background:radial-gradient(ellipse at 90% 7%,#143c793d,transparent 55%)}
+.hero-content:before{display:none}
+.stat-section{background:linear-gradient(110deg,#020c20,#092c63,#031126)}
+.career-support{background:radial-gradient(ellipse at 10% 8%,#173d79,transparent 55%),linear-gradient(115deg,#061a39,#020d20 80%)}
+.contact-section{background:radial-gradient(ellipse at 15% 5%,#183c78,transparent 56%),linear-gradient(125deg,#061c40,#020d20)}
+@media(max-width:760px){
+ .hero-photo .theo-poster img{object-position:center 34%;object-fit:cover}
+ .hero-photo:after{background:linear-gradient(0deg,#04192d,transparent 27%)}
+}
 </style></head><body>
 
 <header class="site-header" id="top">
@@ -347,10 +368,10 @@ footer{border-top:1px solid #315576;padding:18px;text-align:center;font:700 14px
  <div class="about-player" id="about">
  <section class="hero" aria-labelledby="hero-title">
   <div class="hero-photo">
-   <img src="/Unknown%203.jpeg" alt="Theodore Vista batting in his black baseball uniform" fetchpriority="high">
-   <video id="theoHeroReel" class="hero-reel" autoplay muted playsinline loop preload="metadata" aria-label="Theo's baseball highlight Reel">
-    <source src="/theo-header-reel.mp4" type="video/mp4">
-   </video>
+   <picture class="theo-poster">
+    <source media="(max-width:760px)" srcset="/theo-illustrated-header-mobile.jpg">
+    <img src="/theo-illustrated-header-desktop.jpg" alt="Illustrated Theodore Vista in his blue baseball uniform, with Dominican, Puerto Rican and Ecuadorian flags" fetchpriority="high">
+   </picture>
    <span class="hero-ghost-number" aria-hidden="true">#2</span>
    <button id="theoHeroSound" class="hero-sound" type="button" aria-label="Turn header video sound on" title="Turn sound on" hidden>🔇</button>
   </div>
