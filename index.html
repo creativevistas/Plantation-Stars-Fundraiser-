@@ -585,46 +585,16 @@ if(new URLSearchParams(location.search).has('donation') || document.getElementBy
 <script>
 (function(){
  const form=document.getElementById("theoContactForm");
- const button=form?.querySelector('button[type="submit"]');
  const status=document.getElementById("contactSendStatus");
- if(!form||!button||!status)return;
- let submitting=false;
- function show(message){status.hidden=false;status.textContent=message;}
- function showMissingFields(){
-  show("Please complete all required fields and select an inquiry type.");
-  const invalid=form.querySelector(":invalid");
-  if(invalid){invalid.focus();form.reportValidity();}
- }
+ if(!form||!status)return;
+ // Leave native HTML form submission untouched. Browsers navigate directly
+ // to FormSubmit and FormSubmit redirects to Theo's own thank-you page.
  form.addEventListener("invalid",()=>{
-  show("Please complete all required fields and select an inquiry type.");
+   status.hidden=false;
+   status.textContent="Please complete all required fields, including the inquiry type.";
  },true);
- button.addEventListener("click",event=>{
-  if(submitting){event.preventDefault();return;}
-  if(!form.checkValidity()){event.preventDefault();showMissingFields();}
- });
- form.addEventListener("submit",event=>{
-  event.preventDefault();
-  if(submitting)return;
-  if(!form.checkValidity()){showMissingFields();return;}
-  submitting=true;
-  button.disabled=true;
-  button.textContent="SUBMITTING…";
-  show("Submitting your inquiry securely…");
-  // Use native HTML form navigation; no cross-origin AJAX or Cloudflare proxy.
-  HTMLFormElement.prototype.submit.call(form);
-  // Restore the button if the browser blocks the external navigation.
-  setTimeout(()=>{
-   if(document.visibilityState==="visible"){
-    submitting=false;
-    button.disabled=false;
-    button.textContent="SEND INQUIRY ↗";
-    show("If the confirmation page did not open, please check Safari's content blockers and try again.");
-   }
-  },8000);
- });
- window.addEventListener("pageshow",()=>{
-  submitting=false;button.disabled=false;button.textContent="SEND INQUIRY ↗";
- });
+ form.addEventListener("input",()=>{status.hidden=true;status.textContent="";});
+ form.addEventListener("change",()=>{status.hidden=true;status.textContent="";});
 })();
 </script>
 </body></html>
