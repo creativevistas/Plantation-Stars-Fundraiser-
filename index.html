@@ -821,6 +821,11 @@ html.hero-2026-ready .hero-content{display:none!important}
    <form class="theo-contact-form" id="theoContactForm" action="https://api.web3forms.com/submit" method="POST">
     <input type="hidden" name="access_key" id="contactWeb3FormsKey" value="9ae3826c-0bd0-40ae-a508-f7d9c32e4090">
     <input type="hidden" name="subject" value="New guest-player or sponsorship inquiry for Theodore Vista">
+    <input type="hidden" name="submitted_at_utc" id="contactSubmittedUtc">
+    <input type="hidden" name="visitor_timezone" id="contactVisitorTimezone">
+    <input type="hidden" name="browser_device" id="contactBrowserDevice">
+    <input type="hidden" name="submitted_from_page" id="contactSubmittedPage">
+    <input type="hidden" name="submission_reference" id="contactSubmissionReference">
     <input type="checkbox" name="botcheck" value="1" hidden tabindex="-1" aria-hidden="true">
     <div class="contact-honey" aria-hidden="true"><label for="contactWebsite">Leave blank</label><input id="contactWebsite" type="text" name="_honey" tabindex="-1" autocomplete="off"></div>
     <div class="contact-fields">
@@ -1010,6 +1015,14 @@ if(new URLSearchParams(location.search).has('donation') || document.getElementBy
      form.reportValidity();
      return;
    }
+   // Capture submission context in the email notification. These client-reported
+   // details help investigate abuse but cannot verify a visitor's identity.
+   const setField=(id,value)=>{const el=document.getElementById(id);if(el)el.value=value;};
+   setField("contactSubmittedUtc",new Date().toISOString());
+   setField("contactVisitorTimezone",Intl.DateTimeFormat().resolvedOptions().timeZone||"Unknown");
+   setField("contactBrowserDevice",(navigator.userAgent||"Unknown").slice(0,400));
+   setField("contactSubmittedPage",location.origin+location.pathname);
+   setField("contactSubmissionReference",crypto.randomUUID?.()||String(Date.now()));
    busy=true;
    button.disabled=true;
    button.textContent="SENDING…";
