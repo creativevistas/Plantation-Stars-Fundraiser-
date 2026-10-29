@@ -109,12 +109,9 @@ export async function onRequestGet(context) {
       )
       .run();
 
-    return Response.json({
-      success: true,
-      amount: amount,
-      playerKey: playerKey,
-      playerName: playerName
-    });
+    const homepage = new URL("/", context.request.url);
+    homepage.searchParams.set("donation", "success");
+    return Response.redirect(homepage.toString(), 303);
 
   } catch (error) {
     console.error("Checkout success error:", error);

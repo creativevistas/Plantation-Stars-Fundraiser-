@@ -3,14 +3,11 @@ export async function onRequestPost(context) {
     const body = await context.request.json();
 
     const amount = Number(body.amount);
-
-    if (!amount || amount < 1) {
-      return Response.json(
-        { error: "Invalid donation amount." },
-        { status: 400 }
-      );
+    if (body.playerKey !== "theodore-vista-2027" ||
+        !Number.isFinite(amount) || amount < 1 || amount > 5000 ||
+        Math.round(amount * 100) !== amount * 100) {
+      return Response.json({ error: "Enter a valid donation between $1 and $5,000." }, { status: 400 });
     }
-
     const stripeKey = context.env.STRIPE_SECRET_KEY;
 
     if (!stripeKey) {
@@ -48,7 +45,7 @@ export async function onRequestPost(context) {
 
     params.append(
       "line_items[0][price_data][product_data][name]",
-      "Plantation Stars Red — Cooperstown Fundraiser"
+      "Theodore Vista — Road to Cooperstown 2027"
     );
 
     params.append(
@@ -94,12 +91,7 @@ export async function onRequestPost(context) {
       body.anonymous ? "yes" : "no"
     );
 
-    if (Array.isArray(body.baseballs)) {
-      params.append(
-        "metadata[baseballs]",
-        body.baseballs.join(", ")
-      );
-    }
+
 
     const stripeResponse = await fetch(
       "https://api.stripe.com/v1/checkout/sessions",
